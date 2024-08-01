@@ -1,1 +1,1 @@
-# classic-algorithms
+# classic-algorithms-suite
