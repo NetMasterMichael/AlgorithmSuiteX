@@ -57,9 +57,11 @@ class Test_BubbleSort {
 			BubbleSort testBubbleSort = new BubbleSort(unsortedArray);
 			assertFalse(Arrays.equals(sortedArray, testBubbleSort.getInputArray()),
 					"Test that the basic array inside testBubbleSort is unsorted before calling sort()");
+			assertFalse(testBubbleSort.isSorted(), "Test that isSorted() returns false before calling sort()");
 			testBubbleSort.sort();
 			assertTrue(Arrays.equals(sortedArray, testBubbleSort.getInputArray()),
 					"Test that the basic array inside testBubbleSort is sorted after calling sort()");
+			assertTrue(testBubbleSort.isSorted(), "Test that isSorted() returns true after calling sort()");
 		} catch (Exception e) {
 			fail("Exception " + e + " thrown while testing bubble sort with a basic array; " + e.getMessage());
 		}
