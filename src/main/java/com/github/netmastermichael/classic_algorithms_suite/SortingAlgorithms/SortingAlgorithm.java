@@ -24,12 +24,30 @@ public interface SortingAlgorithm {
 	void setInputArray(int[] newInputArray);
 	
 	/**
+	 * Gets the number of comparisons from the object. This will only increase if sortWithMetrics() or interactive mode is used.
+	 * If sort() is called, comparisons will stay at zero.
+	 * 
+	 * @return number of comparisons
+	 */
+	int getComparisons();
+	
+	
+	/**
+	 * Gets the number of moves from the object. This will only increase if sortWithMetrics() or interactive mode is used.
+	 * If sort() is called, moves will stay at zero.
+	 * 
+	 * @return number of moves
+	 */
+	int getMoves();
+	
+	/**
 	 * Sorts an input array using the specified sorting algorithm.
 	 */
 	void sort();
 	
 	/*
-	 * Sorts an input array while keeping track of metrics, such as the number of comparisons and moves performed.
+	 * Sorts an input array using the specified sorting algorithm while keeping track of metrics, such as the number of comparisons and moves performed.
+	 * Performance may be slightly impacted in this mode.
 	 */
 	void sortWithMetrics();
 	

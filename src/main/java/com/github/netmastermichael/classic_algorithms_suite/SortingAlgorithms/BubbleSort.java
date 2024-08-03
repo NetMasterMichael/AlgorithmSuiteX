@@ -23,6 +23,16 @@ public class BubbleSort implements SortingAlgorithm {
 	}
 
 	@Override
+	public int getComparisons() {
+		return comparisons;
+	}
+
+	@Override
+	public int getMoves() {
+		return moves;
+	}
+
+	@Override
 	public void sort() {
 		// TODO Auto-generated method stub
 
