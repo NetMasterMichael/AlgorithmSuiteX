@@ -1,45 +1,107 @@
 package com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms;
 
+/**
+ * BubbleSort is a class that implements the bubble sort algorithm for sorting
+ * an array of integers. It implements the SortingAlgorithm interface and is
+ * designed to primarily be used with a controller, but can be used
+ * independently. The bubble sort algorithm is inefficient and generally
+ * performs poorly compared to most other sorting algorithms, but is very simple
+ * to understand and great for an introduction to algorithms.
+ * <p>
+ * Time Complexity Best Case: O(n)<br>
+ * Conditions: Input array is already sorted, no moves are made.
+ * </p>
+ * <p>
+ * Time Complexity Average Case: O(n^2)
+ * </p>
+ * <p>
+ * Time Complexity Worst Case: O(n^2)<br>
+ * Conditions: Input array is in reverse order.
+ * </p>
+ * 
+ * @author Michael Goodwin (NetMasterMichael)
+ */
 public class BubbleSort implements SortingAlgorithm {
 
+	/** Array that is currently being worked on by the sorting algorithm */
 	private int[] inputArray;
+
+	/** Quantity of comparisons that have been made during the lifetime of a sort */
 	private int comparisons;
+
+	/** Quantity of moves that have been made during the lifetime of a sort */
 	private int moves;
 
+	/**
+	 * Constructor for creating a BubbleSort object to sort an array of integers.
+	 * 
+	 * @param inputArray array to sort
+	 */
 	public BubbleSort(int[] inputArray) {
 		this.inputArray = inputArray;
 		this.comparisons = 0;
 		this.moves = 0;
 	}
 
+	/**
+	 * Returns the array currently held inside the BubbleSort object.
+	 *
+	 * @return Array currently inside of BubbleSort instance
+	 */
 	@Override
 	public int[] getInputArray() {
 		return inputArray;
 	}
 
+	/**
+	 * Sets the array inside the BubbleSort object to the provided array.
+	 * 
+	 * @param Array to set inside BubbleSort instance
+	 */
 	@Override
 	public void setInputArray(int[] newInputArray) {
 		this.inputArray = newInputArray;
 	}
 
+	/**
+	 * Returns the number of comparisons currently held inside the BubbleSort
+	 * object.
+	 *
+	 * @return Number of comparisons in BubbleSort instance
+	 */
 	@Override
 	public int getComparisons() {
 		return comparisons;
 	}
 
+	/**
+	 * Returns the number of moves currently held inside the BubbleSort object.
+	 *
+	 * @return Number of moves in BubbleSort instance
+	 */
 	@Override
 	public int getMoves() {
 		return moves;
 	}
 
+	/**
+	 * Sorts the array inside inputArray using the bubble sort algorithm with
+	 * optimisations.
+	 */
 	@Override
 	public void sort() {
+		// Optimisation: If no swaps occur during a pass, end the algorithm early.
 		boolean swapDuringPass;
 		int buffer;
+		// Optimisation: During each pass, the highest value bubbles to the end. We know
+		// the highest value moved will be sorted, so there's no need to check that
+		// again. Reduce number of checks each pass.
 		int iterationsRemaining = inputArray.length;
 		while (true) {
 			swapDuringPass = false;
+			// Check each pair in the array.
 			for (int i = 0; i < (iterationsRemaining - 1); i++) {
+				// If the left number is larger than the right number, swap them.
 				if (inputArray[i] > inputArray[i + 1]) {
 					buffer = inputArray[i];
 					inputArray[i] = inputArray[i + 1];
@@ -47,9 +109,12 @@ public class BubbleSort implements SortingAlgorithm {
 					swapDuringPass = true;
 				}
 			}
+			// If no swaps have occurred, then the array is sorted, so break the method
+			// early.
 			if (!swapDuringPass) {
 				break;
 			}
+			// Otherwise, reduce number of pairs to check and run another pass.
 			iterationsRemaining--;
 		}
 	}
