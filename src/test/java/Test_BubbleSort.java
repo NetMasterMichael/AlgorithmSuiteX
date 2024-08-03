@@ -48,4 +48,21 @@ class Test_BubbleSort {
 					+ e.getMessage());
 		}
 	}
+
+	@Test
+	void testBubbleSort() {
+		try {
+			int[] unsortedArray = { 8, 6, 3, 7, 2, 5, 4, 1 };
+			int[] sortedArray = { 1, 2, 3, 4, 5, 6, 7, 8 };
+			BubbleSort testBubbleSort = new BubbleSort(unsortedArray);
+			assertFalse(Arrays.equals(sortedArray, testBubbleSort.getInputArray()),
+					"Test that the basic array inside testBubbleSort is unsorted before calling sort()");
+			testBubbleSort.sort();
+			assertTrue(Arrays.equals(sortedArray, testBubbleSort.getInputArray()),
+					"Test that the basic array inside testBubbleSort is sorted after calling sort()");
+		} catch (Exception e) {
+			fail("Exception " + e + " thrown while testing bubble sort with a basic array; " + e.getMessage());
+		}
+	}
+
 }

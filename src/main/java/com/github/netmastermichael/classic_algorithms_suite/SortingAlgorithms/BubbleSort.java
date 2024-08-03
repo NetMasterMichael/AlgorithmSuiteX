@@ -34,8 +34,24 @@ public class BubbleSort implements SortingAlgorithm {
 
 	@Override
 	public void sort() {
-		// TODO Auto-generated method stub
-
+		boolean swapDuringPass;
+		int buffer;
+		int iterationsRemaining = inputArray.length;
+		while (true) {
+			swapDuringPass = false;
+			for (int i = 0; i < (iterationsRemaining - 1); i++) {
+				if (inputArray[i] > inputArray[i + 1]) {
+					buffer = inputArray[i];
+					inputArray[i] = inputArray[i + 1];
+					inputArray[i + 1] = buffer;
+					swapDuringPass = true;
+				}
+			}
+			if (!swapDuringPass) {
+				break;
+			}
+			iterationsRemaining--;
+		}
 	}
 
 	@Override
