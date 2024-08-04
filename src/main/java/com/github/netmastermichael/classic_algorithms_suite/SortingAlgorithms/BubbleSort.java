@@ -86,7 +86,7 @@ public class BubbleSort implements SortingAlgorithm {
 
 	/**
 	 * Sorts the array inside inputArray using the bubble sort algorithm with
-	 * optimisations.
+	 * optimisations. Use this method when assessing raw algorithm performance.
 	 */
 	@Override
 	public void sort() {
@@ -119,10 +119,42 @@ public class BubbleSort implements SortingAlgorithm {
 		}
 	}
 
+	/**
+	 * Sorts the array inside inputArray using the bubble sort algorithm with
+	 * optimisations, while keeping track of metrics. Use this method when assessing
+	 * algorithm optimisation.
+	 */
 	@Override
 	public void sortWithMetrics() {
-		// TODO Auto-generated method stub
-
+		// Optimisation: If no swaps occur during a pass, end the algorithm early.
+		boolean swapDuringPass;
+		int buffer;
+		// Optimisation: During each pass, the highest value bubbles to the end. We know
+		// the highest value moved will be sorted, so there's no need to check that
+		// again. Reduce number of checks each pass.
+		int iterationsRemaining = inputArray.length;
+		while (true) {
+			swapDuringPass = false;
+			// Check each pair in the array.
+			for (int i = 0; i < (iterationsRemaining - 1); i++) {
+				// If the left number is larger than the right number, swap them.
+				comparisons++;
+				if (inputArray[i] > inputArray[i + 1]) {
+					moves++;
+					buffer = inputArray[i];
+					inputArray[i] = inputArray[i + 1];
+					inputArray[i + 1] = buffer;
+					swapDuringPass = true;
+				}
+			}
+			// If no swaps have occurred, then the array is sorted, so break the method
+			// early.
+			if (!swapDuringPass) {
+				break;
+			}
+			// Otherwise, reduce number of pairs to check and run another pass.
+			iterationsRemaining--;
+		}
 	}
 
 	@Override
