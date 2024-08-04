@@ -1,5 +1,8 @@
 package com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 /**
  * BubbleSort is a class that implements the bubble sort algorithm for sorting
  * an array of integers. It implements the SortingAlgorithm interface and is
@@ -32,6 +35,10 @@ public class BubbleSort implements SortingAlgorithm {
 	/** Quantity of moves that have been made during the lifetime of a sort */
 	private int moves;
 
+	private Deque<SortingAlgorithmOperation> operationsDeque;
+	
+	private Deque<Integer> indicesDeque;
+	
 	/**
 	 * Constructor for creating a BubbleSort object to sort an array of integers.
 	 * 
@@ -39,8 +46,14 @@ public class BubbleSort implements SortingAlgorithm {
 	 */
 	public BubbleSort(int[] inputArray) {
 		this.inputArray = inputArray;
+		reset();
+	}
+	
+	private void reset() {
 		this.comparisons = 0;
 		this.moves = 0;
+		this.operationsDeque = new LinkedList<SortingAlgorithmOperation>();
+		this.indicesDeque = new LinkedList<Integer>();
 	}
 
 	/**
@@ -61,6 +74,7 @@ public class BubbleSort implements SortingAlgorithm {
 	@Override
 	public void setInputArray(int[] newInputArray) {
 		this.inputArray = newInputArray;
+		reset();
 	}
 
 	/**
@@ -159,8 +173,46 @@ public class BubbleSort implements SortingAlgorithm {
 
 	@Override
 	public void toggleInteractiveMode() {
-		// TODO Auto-generated method stub
 
+	}
+
+	/**
+	 * Sorts an isolated copy of inputArray using the bubble sort algorithm with
+	 * optimisations, while inserting each operation into a deque. Actual inputArray
+	 * field is not modified. Each operation can be stepped through using step().
+	 */
+	private void preComputeSort() {
+		int[] inputArrayDuplicate = inputArray;
+		reset();
+		boolean swapDuringPass;
+		int buffer;
+		int iterationsRemaining = inputArrayDuplicate.length;
+		while (true) {
+			swapDuringPass = false;
+			// Check each pair in the array.
+			for (int i = 0; i < (iterationsRemaining - 1); i++) {
+				operationsDeque.addFirst(SortingAlgorithmOperation.COMPARE);
+				indicesDeque.addFirst(i);
+				indicesDeque.addFirst(i + 1);
+				// If the left number is larger than the right number, swap them.
+				if (inputArrayDuplicate[i] > inputArrayDuplicate[i + 1]) {
+					operationsDeque.addFirst(SortingAlgorithmOperation.MOVE);
+					indicesDeque.addFirst(i);
+					indicesDeque.addFirst(i + 1);
+					buffer = inputArrayDuplicate[i];
+					inputArrayDuplicate[i] = inputArrayDuplicate[i + 1];
+					inputArrayDuplicate[i + 1] = buffer;
+					swapDuringPass = true;
+				}
+			}
+			// If no swaps have occurred, then the array is sorted, so break the method
+			// early.
+			if (!swapDuringPass) {
+				break;
+			}
+			// Otherwise, reduce number of pairs to check and run another pass.
+			iterationsRemaining--;
+		}
 	}
 
 	@Override
