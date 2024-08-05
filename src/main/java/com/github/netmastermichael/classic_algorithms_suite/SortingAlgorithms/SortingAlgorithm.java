@@ -34,13 +34,13 @@ public interface SortingAlgorithm {
 	int getComparisons();
 
 	/**
-	 * Gets the number of moves from the object. This will only increase if
-	 * sortWithMetrics() or interactive mode is used. If sort() is called, moves
+	 * Gets the number of swaps from the object. This will only increase if
+	 * sortWithMetrics() or interactive mode is used. If sort() is called, swaps
 	 * will stay at zero.
 	 * 
-	 * @return number of moves
+	 * @return number of swaps
 	 */
-	int getMoves();
+	int getSwaps();
 
 	/**
 	 * Sorts an input array using the specified sorting algorithm.
@@ -49,7 +49,7 @@ public interface SortingAlgorithm {
 
 	/*
 	 * Sorts an input array using the specified sorting algorithm while keeping
-	 * track of metrics, such as the number of comparisons and moves performed.
+	 * track of metrics, such as the number of comparisons and swaps performed.
 	 * Performance may be slightly impacted in this mode.
 	 */
 	void sortWithMetrics();

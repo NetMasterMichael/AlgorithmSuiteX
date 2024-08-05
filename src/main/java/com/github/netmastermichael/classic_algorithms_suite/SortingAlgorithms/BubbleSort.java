@@ -12,7 +12,7 @@ import java.util.LinkedList;
  * to understand and great for an introduction to algorithms.
  * <p>
  * Time Complexity Best Case: O(n)<br>
- * Conditions: Input array is already sorted, no moves are made.
+ * Conditions: Input array is already sorted, no swaps are made.
  * </p>
  * <p>
  * Time Complexity Average Case: O(n^2)
@@ -32,8 +32,8 @@ public class BubbleSort implements SortingAlgorithm {
 	/** Quantity of comparisons that have been made during the lifetime of a sort */
 	private int comparisons;
 
-	/** Quantity of moves that have been made during the lifetime of a sort */
-	private int moves;
+	/** Quantity of swaps that have been made during the lifetime of a sort */
+	private int swaps;
 
 	private Deque<SortingAlgorithmOperation> operationsDeque;
 	
@@ -51,7 +51,7 @@ public class BubbleSort implements SortingAlgorithm {
 	
 	private void reset() {
 		this.comparisons = 0;
-		this.moves = 0;
+		this.swaps = 0;
 		this.operationsDeque = new LinkedList<SortingAlgorithmOperation>();
 		this.indicesDeque = new LinkedList<Integer>();
 	}
@@ -78,7 +78,7 @@ public class BubbleSort implements SortingAlgorithm {
 	}
 
 	/**
-	 * Returns the number of comparisons currently held inside the BubbleSort
+	 * Returns the number of comparisons currently recorded inside the BubbleSort
 	 * object.
 	 *
 	 * @return Number of comparisons in BubbleSort instance
@@ -89,13 +89,13 @@ public class BubbleSort implements SortingAlgorithm {
 	}
 
 	/**
-	 * Returns the number of moves currently held inside the BubbleSort object.
+	 * Returns the number of swaps currently recorded inside the BubbleSort object.
 	 *
-	 * @return Number of moves in BubbleSort instance
+	 * @return Number of swaps in BubbleSort instance
 	 */
 	@Override
-	public int getMoves() {
-		return moves;
+	public int getSwaps() {
+		return swaps;
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class BubbleSort implements SortingAlgorithm {
 				// If the left number is larger than the right number, swap them.
 				comparisons++;
 				if (inputArray[i] > inputArray[i + 1]) {
-					moves++;
+					swaps++;
 					buffer = inputArray[i];
 					inputArray[i] = inputArray[i + 1];
 					inputArray[i + 1] = buffer;
@@ -196,7 +196,7 @@ public class BubbleSort implements SortingAlgorithm {
 				indicesDeque.addFirst(i + 1);
 				// If the left number is larger than the right number, swap them.
 				if (inputArrayDuplicate[i] > inputArrayDuplicate[i + 1]) {
-					operationsDeque.addFirst(SortingAlgorithmOperation.MOVE);
+					operationsDeque.addFirst(SortingAlgorithmOperation.SWAP);
 					indicesDeque.addFirst(i);
 					indicesDeque.addFirst(i + 1);
 					buffer = inputArrayDuplicate[i];
