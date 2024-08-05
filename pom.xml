@@ -4,4 +4,13 @@
   <artifactId>classic-algorithms-suite</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Classic Algorithms Suite</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.10.0</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 </project>
