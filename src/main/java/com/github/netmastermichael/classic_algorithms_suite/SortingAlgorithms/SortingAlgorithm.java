@@ -44,17 +44,6 @@ public interface SortingAlgorithm {
 	 */
 	void sortWithMetrics();
 
-	/*
-	 * Toggles manual mode, allowing a user to step through the algorithm.
-	 */
-	void toggleManualMode();
-
-	/**
-	 * Check if manual mode is currently enabled.
-	 * 
-	 * @return true if manual mode is currently enabled, otherwise false
-	 */
-	boolean isManualModeEnabled();
 
 	/**
 	 * Check if the input array is sorted.

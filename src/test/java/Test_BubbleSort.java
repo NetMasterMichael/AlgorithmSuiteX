@@ -5,7 +5,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.BubbleSort;
-import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.ManualSortingAlgorithm;
+import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.ManualSorter;
 import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.SortingAlgorithmMetrics;
 
 class Test_BubbleSort {
@@ -103,12 +103,12 @@ class Test_BubbleSort {
 	}
 
 	@Test
-	void testBubbleSortWithInteractiveMode() {
+	void testBubbleSortWithManualSorter() {
 		try {
 			int[] unsortedArray = { 7, 5, 3, 6, 10, 1, 4, 9, 2, 8 };
 			int[] sortedArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			BubbleSort testBubbleSort = new BubbleSort(unsortedArray);
-			ManualSortingAlgorithm testManualMode = testBubbleSort.preComputeManualSort();
+			ManualSorter testManualMode = testBubbleSort.preComputeManualSort();
 			while (true) {
 				testManualMode.step();
 				if (Arrays.equals(testManualMode.getArray(), sortedArray)) {
@@ -117,7 +117,7 @@ class Test_BubbleSort {
 				}
 			}
 		} catch (Exception e) {
-			fail("Exception " + e + " thrown while testing bubble sort in interactive mode with a basic array; "
+			fail("Exception " + e + " thrown while testing bubble sort with a manual sorter with a basic array; "
 					+ e.getMessage());
 		}
 	}
