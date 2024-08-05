@@ -1,5 +1,6 @@
 package com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
@@ -34,10 +35,6 @@ public class BubbleSort implements SortingAlgorithm {
 
 	private boolean manualModeEnabled;
 
-	private Deque<SortingAlgorithmOperation> operationsDeque;
-
-	private Deque<Integer> indicesDeque;
-
 	/**
 	 * Constructor for creating a BubbleSort object to sort an array of integers.
 	 * 
@@ -51,8 +48,6 @@ public class BubbleSort implements SortingAlgorithm {
 	private void reset() {
 		this.metrics = new SortingAlgorithmMetrics();
 		this.manualModeEnabled = false;
-		this.operationsDeque = new LinkedList<SortingAlgorithmOperation>();
-		this.indicesDeque = new LinkedList<Integer>();
 	}
 
 	/**
@@ -165,7 +160,7 @@ public class BubbleSort implements SortingAlgorithm {
 	public void toggleManualMode() {
 		if (!manualModeEnabled) {
 			manualModeEnabled = true;
-			preComputeSort();
+			preComputeManualSort();
 		}
 	}
 
@@ -174,9 +169,11 @@ public class BubbleSort implements SortingAlgorithm {
 	 * optimisations, while inserting each operation into a deque. Actual inputArray
 	 * field is not modified. Each operation can be stepped through using step().
 	 */
-	private void preComputeSort() {
+	public ManualSortingAlgorithm preComputeManualSort() {
 		int[] inputArrayDuplicate = Arrays.copyOf(inputArray, inputArray.length);
 		reset();
+		ManualSortingAlgorithm manualSorter = new ManualSortingAlgorithm(Arrays.copyOf(inputArray, inputArray.length),
+				new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
 		boolean swapDuringPass;
 		int buffer;
 		int iterationsRemaining = inputArrayDuplicate.length;
@@ -184,14 +181,10 @@ public class BubbleSort implements SortingAlgorithm {
 			swapDuringPass = false;
 			// Check each pair in the array.
 			for (int i = 0; i < (iterationsRemaining - 1); i++) {
-				operationsDeque.addFirst(SortingAlgorithmOperation.COMPARE);
-				indicesDeque.addFirst(i);
-				indicesDeque.addFirst(i + 1);
+				manualSorter.enqueueOperation(SortingAlgorithmOperation.COMPARE, i, i + 1);
 				// If the left number is larger than the right number, swap them.
 				if (inputArrayDuplicate[i] > inputArrayDuplicate[i + 1]) {
-					operationsDeque.addFirst(SortingAlgorithmOperation.SWAP);
-					indicesDeque.addFirst(i);
-					indicesDeque.addFirst(i + 1);
+					manualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, i, i + 1);
 					buffer = inputArrayDuplicate[i];
 					inputArrayDuplicate[i] = inputArrayDuplicate[i + 1];
 					inputArrayDuplicate[i + 1] = buffer;
@@ -206,33 +199,11 @@ public class BubbleSort implements SortingAlgorithm {
 			// Otherwise, reduce number of pairs to check and run another pass.
 			iterationsRemaining--;
 		}
+		return manualSorter;
 	}
 
 	@Override
 	public boolean isManualModeEnabled() {
 		return manualModeEnabled;
 	}
-
-	@Override
-	public void step() {
-		SortingAlgorithmOperation operation = operationsDeque.pollLast();
-		switch (operation) {
-		case COMPARE:
-			indicesDeque.pollLast();
-			indicesDeque.pollLast();
-			// Return to this later; intended for displaying comparisons in a GUI
-			break;
-		case SWAP:
-			int indexA = indicesDeque.pollLast();
-			int indexB = indicesDeque.pollLast();
-			int buffer = inputArray[indexA];
-			inputArray[indexA] = inputArray[indexB];
-			inputArray[indexB] = buffer;
-			break;
-		default:
-			// Add exception here later
-			break;
-		}
-	}
-
 }

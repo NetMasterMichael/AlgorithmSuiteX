@@ -56,11 +56,6 @@ public interface SortingAlgorithm {
 	 */
 	boolean isManualModeEnabled();
 
-	/*
-	 * Make one step through the sorting algorithm.
-	 */
-	void step();
-
 	/**
 	 * Check if the input array is sorted.
 	 * 

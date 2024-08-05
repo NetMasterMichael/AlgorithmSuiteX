@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.BubbleSort;
+import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.ManualSortingAlgorithm;
 import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.SortingAlgorithmMetrics;
 
 class Test_BubbleSort {
@@ -107,10 +108,10 @@ class Test_BubbleSort {
 			int[] unsortedArray = { 7, 5, 3, 6, 10, 1, 4, 9, 2, 8 };
 			int[] sortedArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			BubbleSort testBubbleSort = new BubbleSort(unsortedArray);
-			testBubbleSort.toggleManualMode();
+			ManualSortingAlgorithm testManualMode = testBubbleSort.preComputeManualSort();
 			while (true) {
-				testBubbleSort.step();
-				if (Arrays.equals(testBubbleSort.getInputArray(), sortedArray)) {
+				testManualMode.step();
+				if (Arrays.equals(testManualMode.getArray(), sortedArray)) {
 					assertTrue(true);
 					break;
 				}
