@@ -45,16 +45,16 @@ public interface SortingAlgorithm {
 	void sortWithMetrics();
 
 	/*
-	 * Toggles interactive mode, allowing a user to step through the algorithm.
+	 * Toggles manual mode, allowing a user to step through the algorithm.
 	 */
-	void toggleInteractiveMode();
+	void toggleManualMode();
 
 	/**
-	 * Check if interactive mode is currently enabled.
+	 * Check if manual mode is currently enabled.
 	 * 
-	 * @return true if interactive mode is currently enabled, otherwise false
+	 * @return true if manual mode is currently enabled, otherwise false
 	 */
-	boolean isInteractiveModeEnabled();
+	boolean isManualModeEnabled();
 
 	/*
 	 * Make one step through the sorting algorithm.

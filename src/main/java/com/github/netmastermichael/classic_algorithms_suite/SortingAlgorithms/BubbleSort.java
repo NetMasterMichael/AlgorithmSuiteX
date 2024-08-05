@@ -32,7 +32,7 @@ public class BubbleSort implements SortingAlgorithm {
 
 	private SortingAlgorithmMetrics metrics;
 
-	private boolean interactiveModeEnabled;
+	private boolean manualModeEnabled;
 
 	private Deque<SortingAlgorithmOperation> operationsDeque;
 
@@ -50,7 +50,7 @@ public class BubbleSort implements SortingAlgorithm {
 
 	private void reset() {
 		this.metrics = new SortingAlgorithmMetrics();
-		this.interactiveModeEnabled = false;
+		this.manualModeEnabled = false;
 		this.operationsDeque = new LinkedList<SortingAlgorithmOperation>();
 		this.indicesDeque = new LinkedList<Integer>();
 	}
@@ -162,9 +162,9 @@ public class BubbleSort implements SortingAlgorithm {
 	}
 
 	@Override
-	public void toggleInteractiveMode() {
-		if (!interactiveModeEnabled) {
-			interactiveModeEnabled = true;
+	public void toggleManualMode() {
+		if (!manualModeEnabled) {
+			manualModeEnabled = true;
 			preComputeSort();
 		}
 	}
@@ -209,8 +209,8 @@ public class BubbleSort implements SortingAlgorithm {
 	}
 
 	@Override
-	public boolean isInteractiveModeEnabled() {
-		return interactiveModeEnabled;
+	public boolean isManualModeEnabled() {
+		return manualModeEnabled;
 	}
 
 	@Override
