@@ -80,6 +80,8 @@ class Test_BubbleSort {
 					"Test that the comparisons field inside testBubbleSort is zero before calling sortWithMetrics()");
 			assertEquals(0, testBubbleSort.getSwaps(),
 					"Test that the swaps field inside testBubbleSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testBubbleSort.getPasses(),
+					"Test that the passes field inside testBubbleSOrt is zero before calling sortWithMetrics()");
 			// Call sortWithMetrics()
 			testBubbleSort.sortWithMetrics();
 			// Post-checks
@@ -89,6 +91,8 @@ class Test_BubbleSort {
 					"Test that the comparisons field inside testBubbleSort is 44 after calling sortWithMetrics()");
 			assertEquals(23, testBubbleSort.getSwaps(),
 					"Test that the swaps field inside testBubbleSort is 23 after calling sortWithMetrics()");
+			assertEquals(8, testBubbleSort.getPasses(),
+					"Test that the passes field inside testBubbleSOrt is zero before calling sortWithMetrics()");
 		} catch (Exception e) {
 			fail("Exception " + e + " thrown while testing bubble sort with metrics with a basic array; "
 					+ e.getMessage());

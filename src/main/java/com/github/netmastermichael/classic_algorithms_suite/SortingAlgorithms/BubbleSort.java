@@ -24,6 +24,12 @@ import java.util.LinkedList;
  * 
  * @author Michael Goodwin (NetMasterMichael)
  */
+/**
+ * 
+ */
+/**
+ * 
+ */
 public class BubbleSort implements SortingAlgorithm {
 
 	/** Array that is currently being worked on by the sorting algorithm */
@@ -34,6 +40,9 @@ public class BubbleSort implements SortingAlgorithm {
 
 	/** Quantity of swaps that have been made during the lifetime of a sort */
 	private int swaps;
+	
+	/** Quantity of passes that have been made during the lifetime of a sort */
+	private int passes;
 
 	private Deque<SortingAlgorithmOperation> operationsDeque;
 	
@@ -52,6 +61,7 @@ public class BubbleSort implements SortingAlgorithm {
 	private void reset() {
 		this.comparisons = 0;
 		this.swaps = 0;
+		this.passes = 0;
 		this.operationsDeque = new LinkedList<SortingAlgorithmOperation>();
 		this.indicesDeque = new LinkedList<Integer>();
 	}
@@ -96,6 +106,16 @@ public class BubbleSort implements SortingAlgorithm {
 	@Override
 	public int getSwaps() {
 		return swaps;
+	}
+	
+	/**
+	 * Returns the number of passes currently recorded inside the BubbleSort object.
+	 * 
+	 * @return Number of passes in BubbleSort instance
+	 */
+	@Override
+	public int getPasses() {
+		return passes;
 	}
 
 	/**
@@ -149,6 +169,7 @@ public class BubbleSort implements SortingAlgorithm {
 		int iterationsRemaining = inputArray.length;
 		while (true) {
 			swapDuringPass = false;
+			passes++;
 			// Check each pair in the array.
 			for (int i = 0; i < (iterationsRemaining - 1); i++) {
 				// If the left number is larger than the right number, swap them.

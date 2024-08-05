@@ -43,6 +43,15 @@ public interface SortingAlgorithm {
 	int getSwaps();
 
 	/**
+	 * Gets the number of passes from the object. This will only increase if
+	 * sortWithMetrics() or interactive mode is used. If sort() is called, passes
+	 * will stay at zero.
+	 * 
+	 * @return number of passes
+	 */
+	int getPasses();
+
+	/**
 	 * Sorts an input array using the specified sorting algorithm.
 	 */
 	void sort();
