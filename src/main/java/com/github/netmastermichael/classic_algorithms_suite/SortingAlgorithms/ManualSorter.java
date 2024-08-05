@@ -1,6 +1,7 @@
 package com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms;
 
 import java.util.Deque;
+import java.util.LinkedList;
 
 /**
  * ManualSorter is an object used for manually and interactively sorting an
@@ -37,8 +38,16 @@ public class ManualSorter {
 	 */
 	public ManualSorter(int[] array, Deque<SortingAlgorithmOperation> operationsDeque, Deque<Integer> indicesDeque) {
 		this.array = array;
-		this.operationsDeque = operationsDeque;
-		this.indicesDeque = indicesDeque;
+		if (operationsDeque != null) {
+			this.operationsDeque = operationsDeque;
+		} else {
+			this.operationsDeque = new LinkedList<SortingAlgorithmOperation>();
+		}
+		if (indicesDeque != null) {
+			this.indicesDeque = indicesDeque;
+		} else {
+			this.indicesDeque = new LinkedList<Integer>();
+		}
 	}
 
 	/**
