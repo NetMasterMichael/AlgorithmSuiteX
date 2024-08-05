@@ -100,4 +100,24 @@ class Test_BubbleSort {
 					+ e.getMessage());
 		}
 	}
+
+	@Test
+	void testBubbleSortWithInteractiveMode() {
+		try {
+			int[] unsortedArray = { 7, 5, 3, 6, 10, 1, 4, 9, 2, 8 };
+			int[] sortedArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+			BubbleSort testBubbleSort = new BubbleSort(unsortedArray);
+			testBubbleSort.toggleInteractiveMode();
+			while (true) {
+				testBubbleSort.step();
+				if (Arrays.equals(testBubbleSort.getInputArray(), sortedArray)) {
+					assertTrue(true);
+					break;
+				}
+			}
+		} catch (Exception e) {
+			fail("Exception " + e + " thrown while testing bubble sort in interactive mode with a basic array; "
+					+ e.getMessage());
+		}
+	}
 }

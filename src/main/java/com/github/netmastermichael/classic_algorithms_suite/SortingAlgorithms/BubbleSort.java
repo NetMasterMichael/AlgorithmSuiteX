@@ -1,5 +1,6 @@
 package com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms;
 
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -31,6 +32,8 @@ public class BubbleSort implements SortingAlgorithm {
 
 	private SortingAlgorithmMetrics metrics;
 
+	private boolean interactiveModeEnabled;
+
 	private Deque<SortingAlgorithmOperation> operationsDeque;
 
 	private Deque<Integer> indicesDeque;
@@ -47,6 +50,7 @@ public class BubbleSort implements SortingAlgorithm {
 
 	private void reset() {
 		this.metrics = new SortingAlgorithmMetrics();
+		this.interactiveModeEnabled = false;
 		this.operationsDeque = new LinkedList<SortingAlgorithmOperation>();
 		this.indicesDeque = new LinkedList<Integer>();
 	}
@@ -159,7 +163,10 @@ public class BubbleSort implements SortingAlgorithm {
 
 	@Override
 	public void toggleInteractiveMode() {
-
+		if (!interactiveModeEnabled) {
+			interactiveModeEnabled = true;
+			preComputeSort();
+		}
 	}
 
 	/**
@@ -168,7 +175,7 @@ public class BubbleSort implements SortingAlgorithm {
 	 * field is not modified. Each operation can be stepped through using step().
 	 */
 	private void preComputeSort() {
-		int[] inputArrayDuplicate = inputArray;
+		int[] inputArrayDuplicate = Arrays.copyOf(inputArray, inputArray.length);
 		reset();
 		boolean swapDuringPass;
 		int buffer;
@@ -203,14 +210,29 @@ public class BubbleSort implements SortingAlgorithm {
 
 	@Override
 	public boolean isInteractiveModeEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+		return interactiveModeEnabled;
 	}
 
 	@Override
 	public void step() {
-		// TODO Auto-generated method stub
-
+		SortingAlgorithmOperation operation = operationsDeque.pollLast();
+		switch (operation) {
+		case COMPARE:
+			indicesDeque.pollLast();
+			indicesDeque.pollLast();
+			// Return to this later; intended for displaying comparisons in a GUI
+			break;
+		case SWAP:
+			int indexA = indicesDeque.pollLast();
+			int indexB = indicesDeque.pollLast();
+			int buffer = inputArray[indexA];
+			inputArray[indexA] = inputArray[indexB];
+			inputArray[indexB] = buffer;
+			break;
+		default:
+			// Add exception here later
+			break;
+		}
 	}
 
 }
