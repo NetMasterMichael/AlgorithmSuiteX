@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.BubbleSort;
-import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.ManualSorter;
-import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.SortingAlgorithmMetrics;
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.BubbleSort;
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.ManualSorter;
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithmMetrics;
 
 class Test_BubbleSort {
 
@@ -95,7 +95,7 @@ class Test_BubbleSort {
 			assertEquals(23, testMetrics.getSwaps(),
 					"Test that the swaps field inside testBubbleSort is 23 after calling sortWithMetrics()");
 			assertEquals(8, testMetrics.getPasses(),
-					"Test that the passes field inside testBubbleSOrt is zero before calling sortWithMetrics()");
+					"Test that the passes field inside testBubbleSort is zero before calling sortWithMetrics()");
 		} catch (Exception e) {
 			fail("Exception " + e + " thrown while testing bubble sort with metrics with a basic array; "
 					+ e.getMessage());

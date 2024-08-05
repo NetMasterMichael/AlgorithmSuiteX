@@ -5,8 +5,8 @@ import java.util.LinkedList;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.ManualSorter;
-import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.SortingAlgorithmOperation;
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.ManualSorter;
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithmOperation;
 
 class Test_ManualSorter {
 

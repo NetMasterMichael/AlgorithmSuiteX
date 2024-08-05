@@ -1,4 +1,4 @@
-package com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms;
+package com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms;
 
 /**
  * SortingAlgorithmOperation is an enum that represents the possible types of

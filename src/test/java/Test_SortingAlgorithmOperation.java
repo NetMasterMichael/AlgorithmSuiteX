@@ -2,7 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.SortingAlgorithmOperation;
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithmOperation;
 
 class Test_SortingAlgorithmOperation {
 

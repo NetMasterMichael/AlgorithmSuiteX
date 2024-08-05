@@ -1,4 +1,4 @@
-package com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms;
+package com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms;
 
 import java.util.Deque;
 import java.util.LinkedList;

@@ -2,8 +2,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.BubbleSort;
-import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.SortingAlgorithmMetrics;
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.BubbleSort;
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithmMetrics;
 
 class Test_SortingAlgorithmMetrics {
 
