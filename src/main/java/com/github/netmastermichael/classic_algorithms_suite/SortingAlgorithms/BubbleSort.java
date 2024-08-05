@@ -24,30 +24,17 @@ import java.util.LinkedList;
  * 
  * @author Michael Goodwin (NetMasterMichael)
  */
-/**
- * 
- */
-/**
- * 
- */
 public class BubbleSort implements SortingAlgorithm {
 
 	/** Array that is currently being worked on by the sorting algorithm */
 	private int[] inputArray;
 
-	/** Quantity of comparisons that have been made during the lifetime of a sort */
-	private int comparisons;
-
-	/** Quantity of swaps that have been made during the lifetime of a sort */
-	private int swaps;
-	
-	/** Quantity of passes that have been made during the lifetime of a sort */
-	private int passes;
+	private SortingAlgorithmMetrics metrics;
 
 	private Deque<SortingAlgorithmOperation> operationsDeque;
-	
+
 	private Deque<Integer> indicesDeque;
-	
+
 	/**
 	 * Constructor for creating a BubbleSort object to sort an array of integers.
 	 * 
@@ -57,17 +44,15 @@ public class BubbleSort implements SortingAlgorithm {
 		this.inputArray = inputArray;
 		reset();
 	}
-	
+
 	private void reset() {
-		this.comparisons = 0;
-		this.swaps = 0;
-		this.passes = 0;
+		this.metrics = new SortingAlgorithmMetrics();
 		this.operationsDeque = new LinkedList<SortingAlgorithmOperation>();
 		this.indicesDeque = new LinkedList<Integer>();
 	}
 
 	/**
-	 * Returns the array currently held inside the BubbleSort object.
+	 * Gets the array currently held inside the BubbleSort object.
 	 *
 	 * @return Array currently inside of BubbleSort instance
 	 */
@@ -88,34 +73,14 @@ public class BubbleSort implements SortingAlgorithm {
 	}
 
 	/**
-	 * Returns the number of comparisons currently recorded inside the BubbleSort
-	 * object.
-	 *
-	 * @return Number of comparisons in BubbleSort instance
-	 */
-	@Override
-	public int getComparisons() {
-		return comparisons;
-	}
-
-	/**
-	 * Returns the number of swaps currently recorded inside the BubbleSort object.
-	 *
-	 * @return Number of swaps in BubbleSort instance
-	 */
-	@Override
-	public int getSwaps() {
-		return swaps;
-	}
-	
-	/**
-	 * Returns the number of passes currently recorded inside the BubbleSort object.
+	 * Gets the SortingAlgorithmMetrics object containing performance metrics from
+	 * this BubbleSort object.
 	 * 
-	 * @return Number of passes in BubbleSort instance
+	 * @return SortingAlgorithmMetrics object containing performance metrics
 	 */
 	@Override
-	public int getPasses() {
-		return passes;
+	public SortingAlgorithmMetrics getMetrics() {
+		return metrics;
 	}
 
 	/**
@@ -169,13 +134,13 @@ public class BubbleSort implements SortingAlgorithm {
 		int iterationsRemaining = inputArray.length;
 		while (true) {
 			swapDuringPass = false;
-			passes++;
+			metrics.incrementPasses();
 			// Check each pair in the array.
 			for (int i = 0; i < (iterationsRemaining - 1); i++) {
 				// If the left number is larger than the right number, swap them.
-				comparisons++;
+				metrics.incrementComparisons();
 				if (inputArray[i] > inputArray[i + 1]) {
-					swaps++;
+					metrics.incrementSwaps();
 					buffer = inputArray[i];
 					inputArray[i] = inputArray[i + 1];
 					inputArray[i + 1] = buffer;

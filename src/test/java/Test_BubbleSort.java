@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.BubbleSort;
+import com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms.SortingAlgorithmMetrics;
 
 class Test_BubbleSort {
 
@@ -73,25 +74,26 @@ class Test_BubbleSort {
 			int[] unsortedArray = { 7, 5, 3, 6, 10, 1, 4, 9, 2, 8 };
 			int[] sortedArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			BubbleSort testBubbleSort = new BubbleSort(unsortedArray);
+			SortingAlgorithmMetrics testMetrics = testBubbleSort.getMetrics();
 			// Pre-checks
 			assertFalse(Arrays.equals(sortedArray, testBubbleSort.getInputArray()),
 					"Test that the basic array inside testBubbleSort is unsorted before calling sortWithMetrics()");
-			assertEquals(0, testBubbleSort.getComparisons(),
+			assertEquals(0, testMetrics.getComparisons(),
 					"Test that the comparisons field inside testBubbleSort is zero before calling sortWithMetrics()");
-			assertEquals(0, testBubbleSort.getSwaps(),
+			assertEquals(0, testMetrics.getSwaps(),
 					"Test that the swaps field inside testBubbleSort is zero before calling sortWithMetrics()");
-			assertEquals(0, testBubbleSort.getPasses(),
+			assertEquals(0, testMetrics.getPasses(),
 					"Test that the passes field inside testBubbleSOrt is zero before calling sortWithMetrics()");
 			// Call sortWithMetrics()
 			testBubbleSort.sortWithMetrics();
 			// Post-checks
 			assertTrue(Arrays.equals(sortedArray, testBubbleSort.getInputArray()),
 					"Test that the basic array inside testBubbleSort is sorted after calling sortWithMetrics()");
-			assertEquals(44, testBubbleSort.getComparisons(),
+			assertEquals(44, testMetrics.getComparisons(),
 					"Test that the comparisons field inside testBubbleSort is 44 after calling sortWithMetrics()");
-			assertEquals(23, testBubbleSort.getSwaps(),
+			assertEquals(23, testMetrics.getSwaps(),
 					"Test that the swaps field inside testBubbleSort is 23 after calling sortWithMetrics()");
-			assertEquals(8, testBubbleSort.getPasses(),
+			assertEquals(8, testMetrics.getPasses(),
 					"Test that the passes field inside testBubbleSOrt is zero before calling sortWithMetrics()");
 		} catch (Exception e) {
 			fail("Exception " + e + " thrown while testing bubble sort with metrics with a basic array; "
