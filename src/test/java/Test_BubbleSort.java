@@ -12,6 +12,33 @@ import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.Sort
 
 class Test_BubbleSort {
 
+	int[] generateSortedArray(int size) {
+		int[] sortedArray = new int[size];
+		for (int i = 1; i <= size; i++) {
+			sortedArray[i - 1] = i;
+		}
+		return sortedArray;
+	}
+	
+	int[] generateUnsortedArray(int size) {
+		ArrayList<Integer> numberList = new ArrayList<Integer>();
+		int[] unsortedArray = new int[size];
+		Random rand = new Random();
+		int randIndex;
+		
+		// Fill up a list and sortedArray with numbers 1 to n
+		for (int i = 1; i <= size; i++) {
+			numberList.add(i);
+		}
+		// Fill up unsortedArray with random numbers from numberList
+		for (int i = 0; i < size; i++) {
+			randIndex = rand.nextInt(numberList.size());
+			unsortedArray[i] = numberList.get(randIndex);
+			numberList.remove(randIndex);
+		}
+		return unsortedArray;
+	}
+
 	@Test
 	void testCreateBubbleSortObject() {
 		try {
@@ -126,24 +153,11 @@ class Test_BubbleSort {
 
 	@Test
 	void stressTestBubbleSort() {
-		int n = 50000;
-		ArrayList<Integer> numberList = new ArrayList<Integer>();
-		int[] sortedArray = new int[n];
-		int[] unsortedArray = new int[n];
-		Random rand = new Random();
-		int randIndex;
 		try {
-			// Fill up a list and sortedArray with numbers 1 to n
-			for (int i = 1; i <= n; i++) {
-				numberList.add(i);
-				sortedArray[i - 1] = i;
-			}
-			// Fill up unsortedArray with random numbers from numberList
-			for (int i = 0; i < n; i++) {
-				randIndex = rand.nextInt(numberList.size());
-				unsortedArray[i] = numberList.get(randIndex);
-				numberList.remove(randIndex);
-			}
+			int arraySize = 50000;
+			int[] sortedArray = generateSortedArray(arraySize);
+			int[] unsortedArray = generateUnsortedArray(arraySize);
+			
 			BubbleSort testBubbleSort = new BubbleSort(unsortedArray);
 			assertFalse(Arrays.equals(sortedArray, testBubbleSort.getInputArray()),
 					"Test that the random array inside testBubbleSort is unsorted before calling sort()");
@@ -153,31 +167,17 @@ class Test_BubbleSort {
 					"Test that the random array inside testBubbleSort is sorted after calling sort()");
 			assertTrue(testBubbleSort.isSorted(), "Test that isSorted() returns true after calling sort()");
 		} catch (Exception e) {
-			fail("Exception " + e + " thrown while stress testing bubble sort; "
-					+ e.getMessage());
+			fail("Exception " + e + " thrown while stress testing bubble sort; " + e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void stressTestBubbleSortWithMetrics() {
-		int n = 50000;
-		ArrayList<Integer> numberList = new ArrayList<Integer>();
-		int[] sortedArray = new int[n];
-		int[] unsortedArray = new int[n];
-		Random rand = new Random();
-		int randIndex;
 		try {
-			// Fill up a list and sortedArray with numbers 1 to n
-			for (int i = 1; i <= n; i++) {
-				numberList.add(i);
-				sortedArray[i - 1] = i;
-			}
-			// Fill up unsortedArray with random numbers from numberList
-			for (int i = 0; i < n; i++) {
-				randIndex = rand.nextInt(numberList.size());
-				unsortedArray[i] = numberList.get(randIndex);
-				numberList.remove(randIndex);
-			}
+			int arraySize = 50000;
+			int[] sortedArray = generateSortedArray(arraySize);
+			int[] unsortedArray = generateUnsortedArray(arraySize);
+			
 			BubbleSort testBubbleSort = new BubbleSort(unsortedArray);
 			SortingAlgorithmMetrics testMetrics = testBubbleSort.getMetrics();
 			// Pre-checks
@@ -201,31 +201,17 @@ class Test_BubbleSort {
 			assertNotEquals(0, testMetrics.getPasses(),
 					"Test that the passes field inside testBubbleSort is no longer zero after calling sortWithMetrics()");
 		} catch (Exception e) {
-			fail("Exception " + e + " thrown while stress testing bubble sort with metrics; "
-					+ e.getMessage());
+			fail("Exception " + e + " thrown while stress testing bubble sort with metrics; " + e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void stressTestBubbleSortWithManualSorter() {
-		int n = 2500;
-		ArrayList<Integer> numberList = new ArrayList<Integer>();
-		int[] sortedArray = new int[n];
-		int[] unsortedArray = new int[n];
-		Random rand = new Random();
-		int randIndex;
 		try {
-			// Fill up a list and sortedArray with numbers 1 to n
-			for (int i = 1; i <= n; i++) {
-				numberList.add(i);
-				sortedArray[i - 1] = i;
-			}
-			// Fill up unsortedArray with random numbers from numberList
-			for (int i = 0; i < n; i++) {
-				randIndex = rand.nextInt(numberList.size());
-				unsortedArray[i] = numberList.get(randIndex);
-				numberList.remove(randIndex);
-			}
+			int arraySize = 2500;
+			int[] sortedArray = generateSortedArray(arraySize);
+			int[] unsortedArray = generateUnsortedArray(arraySize);
+			
 			BubbleSort testBubbleSort = new BubbleSort(unsortedArray);
 			ManualSorter testManualMode = testBubbleSort.preComputeManualSort();
 			while (true) {
@@ -236,8 +222,7 @@ class Test_BubbleSort {
 				}
 			}
 		} catch (Exception e) {
-			fail("Exception " + e + " thrown while stress testing bubble sort; "
-					+ e.getMessage());
+			fail("Exception " + e + " thrown while stress testing bubble sort; " + e.getMessage());
 		}
 	}
 }
