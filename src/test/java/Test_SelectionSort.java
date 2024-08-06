@@ -1,6 +1,8 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +11,33 @@ import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.Sele
 import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithmMetrics;
 
 class Test_SelectionSort {
+	
+	int[] generateSortedArray(int size) {
+		int[] sortedArray = new int[size];
+		for (int i = 1; i <= size; i++) {
+			sortedArray[i - 1] = i;
+		}
+		return sortedArray;
+	}
+	
+	int[] generateUnsortedArray(int size) {
+		ArrayList<Integer> numberList = new ArrayList<Integer>();
+		int[] unsortedArray = new int[size];
+		Random rand = new Random();
+		int randIndex;
+		
+		// Fill up a list and sortedArray with numbers 1 to n
+		for (int i = 1; i <= size; i++) {
+			numberList.add(i);
+		}
+		// Fill up unsortedArray with random numbers from numberList
+		for (int i = 0; i < size; i++) {
+			randIndex = rand.nextInt(numberList.size());
+			unsortedArray[i] = numberList.get(randIndex);
+			numberList.remove(randIndex);
+		}
+		return unsortedArray;
+	}
 
 	@Test
 	void testCreateSelectionSortInstance() {
@@ -33,7 +62,7 @@ class Test_SelectionSort {
 					+ e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void testSetInputArray() {
 		try {
@@ -50,7 +79,7 @@ class Test_SelectionSort {
 					+ e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void testSelectionSort() {
 		try {
@@ -68,7 +97,7 @@ class Test_SelectionSort {
 			fail("Exception " + e + " thrown while testing selection sort with a basic array; " + e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void testSelectionSortWithMetrics() {
 		try {
@@ -101,7 +130,7 @@ class Test_SelectionSort {
 					+ e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void testSelectionSortWithManualSorter() {
 		try {
@@ -118,6 +147,82 @@ class Test_SelectionSort {
 			}
 		} catch (Exception e) {
 			fail("Exception " + e + " thrown while testing selection sort with a manual sorter with a basic array; "
+					+ e.getMessage());
+		}
+	}
+
+	@Test
+	void stressTestSelectionSort() {
+		try {
+			int arraySize = 50000;
+			int[] sortedArray = generateSortedArray(arraySize);
+			int[] unsortedArray = generateUnsortedArray(arraySize);
+
+			SelectionSort testSelectionSort = new SelectionSort(unsortedArray);
+			assertFalse(Arrays.equals(sortedArray, testSelectionSort.getInputArray()),
+					"Test that the random array inside testSelectionSort is unsorted before calling sort()");
+			assertFalse(testSelectionSort.isSorted(), "Test that isSorted() returns false before calling sort()");
+			testSelectionSort.sort();
+			assertTrue(Arrays.equals(sortedArray, testSelectionSort.getInputArray()),
+					"Test that the random array inside testSelectionSort is sorted after calling sort()");
+			assertTrue(testSelectionSort.isSorted(), "Test that isSorted() returns true after calling sort()");
+		} catch (Exception e) {
+			fail("Exception " + e + " thrown while stress testing selection sort; " + e.getMessage());
+		}
+	}
+
+	@Test
+	void stressTestBubbleSortWithMetrics() {
+		try {
+			int arraySize = 50000;
+			int[] sortedArray = generateSortedArray(arraySize);
+			int[] unsortedArray = generateUnsortedArray(arraySize);
+
+			SelectionSort testSelectionSort = new SelectionSort(unsortedArray);
+			SortingAlgorithmMetrics testMetrics = testSelectionSort.getMetrics();
+			// Pre-checks
+			assertFalse(Arrays.equals(sortedArray, testSelectionSort.getInputArray()),
+					"Test that the basic array inside testSelectionSort is unsorted before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getComparisons(),
+					"Test that the comparisons field inside testSelectionSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getSwaps(),
+					"Test that the swaps field inside testSelectionSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getPasses(),
+					"Test that the passes field inside testSelectionSort is zero before calling sortWithMetrics()");
+			// Call sortWithMetrics()
+			testSelectionSort.sortWithMetrics();
+			// Post-checks
+			assertTrue(Arrays.equals(sortedArray, testSelectionSort.getInputArray()),
+					"Test that the basic array inside testSelectionSort is sorted after calling sortWithMetrics()");
+			assertNotEquals(0, testMetrics.getComparisons(),
+					"Test that the comparisons field inside testSelectionSort is no longer zero after calling sortWithMetrics()");
+			assertNotEquals(0, testMetrics.getSwaps(),
+					"Test that the swaps field inside testSelectionSort is no longer zero after calling sortWithMetrics()");
+			assertNotEquals(0, testMetrics.getPasses(),
+					"Test that the passes field inside testSelectionSort is no longer zero after calling sortWithMetrics()");
+		} catch (Exception e) {
+			fail("Exception " + e + " thrown while stress testing selection sort with metrics; " + e.getMessage());
+		}
+	}
+
+	@Test
+	void stressTestBubbleSortWithManualSorter() {
+		try {
+			int arraySize = 2500;
+			int[] sortedArray = generateSortedArray(arraySize);
+			int[] unsortedArray = generateUnsortedArray(arraySize);
+
+			SelectionSort testSelectionSort = new SelectionSort(unsortedArray);
+			ManualSorter testManualMode = testSelectionSort.preComputeManualSort();
+			while (true) {
+				testManualMode.step();
+				if (Arrays.equals(testManualMode.getArray(), sortedArray)) {
+					assertTrue(true);
+					break;
+				}
+			}
+		} catch (Exception e) {
+			fail("Exception " + e + " thrown while stress testing selection sort with a manual sorter; "
 					+ e.getMessage());
 		}
 	}
