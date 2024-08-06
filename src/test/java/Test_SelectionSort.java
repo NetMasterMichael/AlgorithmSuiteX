@@ -1,0 +1,124 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.ManualSorter;
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SelectionSort;
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithmMetrics;
+
+class Test_SelectionSort {
+
+	@Test
+	void testCreateSelectionSortInstance() {
+		try {
+			SelectionSort testSelectionSort = new SelectionSort(new int[] { 1, 2, 3 });
+			assertTrue(testSelectionSort instanceof SelectionSort,
+					"Test that a new instance of SelectionSort is created successfully");
+		} catch (Exception e) {
+			fail("Exception " + e + " thrown while testing creating an instance of SelectionSort; " + e.getMessage());
+		}
+	}
+
+	@Test
+	void testGetInputArray() {
+		try {
+			SelectionSort testSelectionSort = new SelectionSort(new int[] { 5, 10, 15 });
+			int[] expectedArray = { 5, 10, 15 };
+			assertTrue(Arrays.equals(expectedArray, testSelectionSort.getInputArray()),
+					"Test that getInputArray() returns the correct array");
+		} catch (Exception e) {
+			fail("Exception " + e + " thrown while testing getting the input array from an instance of SelectionSort; "
+					+ e.getMessage());
+		}
+	}
+	
+	@Test
+	void testSetInputArray() {
+		try {
+			int[] array1 = { 1, 2, 3, 4, 5 };
+			int[] array2 = { 5, 10, 15, 20, 25 };
+			SelectionSort testSelectionSort = new SelectionSort(array1);
+			assertFalse(Arrays.equals(array2, testSelectionSort.getInputArray()),
+					"Test that the array in testSelectionSort is different to array2 before using setInputArray()");
+			testSelectionSort.setInputArray(array2);
+			assertTrue(Arrays.equals(array2, testSelectionSort.getInputArray()),
+					"Test that the new array is returned correctly after using setInputArray()");
+		} catch (Exception e) {
+			fail("Exception " + e + " thrown while testing setting the input array of an instance of SelectionSort; "
+					+ e.getMessage());
+		}
+	}
+	
+	@Test
+	void testSelectionSort() {
+		try {
+			int[] unsortedArray = { 5, 1, 7, 3, 4, 8, 2, 6 };
+			int[] sortedArray = { 1, 2, 3, 4, 5, 6, 7, 8 };
+			SelectionSort testSelectionSort = new SelectionSort(unsortedArray);
+			assertFalse(Arrays.equals(sortedArray, testSelectionSort.getInputArray()),
+					"Test that the basic array inside testSelectionSort is unsorted before calling sort()");
+			assertFalse(testSelectionSort.isSorted(), "Test that isSorted() returns false before calling sort()");
+			testSelectionSort.sort();
+			assertTrue(Arrays.equals(sortedArray, testSelectionSort.getInputArray()),
+					"Test that the basic array inside testSelectionSort is sorted after calling sort()");
+			assertTrue(testSelectionSort.isSorted(), "Test that isSorted() returns true after calling sort()");
+		} catch (Exception e) {
+			fail("Exception " + e + " thrown while testing selection sort with a basic array; " + e.getMessage());
+		}
+	}
+	
+	@Test
+	void testSelectionSortWithMetrics() {
+		try {
+			int[] unsortedArray = { 3, 9, 1, 7, 8, 2, 5, 4, 10, 6 };
+			int[] sortedArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+			SelectionSort testSelectionSort = new SelectionSort(unsortedArray);
+			SortingAlgorithmMetrics testMetrics = testSelectionSort.getMetrics();
+			// Pre-checks
+			assertFalse(Arrays.equals(sortedArray, testSelectionSort.getInputArray()),
+					"Test that the basic array inside testSelectionSort is unsorted before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getComparisons(),
+					"Test that the comparisons field inside testSelectionSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getSwaps(),
+					"Test that the swaps field inside testSelectionSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getPasses(),
+					"Test that the passes field inside testSelectionSort is zero before calling sortWithMetrics()");
+			// Call sortWithMetrics()
+			testSelectionSort.sortWithMetrics();
+			// Post-checks
+			assertTrue(Arrays.equals(sortedArray, testSelectionSort.getInputArray()),
+					"Test that the basic array inside testSelectionSort is sorted after calling sortWithMetrics()");
+			assertEquals(45, testMetrics.getComparisons(),
+					"Test that the comparisons field inside testSelectionSort is 45 after calling sortWithMetrics()");
+			assertEquals(7, testMetrics.getSwaps(),
+					"Test that the swaps field inside testSelectionSort is 7 after calling sortWithMetrics()");
+			assertEquals(9, testMetrics.getPasses(),
+					"Test that the passes field inside testSelectionSort is 9 after calling sortWithMetrics()");
+		} catch (Exception e) {
+			fail("Exception " + e + " thrown while testing selection sort with metrics with a basic array; "
+					+ e.getMessage());
+		}
+	}
+	
+	@Test
+	void testSelectionSortWithManualSorter() {
+		try {
+			int[] unsortedArray = { 7, 5, 3, 6, 10, 1, 4, 9, 2, 8 };
+			int[] sortedArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+			SelectionSort testSelectionSort = new SelectionSort(unsortedArray);
+			ManualSorter testManualMode = testSelectionSort.preComputeManualSort();
+			while (true) {
+				testManualMode.step();
+				if (Arrays.equals(testManualMode.getArray(), sortedArray)) {
+					assertTrue(true);
+					break;
+				}
+			}
+		} catch (Exception e) {
+			fail("Exception " + e + " thrown while testing selection sort with a manual sorter with a basic array; "
+					+ e.getMessage());
+		}
+	}
+}
