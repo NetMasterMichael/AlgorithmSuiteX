@@ -3,12 +3,78 @@ import java.util.Random;
 
 /**
  * AuxiliaryTestMethods is a class containing static methods that are shared
- * between several test classes for sorting algorithms. These are primary in
- * relation to generating arrays.
+ * between several test classes for sorting algorithms. These are primarily in
+ * relation to logging and generating arrays.
  * 
  * @author Michael Goodwin (NetMasterMichael)
  */
 public class AuxiliaryTestMethods {
+
+	// ANSI escape codes for logging messages
+
+	/*
+	 * ANSI escape code to reset all colour effects to their defaults in the
+	 * console. Used at the start and end of each logging message, and to return
+	 * coloured text back to normal.
+	 */
+	private static final String RESET = "\033[0m";
+
+	/*
+	 * ANSI escape code to change the text to bright yellow and bold. Used for
+	 * highlighting the name of the test class.
+	 */
+	private static final String BRIGHT_YELLOW_BOLD_TEXT = "\033[1;94m";
+
+	/*
+	 * ANSI escape code to change the text to bright green and bold. Used for the
+	 * word "PASSED" in logPass().
+	 */
+	private static final String BRIGHT_GREEN_BOLD_TEXT = "\033[0;1;92m";
+
+	/**
+	 * ANSI escape code to change text to bright white and bold on a red background.
+	 * Used for the whole message in logFail().
+	 */
+	private static final String RED_BACKGROUND_WHITE_BOLD_TEXT = "\033[1;97;41m";
+
+	/**
+	 * Outputs a message to the console consistent with the format used by the other
+	 * logging methods in AuxiliaryTestMethods. The method is written for any
+	 * generic message, making it useful for messages other than starting a test
+	 * (e.g. halfway through a stress test).
+	 * 
+	 * @param testClassName Name of test class
+	 * @param message       Message to output
+	 */
+	public static void logMessage(String testClassName, String message) {
+		System.out.println(RESET + "[" + BRIGHT_YELLOW_BOLD_TEXT + testClassName + RESET + "] => " + message + RESET);
+	}
+
+	/**
+	 * Outputs a message to the console consistent with the format used by other
+	 * logging methods in AuxiliaryTestMethods. Used for outputting a colourful pass
+	 * message.
+	 * 
+	 * @param testClassName  Name of test class
+	 * @param testMethodName Name of test method that has passed
+	 */
+	public static void logPass(String testClassName, String testMethodName) {
+		System.out.println(RESET + "[" + BRIGHT_YELLOW_BOLD_TEXT + testClassName + RESET + "] => " + testMethodName
+				+ " has " + BRIGHT_GREEN_BOLD_TEXT + "PASSED" + RESET);
+	}
+
+	/**
+	 * Outputs a message to the console consistent with the format used by other
+	 * logging methods in AuxiliaryTestMethods. Used for outputting a colourful fail
+	 * message.
+	 * 
+	 * @param testClassName  Name of test class
+	 * @param testMethodName Name of test method that has failed
+	 */
+	public static void logFail(String testClassName, String testMethodName) {
+		System.out.println(RESET + RED_BACKGROUND_WHITE_BOLD_TEXT + "[" + testClassName + "] => " + testMethodName
+				+ " has FAILED. See reason below:" + RESET);
+	}
 
 	/**
 	 * Generates a sorted array of integers, where each n'th index holds the value
