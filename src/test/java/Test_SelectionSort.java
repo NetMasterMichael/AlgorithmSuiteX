@@ -11,33 +11,6 @@ import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.Sele
 import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithmMetrics;
 
 class Test_SelectionSort {
-	
-	int[] generateSortedArray(int size) {
-		int[] sortedArray = new int[size];
-		for (int i = 1; i <= size; i++) {
-			sortedArray[i - 1] = i;
-		}
-		return sortedArray;
-	}
-	
-	int[] generateUnsortedArray(int size) {
-		ArrayList<Integer> numberList = new ArrayList<Integer>();
-		int[] unsortedArray = new int[size];
-		Random rand = new Random();
-		int randIndex;
-		
-		// Fill up a list and sortedArray with numbers 1 to n
-		for (int i = 1; i <= size; i++) {
-			numberList.add(i);
-		}
-		// Fill up unsortedArray with random numbers from numberList
-		for (int i = 0; i < size; i++) {
-			randIndex = rand.nextInt(numberList.size());
-			unsortedArray[i] = numberList.get(randIndex);
-			numberList.remove(randIndex);
-		}
-		return unsortedArray;
-	}
 
 	@Test
 	void testCreateSelectionSortInstance() {
@@ -155,8 +128,8 @@ class Test_SelectionSort {
 	void stressTestSelectionSort() {
 		try {
 			int arraySize = 50000;
-			int[] sortedArray = generateSortedArray(arraySize);
-			int[] unsortedArray = generateUnsortedArray(arraySize);
+			int[] sortedArray = AuxiliaryTestMethods.generateSortedArray(arraySize);
+			int[] unsortedArray = AuxiliaryTestMethods.generateUnsortedArray(arraySize);
 
 			SelectionSort testSelectionSort = new SelectionSort(unsortedArray);
 			assertFalse(Arrays.equals(sortedArray, testSelectionSort.getInputArray()),
@@ -175,8 +148,8 @@ class Test_SelectionSort {
 	void stressTestBubbleSortWithMetrics() {
 		try {
 			int arraySize = 50000;
-			int[] sortedArray = generateSortedArray(arraySize);
-			int[] unsortedArray = generateUnsortedArray(arraySize);
+			int[] sortedArray = AuxiliaryTestMethods.generateSortedArray(arraySize);
+			int[] unsortedArray = AuxiliaryTestMethods.generateUnsortedArray(arraySize);
 
 			SelectionSort testSelectionSort = new SelectionSort(unsortedArray);
 			SortingAlgorithmMetrics testMetrics = testSelectionSort.getMetrics();
@@ -209,8 +182,8 @@ class Test_SelectionSort {
 	void stressTestBubbleSortWithManualSorter() {
 		try {
 			int arraySize = 2500;
-			int[] sortedArray = generateSortedArray(arraySize);
-			int[] unsortedArray = generateUnsortedArray(arraySize);
+			int[] sortedArray = AuxiliaryTestMethods.generateSortedArray(arraySize);
+			int[] unsortedArray = AuxiliaryTestMethods.generateUnsortedArray(arraySize);
 
 			SelectionSort testSelectionSort = new SelectionSort(unsortedArray);
 			ManualSorter testManualMode = testSelectionSort.preComputeManualSort();
