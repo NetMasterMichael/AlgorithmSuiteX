@@ -136,7 +136,98 @@ class Test_ManualSorter {
 			AuxiliaryTestMethods.logPass(className, testName);
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);
-			fail("Exception " + e + " thrown while testing isSortable() on a ManualSorter instance; "
+			fail("Exception " + e + " thrown while testing isSortable() on a ManualSorter instance; " + e.getMessage());
+		}
+	}
+
+	@Test
+	void testGetCurrentIndexA() {
+		String testName = "testGetCurrentIndexA";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			ManualSorter testManualSorter = new ManualSorter(new int[] { 1, 2, 3 },
+					new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+			assertEquals(-1, testManualSorter.getCurrentIndexA(),
+					"Test that currentIndexA in a ManualSorter instance starts at -1");
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 1, 2);
+			assertEquals(-1, testManualSorter.getCurrentIndexA(),
+					"Test that currentIndexA in a ManualSorter instance is still -1 after enqueueing an operation and before execution");
+			testManualSorter.step();
+			assertEquals(1, testManualSorter.getCurrentIndexA(),
+					"Test that currentIndexA in a ManualSorter instance is now 1 after execution");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while testing testGetCurrentIndexA() on a ManualSorter instance; "
+					+ e.getMessage());
+		}
+	}
+
+	@Test
+	void testGetCurrentIndexB() {
+		String testName = "testGetCurrentIndexB";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			ManualSorter testManualSorter = new ManualSorter(new int[] { 1, 2, 3 },
+					new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+			assertEquals(-1, testManualSorter.getCurrentIndexB(),
+					"Test that currentIndexB in a ManualSorter instance starts at -1");
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 1, 2);
+			assertEquals(-1, testManualSorter.getCurrentIndexB(),
+					"Test that currentIndexB in a ManualSorter instance is still -1 after enqueueing an operation and before execution");
+			testManualSorter.step();
+			assertEquals(2, testManualSorter.getCurrentIndexB(),
+					"Test that currentIndexB in a ManualSorter instance is now 2 after execution");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while testing testGetCurrentIndexB() on a ManualSorter instance; "
+					+ e.getMessage());
+		}
+	}
+
+	@Test
+	void testGetCurrentOperationType() {
+		String testName = "testGetCurrentOperationType";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			ManualSorter testManualSorter = new ManualSorter(new int[] { 1, 2, 3 },
+					new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+			assertEquals(null, testManualSorter.getCurrentOperationType(),
+					"Test that currentOperationType in a ManualSorter instance starts as null");
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 1, 2);
+			assertEquals(null, testManualSorter.getCurrentOperationType(),
+					"Test that currentOperationType in a ManualSorter instance is still null after enqueueing an operation and before execution");
+			testManualSorter.step();
+			assertEquals(SortingAlgorithmOperation.SWAP, testManualSorter.getCurrentOperationType(),
+					"Test that currentOperationType in a ManualSorter instance is now SWAP after execution");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while testing testGetCurrentOperationType() on a ManualSorter instance; "
+					+ e.getMessage());
+		}
+	}
+
+	@Test
+	void testStepOnEmptyDequeReturnsFalse() {
+		String testName = "testStepOnEmptyDequeReturnsFalse";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			ManualSorter testManualSorter = new ManualSorter(new int[] { 1, 2, 3 },
+					new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+			assertFalse(testManualSorter.step(),
+					"Test that stepping on a ManualSorter instance with no queued operations returns false");
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 0, 1);
+			assertTrue(testManualSorter.step(),
+					"Test that stepping on a ManualSorter instance after enqueueing an operation returns true");
+			assertFalse(testManualSorter.step(),
+					"Test that stepping on a ManualSorter instance with no more queued operations returns false");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e
+					+ " thrown while testing testStepOnEmptyDequeReturnsFalse() on a ManualSorter instance; "
 					+ e.getMessage());
 		}
 	}

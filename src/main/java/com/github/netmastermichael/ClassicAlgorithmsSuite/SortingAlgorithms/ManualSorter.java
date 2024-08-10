@@ -1,9 +1,9 @@
 package com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms;
 
-import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 /**
  * ManualSorter is an object used for manually and interactively sorting an
@@ -19,6 +19,15 @@ public class ManualSorter {
 
 	/** Array that is currently being worked on by the manual sorter */
 	private int[] array;
+
+	/** Left index of most recent operation executed by the manual sorter */
+	private int currentIndexA;
+
+	/** Right index of most recent operation executed by the manual sorter */
+	private int currentIndexB;
+
+	/** Type of most recent operation executed by the manual sorter */
+	private SortingAlgorithmOperation currentOperationType;
 
 	/** Deque for holding the operations provided by a sorting algorithm */
 	private Deque<SortingAlgorithmOperation> operationsDeque;
@@ -50,6 +59,9 @@ public class ManualSorter {
 		} else {
 			this.indicesDeque = new LinkedList<Integer>();
 		}
+		this.currentIndexA = -1;
+		this.currentIndexB = -1;
+		this.currentOperationType = null;
 	}
 
 	/**
@@ -59,6 +71,36 @@ public class ManualSorter {
 	 */
 	public int[] getArray() {
 		return this.array;
+	}
+
+	/**
+	 * Gets the value currently held inside the currentIndexA field of the
+	 * ManualSorter object. Intended for use in a user interface.
+	 * 
+	 * @return Left index value of most recent performed operation
+	 */
+	public int getCurrentIndexA() {
+		return currentIndexA;
+	}
+
+	/**
+	 * Gets the value currently held inside the currentIndexB field of the
+	 * ManualSorter object. Intended for use in a user interface.
+	 * 
+	 * @return Right index value of most recent performed operation
+	 */
+	public int getCurrentIndexB() {
+		return currentIndexB;
+	}
+
+	/**
+	 * Gets the type of SortingAlgorithmOperation of the most recent operation
+	 * performed in the ManualSorter object. Intended for use in a user interface.
+	 * 
+	 * @return Type of most recent performed operation
+	 */
+	public SortingAlgorithmOperation getCurrentOperationType() {
+		return currentOperationType;
 	}
 
 	/**
@@ -125,24 +167,27 @@ public class ManualSorter {
 	 * Executes the operation at the bottom of operationsDeque on the array.
 	 * 
 	 * @return True if operation was executed successfully, false if the step was
+	 *         not
 	 */
 	public boolean step() {
-		SortingAlgorithmOperation operation = operationsDeque.pollLast();
-		switch (operation) {
-		case COMPARE:
-			// Return to this later; intended for displaying comparisons in a GUI
-			indicesDeque.pollLast();
-			indicesDeque.pollLast();
-			return true;
-		case SWAP:
-			int indexA = indicesDeque.pollLast();
-			int indexB = indicesDeque.pollLast();
-			int buffer = array[indexA];
-			array[indexA] = array[indexB];
-			array[indexB] = buffer;
-			return true;
-		default:
-			// Add exception here later
+		try {
+			currentOperationType = operationsDeque.removeLast();
+			switch (currentOperationType) {
+			case COMPARE:
+				currentIndexA = indicesDeque.removeLast();
+				currentIndexB = indicesDeque.removeLast();
+				return true;
+			case SWAP:
+				currentIndexA = indicesDeque.removeLast();
+				currentIndexB = indicesDeque.removeLast();
+				int buffer = array[currentIndexA];
+				array[currentIndexA] = array[currentIndexB];
+				array[currentIndexB] = buffer;
+				return true;
+			default:
+				return false;
+			}
+		} catch (NoSuchElementException nsee) {
 			return false;
 		}
 	}
