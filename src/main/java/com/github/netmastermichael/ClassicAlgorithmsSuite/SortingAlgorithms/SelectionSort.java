@@ -147,6 +147,7 @@ public class SelectionSort implements SortingAlgorithm {
 	 * @return ManualSorter object queued with operations of selection sort
 	 *         algorithm
 	 */
+	@Override
 	public ManualSorter preComputeManualSort() {
 		ManualSorter manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length),
 				new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());

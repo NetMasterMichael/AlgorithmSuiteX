@@ -159,6 +159,7 @@ public class BubbleSort implements SortingAlgorithm {
 	 * 
 	 * @return ManualSorter object queued with operations of bubble sort algorithm
 	 */
+	@Override
 	public ManualSorter preComputeManualSort() {
 		// Create new ManualSorter object, which will be an independent copy of the
 		// algorithm
