@@ -28,8 +28,18 @@ public class InsertionSort implements SortingAlgorithm{
 
 	@Override
 	public void sort() {
-		// TODO Auto-generated method stub
-		
+		int arrayLength = inputArray.length;
+		for (int i = 1; i < arrayLength; i++) {
+			int buffer = inputArray[i];
+			int j = i - 1;
+
+			// While value at j'th index is less than buffer, move each j'th index forward by one
+			while (j >= 0 && inputArray[j] > buffer) {
+				inputArray[j + 1] = inputArray[j];
+				j--;
+			}
+			inputArray[j + 1] = buffer;
+		}
 	}
 
 	@Override
