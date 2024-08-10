@@ -1,5 +1,7 @@
 package com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms;
 
+import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -81,11 +83,42 @@ public class ManualSorter {
 	 * @param operationsLimit Maximum number of operations before returning false.
 	 *                        To validate until the deques are fully depleted, pass
 	 *                        -1 into this parameter.
-	 * @return True if array can be sorted within the operations limit, otherwise
-	 *         false if the limit is reached or the deques run out of operations.
+	 * @return Number of operations executed until the array is sorted. If the array
+	 *         cannot be sorted, -1 is returned.
 	 */
-	public boolean validateSort(int operationsLimit) {
-		return false;
+	public int isSortable(int operationsLimit) {
+		// Make clones of all the parameters
+		int[] arrayCopy = Arrays.copyOf(array, array.length);
+		Deque<SortingAlgorithmOperation> operationsDequeCopy = new LinkedList<>(operationsDeque);
+		Deque<Integer> indicesDequeCopy = new LinkedList<>(indicesDeque);
+		ManualSorter validator = new ManualSorter(arrayCopy, operationsDequeCopy, indicesDequeCopy);
+
+		int operationsCount = 0;
+		while (!operationsDequeCopy.isEmpty() && (operationsLimit == -1 || operationsCount < operationsLimit)) {
+			validator.step();
+			if (validator.isSorted()) {
+				return operationsCount;
+			}
+			operationsCount++;
+		}
+		return -1;
+	}
+
+	/**
+	 * Check if the array is sorted.
+	 * 
+	 * @return true if array is sorted, otherwise false
+	 */
+	public boolean isSorted() {
+		for (int i = 0; i < (array.length - 1); i++) {
+			if (array[i] > array[i + 1]) {
+				// If any pair is found where the left number is larger than the right number,
+				// the array isn't currently sorted, so return false
+				return false;
+			}
+		}
+		// No pairs are out of order, so array is sorted
+		return true;
 	}
 
 	/**
