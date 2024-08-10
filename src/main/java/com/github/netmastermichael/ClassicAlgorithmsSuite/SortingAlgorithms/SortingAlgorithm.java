@@ -1,4 +1,4 @@
-package com.github.netmastermichael.classic_algorithms_suite.SortingAlgorithms;
+package com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms;
 
 /**
  * SortingAlgorithm is an interface that will be implemented by all sorting
@@ -44,6 +44,14 @@ public interface SortingAlgorithm {
 	 */
 	void sortWithMetrics();
 
+	/**
+	 * Sorts an input array using the specified sorting algorithm while recording
+	 * each operation performed and inserting it into a ManualSorter object. This
+	 * object can be used later to replay each individual step of the sort.
+	 * 
+	 * @return ManualSorter object populated with sorting operations
+	 */
+	ManualSorter preComputeManualSort();
 
 	/**
 	 * Check if the input array is sorted.
