@@ -20,10 +20,10 @@ public class AuxiliaryTestMethods {
 	private static final String RESET = "\033[0m";
 
 	/*
-	 * ANSI escape code to change the text to bright yellow and bold. Used for
+	 * ANSI escape code to change the text to bright blue and bold. Used for
 	 * highlighting the name of the test class.
 	 */
-	private static final String BRIGHT_YELLOW_BOLD_TEXT = "\033[1;94m";
+	private static final String BRIGHT_BLUE_BOLD_TEXT = "\033[1;94m";
 
 	/*
 	 * ANSI escape code to change the text to bright green and bold. Used for the
@@ -47,7 +47,7 @@ public class AuxiliaryTestMethods {
 	 * @param message       Message to output
 	 */
 	public static void logMessage(String testClassName, String message) {
-		System.out.println(RESET + "[" + BRIGHT_YELLOW_BOLD_TEXT + testClassName + RESET + "] => " + message + RESET);
+		System.out.println(RESET + "[" + BRIGHT_BLUE_BOLD_TEXT + testClassName + RESET + "] => " + message + RESET);
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class AuxiliaryTestMethods {
 	 * @param testMethodName Name of test method that has passed
 	 */
 	public static void logPass(String testClassName, String testMethodName) {
-		System.out.println(RESET + "[" + BRIGHT_YELLOW_BOLD_TEXT + testClassName + RESET + "] => " + testMethodName
+		System.out.println(RESET + "[" + BRIGHT_BLUE_BOLD_TEXT + testClassName + RESET + "] => " + testMethodName
 				+ " has " + BRIGHT_GREEN_BOLD_TEXT + "PASSED" + RESET);
 	}
 
