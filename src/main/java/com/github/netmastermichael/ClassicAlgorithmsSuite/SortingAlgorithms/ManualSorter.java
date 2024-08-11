@@ -39,6 +39,21 @@ public class ManualSorter {
 	 * Constructor for creating a ManualSorter object for executing operations on an
 	 * array of integers.
 	 * 
+	 * @param array Array of integers to be sorted
+	 */
+	public ManualSorter(int[] array) {
+		this.array = array;
+		this.operationsDeque = new LinkedList<SortingAlgorithmOperation>();
+		this.indicesDeque = new LinkedList<Integer>();
+		this.currentIndexA = -1;
+		this.currentIndexB = -1;
+		this.currentOperationType = null;
+	}
+
+	/**
+	 * Constructor for creating a ManualSorter object for executing operations on an
+	 * array of integers.
+	 * 
 	 * @param array           Array of integers to be sorted
 	 * @param operationsDeque Deque of operations to perform on array. Can be
 	 *                        provided as pre-populated, or provided as empty and
