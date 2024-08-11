@@ -4,7 +4,9 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.BubbleSort;
 import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.InsertionSort;
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.ManualSorter;
 import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithmMetrics;
 
 class Test_InsertionSort {
@@ -119,6 +121,30 @@ class Test_InsertionSort {
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);
 			fail("Exception " + e + " thrown while testing insertion sort with metrics with a basic array; "
+					+ e.getMessage());
+		}
+	}
+	
+	@Test
+	void testInsertionSortWithManualSorter() {
+		String testName = "testInsertionSortWithManualSorter";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			int[] unsortedArray = { 7, 5, 3, 6, 10, 1, 4, 9, 2, 8 };
+			int[] sortedArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+			InsertionSort testInsertionSort = new InsertionSort(unsortedArray);
+			ManualSorter testManualMode = testInsertionSort.preComputeManualSort();
+			while (true) {
+				testManualMode.step();
+				if (Arrays.equals(testManualMode.getArray(), sortedArray)) {
+					assertTrue(true);
+					break;
+				}
+			}
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while testing insertion sort with a manual sorter with a basic array; "
 					+ e.getMessage());
 		}
 	}
