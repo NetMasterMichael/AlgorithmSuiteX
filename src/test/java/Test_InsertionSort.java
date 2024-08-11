@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.BubbleSort;
 import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.InsertionSort;
 import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.ManualSorter;
 import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithmMetrics;
@@ -146,6 +145,104 @@ class Test_InsertionSort {
 			AuxiliaryTestMethods.logFail(className, testName);
 			fail("Exception " + e + " thrown while testing insertion sort with a manual sorter with a basic array; "
 					+ e.getMessage());
+		}
+	}
+	
+	@Test
+	void stressTestInsertionSort() {
+		String testName = "stressTestInsertionSort";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			int arraySize = 50000;
+			AuxiliaryTestMethods.logMessage(className, testName + " : Stress test array size: " + Integer.toString(arraySize));
+
+			int[] sortedArray = AuxiliaryTestMethods.generateSortedArray(arraySize);
+			int[] unsortedArray = AuxiliaryTestMethods.generateUnsortedArray(arraySize);
+
+			InsertionSort testInsertionSort = new InsertionSort(unsortedArray);
+			assertFalse(Arrays.equals(sortedArray, testInsertionSort.getInputArray()),
+					"Test that the random array inside testInsertionSort is unsorted before calling sort()");
+			assertFalse(testInsertionSort.isSorted(), "Test that isSorted() returns false before calling sort()");
+			testInsertionSort.sort();
+			assertTrue(Arrays.equals(sortedArray, testInsertionSort.getInputArray()),
+					"Test that the random array inside testInsertionSort is sorted after calling sort()");
+			assertTrue(testInsertionSort.isSorted(), "Test that isSorted() returns true after calling sort()");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while stress testing insertion sort; " + e.getMessage());
+		}
+	}
+
+	@Test
+	void stressTestInsertionSortWithMetrics() {
+		String testName = "stressTestInsertionSortWithMetrics";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			int arraySize = 50000;
+			AuxiliaryTestMethods.logMessage(className, testName + " : Stress test array size: " + Integer.toString(arraySize));
+
+			int[] sortedArray = AuxiliaryTestMethods.generateSortedArray(arraySize);
+			int[] unsortedArray = AuxiliaryTestMethods.generateUnsortedArray(arraySize);
+
+			InsertionSort testInsertionSort = new InsertionSort(unsortedArray);
+			SortingAlgorithmMetrics testMetrics = testInsertionSort.getMetrics();
+			// Pre-checks
+			assertFalse(Arrays.equals(sortedArray, testInsertionSort.getInputArray()),
+					"Test that the basic array inside testInsertionSort is unsorted before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getComparisons(),
+					"Test that the comparisons field inside testInsertionSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getSwaps(),
+					"Test that the swaps field inside testInsertionSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getPasses(),
+					"Test that the passes field inside testInsertionSort is zero before calling sortWithMetrics()");
+			// Call sortWithMetrics()
+			testInsertionSort.sortWithMetrics();
+			// Post-checks
+			assertTrue(Arrays.equals(sortedArray, testInsertionSort.getInputArray()),
+					"Test that the basic array inside testInsertionSort is sorted after calling sortWithMetrics()");
+			assertNotEquals(0, testMetrics.getComparisons(),
+					"Test that the comparisons field inside testInsertionSort is no longer zero after calling sortWithMetrics()");
+			assertNotEquals(0, testMetrics.getSwaps(),
+					"Test that the swaps field inside testInsertionSort is no longer zero after calling sortWithMetrics()");
+			assertNotEquals(0, testMetrics.getPasses(),
+					"Test that the passes field inside testInsertionSort is no longer zero after calling sortWithMetrics()");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while stress testing insertion sort with metrics; " + e.getMessage());
+		}
+	}
+
+	@Test
+	void stressTestInsertionSortWithManualSorter() {
+		String testName = "stressTestInsertionSortWithManualSorter";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			int arraySize = 2500;
+			AuxiliaryTestMethods.logMessage(className, testName + " : Stress test array size: " + Integer.toString(arraySize));
+
+			int[] sortedArray = AuxiliaryTestMethods.generateSortedArray(arraySize);
+			int[] unsortedArray = AuxiliaryTestMethods.generateUnsortedArray(arraySize);
+
+			InsertionSort testInsertionSort = new InsertionSort(unsortedArray);
+			AuxiliaryTestMethods.logMessage(className,
+					testName + " : Pre-computing all the operations into a ManualSort object...");
+			ManualSorter testManualMode = testInsertionSort.preComputeManualSort();
+			
+			AuxiliaryTestMethods.logMessage(className, testName
+					+ " : Stepping through all queued operations until the array is sorted...");
+			while (true) {
+				testManualMode.step();
+				if (Arrays.equals(testManualMode.getArray(), sortedArray)) {
+					assertTrue(true);
+					break;
+				}
+			}
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while stress testing insertion sort; " + e.getMessage());
 		}
 	}
 }
