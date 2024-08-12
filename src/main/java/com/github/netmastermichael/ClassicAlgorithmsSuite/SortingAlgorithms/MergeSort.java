@@ -2,22 +2,29 @@ package com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms;
 
 public class MergeSort implements SortingAlgorithm {
 
+	private int[] inputArray;
+	
+	private SortingAlgorithmMetrics metrics;
+	
+	public MergeSort(int[] inputArray) {
+		this.inputArray = inputArray;
+		this.metrics = new SortingAlgorithmMetrics();
+	}
+	
 	@Override
 	public int[] getInputArray() {
-		// TODO Auto-generated method stub
-		return null;
+		return inputArray;
 	}
 
 	@Override
 	public void setInputArray(int[] newInputArray) {
-		// TODO Auto-generated method stub
+		this.inputArray = newInputArray;
 		
 	}
 
 	@Override
 	public SortingAlgorithmMetrics getMetrics() {
-		// TODO Auto-generated method stub
-		return null;
+		return metrics;
 	}
 
 	@Override
