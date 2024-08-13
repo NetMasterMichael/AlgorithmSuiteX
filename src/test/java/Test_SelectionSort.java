@@ -105,6 +105,9 @@ class Test_SelectionSort {
 					"Test that the swaps field inside testSelectionSort is zero before calling sortWithMetrics()");
 			assertEquals(0, testMetrics.getPasses(),
 					"Test that the passes field inside testSelectionSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getArrayAccesses(),
+					"Test that the arrayAccesses field inside testSelectionSort is zero before calling sortWithMetrics()");
+			
 			// Call sortWithMetrics()
 			testSelectionSort.sortWithMetrics();
 			// Post-checks
@@ -116,6 +119,8 @@ class Test_SelectionSort {
 					"Test that the swaps field inside testSelectionSort is 7 after calling sortWithMetrics()");
 			assertEquals(9, testMetrics.getPasses(),
 					"Test that the passes field inside testSelectionSort is 9 after calling sortWithMetrics()");
+			assertEquals(118, testMetrics.getArrayAccesses(),
+					"Test that the arrayAccesses field inside testSelectionSort is 118 after calling sortWithMetrics()");
 			AuxiliaryTestMethods.logPass(className, testName);
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);

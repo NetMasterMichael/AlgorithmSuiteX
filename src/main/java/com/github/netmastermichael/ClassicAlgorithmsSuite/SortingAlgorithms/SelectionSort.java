@@ -121,6 +121,7 @@ public class SelectionSort implements SortingAlgorithm {
 			int lowestIndex = i;
 			for (int j = i + 1; j < arraylen; j++) { // Start from i + 1 to avoid comparing an element with itself
 				metrics.incrementComparisons();
+				metrics.increaseArrayAccesses(2);
 				if (inputArray[j] < inputArray[lowestIndex]) {
 					lowestIndex = j;
 				}
@@ -129,6 +130,7 @@ public class SelectionSort implements SortingAlgorithm {
 			// the correct position
 			if (lowestIndex != i) {
 				metrics.incrementSwaps();
+				metrics.increaseArrayAccesses(4);
 				// Swap the elements at i and lowestIndex
 				buffer = inputArray[lowestIndex];
 				inputArray[lowestIndex] = inputArray[i];
