@@ -100,6 +100,7 @@ public class InsertionSort implements SortingAlgorithm {
 		int arrayLength = inputArray.length;
 		for (int i = 1; i < arrayLength; i++) {
 			int buffer = inputArray[i];
+			metrics.increaseArrayAccesses(1);
 			int j = i - 1;
 
 			// While value at j'th index is less than buffer, move each j'th index forward
@@ -107,6 +108,7 @@ public class InsertionSort implements SortingAlgorithm {
 			while (j >= 0 && inputArray[j] > buffer) {
 				metrics.incrementComparisons();
 				inputArray[j + 1] = inputArray[j];
+				metrics.increaseArrayAccesses(3); // One access during condition, two accesses on line above
 				metrics.incrementSwaps();
 				j--;
 			}
@@ -115,6 +117,7 @@ public class InsertionSort implements SortingAlgorithm {
 			metrics.incrementComparisons();
 
 			inputArray[j + 1] = buffer;
+			metrics.increaseArrayAccesses(1);
 			metrics.incrementPasses();
 		}
 	}

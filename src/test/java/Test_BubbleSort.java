@@ -119,7 +119,7 @@ class Test_BubbleSort {
 			assertEquals(8, testMetrics.getPasses(),
 					"Test that the passes field inside testBubbleSort is 8 after calling sortWithMetrics()");
 			assertEquals(180, testMetrics.getArrayAccesses(),
-					"Test that the arrayAccesses field inside testBubbleSort is zero before calling sortWithMetrics()");
+					"Test that the arrayAccesses field inside testBubbleSort is 180 after calling sortWithMetrics()");
 			AuxiliaryTestMethods.logPass(className, testName);
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);

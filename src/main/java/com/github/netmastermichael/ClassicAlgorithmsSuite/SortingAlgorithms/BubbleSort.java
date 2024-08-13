@@ -133,10 +133,10 @@ public class BubbleSort implements SortingAlgorithm {
 			for (int i = 0; i < (indicesRemaining - 1); i++) {
 				// If the left number is larger than the right number, swap them.
 				metrics.incrementComparisons();
-				metrics.increaseArrayAccesses(2);
+				metrics.increaseArrayAccesses(2); // Two accesses during the if statement
 				if (inputArray[i] > inputArray[i + 1]) {
 					metrics.incrementSwaps();
-					metrics.increaseArrayAccesses(4);
+					metrics.increaseArrayAccesses(4); // Four accesses for swapping two indices
 					buffer = inputArray[i];
 					inputArray[i] = inputArray[i + 1];
 					inputArray[i + 1] = buffer;

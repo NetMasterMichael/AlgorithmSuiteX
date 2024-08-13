@@ -86,7 +86,7 @@ class Test_InsertionSort {
 			fail("Exception " + e + " thrown while testing insertion sort with a basic array; " + e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void testInsertionSortWithMetrics() {
 		String testName = "testInsertionSortWithMetrics";
@@ -105,6 +105,8 @@ class Test_InsertionSort {
 					"Test that the swaps field inside testInsertionSort is zero before calling sortWithMetrics()");
 			assertEquals(0, testMetrics.getPasses(),
 					"Test that the passes field inside testInsertionSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getArrayAccesses(),
+					"Test that the passes field inside testInsertionSort is zero before calling sortWithMetrics()");
 			// Call sortWithMetrics()
 			testInsertionSort.sortWithMetrics();
 			// Post-checks
@@ -116,6 +118,8 @@ class Test_InsertionSort {
 					"Test that the swaps field inside testInsertionSort is 7 after calling sortWithMetrics()");
 			assertEquals(9, testMetrics.getPasses(),
 					"Test that the passes field inside testInsertionSort is 9 after calling sortWithMetrics()");
+			assertEquals(87, testMetrics.getArrayAccesses(),
+					"Test that the passes field inside testInsertionSort is 87 after calling sortWithMetrics()");
 			AuxiliaryTestMethods.logPass(className, testName);
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);
@@ -123,7 +127,7 @@ class Test_InsertionSort {
 					+ e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void testInsertionSortWithManualSorter() {
 		String testName = "testInsertionSortWithManualSorter";
@@ -147,14 +151,15 @@ class Test_InsertionSort {
 					+ e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void stressTestInsertionSort() {
 		String testName = "stressTestInsertionSort";
 		AuxiliaryTestMethods.logMessage(className, testName + " started");
 		try {
 			int arraySize = 50000;
-			AuxiliaryTestMethods.logMessage(className, testName + " : Stress test array size: " + Integer.toString(arraySize));
+			AuxiliaryTestMethods.logMessage(className,
+					testName + " : Stress test array size: " + Integer.toString(arraySize));
 
 			int[] sortedArray = AuxiliaryTestMethods.generateSortedArray(arraySize);
 			int[] unsortedArray = AuxiliaryTestMethods.generateUnsortedArray(arraySize);
@@ -180,7 +185,8 @@ class Test_InsertionSort {
 		AuxiliaryTestMethods.logMessage(className, testName + " started");
 		try {
 			int arraySize = 50000;
-			AuxiliaryTestMethods.logMessage(className, testName + " : Stress test array size: " + Integer.toString(arraySize));
+			AuxiliaryTestMethods.logMessage(className,
+					testName + " : Stress test array size: " + Integer.toString(arraySize));
 
 			int[] sortedArray = AuxiliaryTestMethods.generateSortedArray(arraySize);
 			int[] unsortedArray = AuxiliaryTestMethods.generateUnsortedArray(arraySize);
@@ -220,7 +226,8 @@ class Test_InsertionSort {
 		AuxiliaryTestMethods.logMessage(className, testName + " started");
 		try {
 			int arraySize = 2500;
-			AuxiliaryTestMethods.logMessage(className, testName + " : Stress test array size: " + Integer.toString(arraySize));
+			AuxiliaryTestMethods.logMessage(className,
+					testName + " : Stress test array size: " + Integer.toString(arraySize));
 
 			int[] sortedArray = AuxiliaryTestMethods.generateSortedArray(arraySize);
 			int[] unsortedArray = AuxiliaryTestMethods.generateUnsortedArray(arraySize);
@@ -229,9 +236,9 @@ class Test_InsertionSort {
 			AuxiliaryTestMethods.logMessage(className,
 					testName + " : Pre-computing all the operations into a ManualSort object...");
 			ManualSorter testManualMode = testInsertionSort.preComputeManualSort();
-			
-			AuxiliaryTestMethods.logMessage(className, testName
-					+ " : Stepping through all queued operations until the array is sorted...");
+
+			AuxiliaryTestMethods.logMessage(className,
+					testName + " : Stepping through all queued operations until the array is sorted...");
 			while (true) {
 				testManualMode.step();
 				if (Arrays.equals(testManualMode.getArray(), sortedArray)) {
