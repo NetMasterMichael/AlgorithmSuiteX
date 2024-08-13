@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.MergeSort;
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithm;
 
 class Test_MergeSort {
 
@@ -60,6 +61,28 @@ class Test_MergeSort {
 			AuxiliaryTestMethods.logFail(className, testName);
 			fail("Exception " + e + " thrown while testing setting the input array of an instance of MergeSort; "
 					+ e.getMessage());
+		}
+	}
+	
+	@Test
+	void testMergeSort() {
+		String testName = "testMergeSort";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			int[] unsortedArray = { 8, 6, 3, 7, 2, 5, 4, 1 };
+			int[] sortedArray = { 1, 2, 3, 4, 5, 6, 7, 8 };
+			SortingAlgorithm testMergeSort = new MergeSort(unsortedArray);
+			assertFalse(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
+					"Test that the basic array inside testMergeSort is unsorted before calling sort()");
+			assertFalse(testMergeSort.isSorted(), "Test that isSorted() returns false before calling sort()");
+			testMergeSort.sort();
+			assertTrue(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
+					"Test that the basic array inside testMergeSort is sorted after calling sort()");
+			assertTrue(testMergeSort.isSorted(), "Test that isSorted() returns true after calling sort()");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while testing merge sort with a basic array; " + e.getMessage());
 		}
 	}
 }
