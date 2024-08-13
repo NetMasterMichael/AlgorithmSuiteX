@@ -7,7 +7,7 @@ import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.Sort
 class Test_SortingAlgorithmMetrics {
 
 	final String className = "Test_SortingAlgorithmMetrics";
-	
+
 	@Test
 	void testCreateSortingAlgorithmMetricsObject() {
 		String testName = "testCreateSortingAlgorithmMetricsObject";
@@ -55,7 +55,7 @@ class Test_SortingAlgorithmMetrics {
 					+ e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void testGetPasses() {
 		String testName = "testGetPasses";
@@ -71,7 +71,7 @@ class Test_SortingAlgorithmMetrics {
 					+ e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void testSetComparisons() {
 		String testName = "testSetComparisons";
@@ -90,7 +90,7 @@ class Test_SortingAlgorithmMetrics {
 					+ e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void testSetSwaps() {
 		String testName = "testGetSwaps";
@@ -109,7 +109,7 @@ class Test_SortingAlgorithmMetrics {
 					+ e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void testSetPasses() {
 		String testName = "testSetPasses";
@@ -128,7 +128,7 @@ class Test_SortingAlgorithmMetrics {
 					+ e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void testIncrementComparisons() {
 		String testName = "testIncrementComparisons";
@@ -144,11 +144,12 @@ class Test_SortingAlgorithmMetrics {
 			AuxiliaryTestMethods.logPass(className, testName);
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);
-			fail("Exception " + e + " thrown while testing incrementComparisons() on an instance of SortingAlgorithmMetrics; "
+			fail("Exception " + e
+					+ " thrown while testing incrementComparisons() on an instance of SortingAlgorithmMetrics; "
 					+ e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void testIncrementSwaps() {
 		String testName = "testIncrementSwaps";
@@ -168,7 +169,7 @@ class Test_SortingAlgorithmMetrics {
 					+ e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void testIncrementPasses() {
 		String testName = "testIncrementPasses";
@@ -184,7 +185,71 @@ class Test_SortingAlgorithmMetrics {
 			AuxiliaryTestMethods.logPass(className, testName);
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);
-			fail("Exception " + e + " thrown while testing incrementPasses() on an instance of SortingAlgorithmMetrics; "
+			fail("Exception " + e
+					+ " thrown while testing incrementPasses() on an instance of SortingAlgorithmMetrics; "
+					+ e.getMessage());
+		}
+	}
+
+	@Test
+	void testGetArrayAccesses() {
+		String testName = "testGetArrayAccesses";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			SortingAlgorithmMetrics testSAM = new SortingAlgorithmMetrics();
+			assertEquals(0, testSAM.getArrayAccesses(),
+					"Test that getArrayAccesses() on a SortingAlgorithmMetrics object after initialization returns 0");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e
+					+ " thrown while testing getArrayAccesses() on an instance of SortingAlgorithmMetrics; "
+					+ e.getMessage());
+		}
+	}
+
+	@Test
+	void testSetArrayAccesses() {
+		String testName = "testSetArrayAccesses";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			SortingAlgorithmMetrics testSAM = new SortingAlgorithmMetrics();
+			assertEquals(0, testSAM.getArrayAccesses(),
+					"Test that getArrayAccesses() on a SortingAlgorithmMetrics object before calling setArrayAccesses() returns 0");
+			testSAM.setArrayAccesses(1550);
+			assertEquals(1550, testSAM.getArrayAccesses(),
+					"Test that getArrayAccesses() on a SortingAlgorithmMetrics object after calling setArrayAccesses() returns 50");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e
+					+ " thrown while testing setArrayAccesses() on an instance of SortingAlgorithmMetrics; "
+					+ e.getMessage());
+		}
+	}
+
+	@Test
+	void testIncreaseArrayAccesses() {
+		String testName = "testIncreaseArrayAccesses";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			SortingAlgorithmMetrics testSAM = new SortingAlgorithmMetrics();
+			assertEquals(0, testSAM.getArrayAccesses(),
+					"Test that getArrayAccesses() on a SortingAlgorithmMetrics object before calling increaseArrayAccesses() returns 0");
+			testSAM.increaseArrayAccesses(128);
+			assertEquals(128, testSAM.getArrayAccesses(),
+					"Test that getArrayAccesses() on a SortingAlgorithmMetrics object after calling increaseArrayAccesses() returns 128");
+			for (int i = 0; i <= 1000; i++) {
+				assertEquals(i * 4 + 128, testSAM.getArrayAccesses(),
+						"Test that the quantity of array accesses in a SortingAlgorithmMetrics instance equals "
+								+ Integer.toString(i * 4 + 128));
+				testSAM.increaseArrayAccesses(4);
+			}
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e
+					+ " thrown while testing testIncreaseArrayAccesses() on an instance of SortingAlgorithmMetrics; "
 					+ e.getMessage());
 		}
 	}
