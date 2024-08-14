@@ -1,33 +1,76 @@
 package com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms;
 
+/**
+ * MergeSort is a class that implements the merge sort algorithm for
+ * sorting an array of integers. It implements the SortingAlgorithm interface
+ * and is designed to primarily be used with a controller, but can be used
+ * independently.
+ * <p>
+ * Time Complexity Best Case: O(n)<br>
+ * </p>
+ * <p>
+ * Time Complexity Average Case: O(n^2)
+ * </p>
+ * <p>
+ * Time Complexity Worst Case: O(n^2)<br>
+ * </p>
+ * 
+ * @author Michael Goodwin (NetMasterMichael)
+ */
 public class MergeSort implements SortingAlgorithm {
 
+	/** Array that is currently being worked on by the sorting algorithm */
 	private int[] inputArray;
 
+	/** SortingAlgorithmMetrics object for tracking metrics of the algorithm */
 	private SortingAlgorithmMetrics metrics;
 
+	/**
+	 * Constructor for creating a MergeSort object to sort an array of integers.
+	 * 
+	 * @param inputArray array to sort
+	 */
 	public MergeSort(int[] inputArray) {
 		this.inputArray = inputArray;
 		this.metrics = new SortingAlgorithmMetrics();
 	}
 
+	/**
+	 * Gets the array currently held inside the MergeSort object.
+	 *
+	 * @return Array currently inside of MergeSort instance
+	 */
 	@Override
 	public int[] getInputArray() {
 		return inputArray;
 	}
 
+	/**
+	 * Sets the array inside the MergeSort object to the provided array.
+	 * 
+	 * @param Array to set inside MergeSort instance
+	 */
 	@Override
 	public void setInputArray(int[] newInputArray) {
 		this.inputArray = newInputArray;
-
 	}
 
+	/**
+	 * Gets the SortingAlgorithmMetrics object containing performance metrics from
+	 * this MergeSort object.
+	 * 
+	 * @return SortingAlgorithmMetrics object containing performance metrics
+	 */
 	@Override
 	public SortingAlgorithmMetrics getMetrics() {
 		return metrics;
 	}
 
-	// Wrapper method for mergeSort()
+	/**
+	 * Sorts the array inside inputArray using the merge sort algorithm with
+	 * optimisations. Use this method when assessing raw algorithm performance. Acts
+	 * as a wrapper for the mergeSort() method.
+	 */
 	@Override
 	public void sort() {
 		mergeSort(0, inputArray.length - 1);
@@ -94,12 +137,25 @@ public class MergeSort implements SortingAlgorithm {
 		}
 	}
 
+	/**
+	 * Sorts the array inside inputArray using the merge sort algorithm with
+	 * optimisations, while keeping track of metrics. Use this method when assessing
+	 * algorithm optimisation.
+	 */
 	@Override
 	public void sortWithMetrics() {
 		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * Creates a separate instance of this algorithm as a ManualSorter object with
+	 * an independent copy of inputArray, which will be able to sort the array by
+	 * stepping through a queue of operations that correspond with the merge
+	 * sort algorithm.
+	 * 
+	 * @return ManualSorter object queued with operations of merge sort
+	 *         algorithm
+	 */
 	@Override
 	public ManualSorter preComputeManualSort() {
 		// TODO Auto-generated method stub
