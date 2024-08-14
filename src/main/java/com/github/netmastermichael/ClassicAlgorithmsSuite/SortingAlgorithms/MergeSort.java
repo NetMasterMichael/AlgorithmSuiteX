@@ -6,13 +6,13 @@ package com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms;
  * and is designed to primarily be used with a controller, but can be used
  * independently.
  * <p>
- * Time Complexity Best Case: O(n)<br>
+ * Time Complexity Best Case: O(n log n)<br>
  * </p>
  * <p>
- * Time Complexity Average Case: O(n^2)
+ * Time Complexity Average Case: O(n log n)
  * </p>
  * <p>
- * Time Complexity Worst Case: O(n^2)<br>
+ * Time Complexity Worst Case: O(n log n)<br>
  * </p>
  * 
  * @author Michael Goodwin (NetMasterMichael)
@@ -144,7 +144,81 @@ public class MergeSort implements SortingAlgorithm {
 	 */
 	@Override
 	public void sortWithMetrics() {
-		// TODO Auto-generated method stub
+		mergeSortWithMetrics(0, inputArray.length - 1);
+	}
+	
+	private void mergeSortWithMetrics(int left, int right) {
+		metrics.incrementComparisons();
+		if (left < right) {
+			// Find the midpoint in the array
+			int midpoint = (left + right) / 2;
+
+			// Call mergeSort() on the first and second halves
+			mergeSortWithMetrics(left, midpoint);
+			mergeSortWithMetrics(midpoint + 1, right);
+
+			// Merge the sorted halves
+			mergeWithMetrics(left, midpoint, right);
+		}
+	}
+
+	private void mergeWithMetrics(int left, int midpoint, int right) {
+		// Find size of two subarrays to be merged
+		int leftArraySize = midpoint - left + 1;
+		int rightArraySize = right - midpoint;
+
+		// Create temporary arrays
+		int[] leftArray = new int[leftArraySize];
+		int[] rightArray = new int[rightArraySize];
+
+		// Copy corresponding values from inputArray to temporary arrays
+		for (int i = 0; i < leftArraySize; i++) {
+			metrics.incrementComparisons();
+			metrics.increaseArrayAccesses(2);
+			leftArray[i] = inputArray[left + i];
+		}
+		for (int i = 0; i < rightArraySize; i++) {
+			metrics.incrementComparisons();
+			metrics.increaseArrayAccesses(2);
+			rightArray[i] = inputArray[midpoint + i + 1];
+		}
+
+		// Merge the arrays into one and sort at the same time
+		int leftIndex = 0;
+		int rightIndex = 0;
+		int targetIndex = left;
+
+		while (leftIndex < leftArraySize && rightIndex < rightArraySize) {
+			metrics.incrementComparisons();
+			metrics.incrementComparisons();
+			metrics.incrementComparisons();
+			metrics.increaseArrayAccesses(2);
+			if (leftArray[leftIndex] <= rightArray[rightIndex]) {
+				inputArray[targetIndex] = leftArray[leftIndex];
+				leftIndex++;
+			} else {
+				inputArray[targetIndex] = rightArray[rightIndex];
+				rightIndex++;
+			}
+			targetIndex++;
+		}
+
+		// Arrays are now merged but there may be leftover values in the temporary
+		// arrays, so copy them to inputArray
+		while (leftIndex < leftArraySize) {
+			metrics.incrementComparisons();
+			metrics.increaseArrayAccesses(2);
+			inputArray[targetIndex] = leftArray[leftIndex];
+			leftIndex++;
+			targetIndex++;
+		}
+		while (rightIndex < rightArraySize) {
+			metrics.incrementComparisons();
+			metrics.increaseArrayAccesses(2);
+			inputArray[targetIndex] = rightArray[rightIndex];
+			rightIndex++;
+			targetIndex++;
+		}
 	}
 
 	/**

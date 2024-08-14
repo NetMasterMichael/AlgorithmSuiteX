@@ -5,7 +5,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.MergeSort;
-import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithm;
+import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithmMetrics;
 
 class Test_MergeSort {
 
@@ -71,7 +71,7 @@ class Test_MergeSort {
 		try {
 			int[] unsortedArray = { 8, 6, 3, 7, 2, 5, 4, 1 };
 			int[] sortedArray = { 1, 2, 3, 4, 5, 6, 7, 8 };
-			SortingAlgorithm testMergeSort = new MergeSort(unsortedArray);
+			MergeSort testMergeSort = new MergeSort(unsortedArray);
 			assertFalse(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
 					"Test that the basic array inside testMergeSort is unsorted before calling sort()");
 			assertFalse(testMergeSort.isSorted(), "Test that isSorted() returns false before calling sort()");
@@ -83,6 +83,47 @@ class Test_MergeSort {
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);
 			fail("Exception " + e + " thrown while testing merge sort with a basic array; " + e.getMessage());
+		}
+	}
+	
+	@Test
+	void testMergeSortWithMetrics() {
+		String testName = "testMergeSortWithMetrics";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			int[] unsortedArray = { 2, 10, 3, 4, 8, 9, 7, 1, 6, 5 };
+			int[] sortedArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+			MergeSort testMergeSort = new MergeSort(unsortedArray);
+			SortingAlgorithmMetrics testMetrics = testMergeSort.getMetrics();
+			// Pre-checks
+			assertFalse(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
+					"Test that the basic array inside testMergeSort is unsorted before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getComparisons(),
+					"Test that the comparisons field inside testMergeSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getSwaps(),
+					"Test that the swaps field inside testMergeSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getPasses(),
+					"Test that the passes field inside testMergeSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getArrayAccesses(),
+					"Test that the arrayAccesses field inside testMergeSort is zero before calling sortWithMetrics()");
+			// Call sortWithMetrics()
+			testMergeSort.sortWithMetrics();
+			// Post-checks
+			assertTrue(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
+					"Test that the basic array inside testMergeSort is sorted after calling sortWithMetrics()");
+			assertEquals(133, testMetrics.getComparisons(),
+					"Test that the comparisons field inside testMergeSort is 133 after calling sortWithMetrics()");
+			// Swaps not implemented
+			// assertEquals(23, testMetrics.getSwaps(), "Test that the swaps field inside testMergeSort is 7 after calling sortWithMetrics()");
+			// Passes not implemented
+			// assertEquals(9, testMetrics.getPasses(), "Test that the passes field inside testMergeSort is 9 after calling sortWithMetrics()");
+			assertEquals(136, testMetrics.getArrayAccesses(),
+					"Test that the arrayAccesses field inside testMergeSort is 136 after calling sortWithMetrics()");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while testing merge sort with metrics with a basic array; "
+					+ e.getMessage());
 		}
 	}
 }
