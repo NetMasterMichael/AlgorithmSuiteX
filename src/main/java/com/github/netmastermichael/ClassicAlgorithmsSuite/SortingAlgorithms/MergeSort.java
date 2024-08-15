@@ -182,6 +182,7 @@ public class MergeSort implements SortingAlgorithm {
 			}
 
 			metrics.increaseArrayAccesses(2);
+			metrics.incrementSwaps();
 			leftArray[i] = inputArray[left + i];
 			i++;
 		}
@@ -194,6 +195,7 @@ public class MergeSort implements SortingAlgorithm {
 			}
 			
 			metrics.increaseArrayAccesses(2);
+			metrics.incrementSwaps();
 			rightArray[i] = inputArray[midpoint + i + 1];
 			i++;
 		}
@@ -212,6 +214,7 @@ public class MergeSort implements SortingAlgorithm {
 
 			metrics.incrementComparisons(); // Comparison for if statement
 			metrics.increaseArrayAccesses(4); // Array accesses in if statement & swap
+			metrics.incrementSwaps();
 			if (leftArray[leftIndex] <= rightArray[rightIndex]) {
 				inputArray[targetIndex] = leftArray[leftIndex];
 				leftIndex++;
@@ -231,6 +234,7 @@ public class MergeSort implements SortingAlgorithm {
 				break;
 			}
 			metrics.increaseArrayAccesses(2);
+			metrics.incrementSwaps();
 			inputArray[targetIndex] = leftArray[leftIndex];
 			leftIndex++;
 			targetIndex++;
@@ -242,6 +246,7 @@ public class MergeSort implements SortingAlgorithm {
 				break;
 			}
 			metrics.increaseArrayAccesses(2);
+			metrics.incrementSwaps();
 			inputArray[targetIndex] = rightArray[rightIndex];
 			rightIndex++;
 			targetIndex++;

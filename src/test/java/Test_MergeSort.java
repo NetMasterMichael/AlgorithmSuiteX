@@ -114,7 +114,7 @@ class Test_MergeSort {
 			assertEquals(187, testMetrics.getComparisons(),
 					"Test that the comparisons field inside testMergeSort is 187 after calling sortWithMetrics()");
 			// Swaps not implemented
-			// assertEquals(0, testMetrics.getSwaps(), "Test that the swaps field inside testMergeSort is 7 after calling sortWithMetrics()");
+			assertEquals(68, testMetrics.getSwaps(), "Test that the swaps field inside testMergeSort is 68 after calling sortWithMetrics()");
 			// Passes not implemented
 			// assertEquals(9, testMetrics.getPasses(), "Test that the passes field inside testMergeSort is 9 after calling sortWithMetrics()");
 			assertEquals(182, testMetrics.getArrayAccesses(),
