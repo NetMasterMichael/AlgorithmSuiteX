@@ -112,7 +112,7 @@ class Test_BubbleSort {
 			// Post-checks
 			assertTrue(Arrays.equals(sortedArray, testBubbleSort.getInputArray()),
 					"Test that the basic array inside testBubbleSort is sorted after calling sortWithMetrics()");
-			assertEquals(44, testMetrics.getComparisons(),
+			assertEquals(96, testMetrics.getComparisons(),
 					"Test that the comparisons field inside testBubbleSort is 44 after calling sortWithMetrics()");
 			assertEquals(23, testMetrics.getSwaps(),
 					"Test that the swaps field inside testBubbleSort is 23 after calling sortWithMetrics()");

@@ -1,9 +1,9 @@
 package com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms;
 
 /**
- * MergeSort is a class that implements the merge sort algorithm for
- * sorting an array of integers. It implements the SortingAlgorithm interface
- * and is designed to primarily be used with a controller, but can be used
+ * MergeSort is a class that implements the merge sort algorithm for sorting an
+ * array of integers. It implements the SortingAlgorithm interface and is
+ * designed to primarily be used with a controller, but can be used
  * independently.
  * <p>
  * Time Complexity Best Case: O(n log n)<br>
@@ -146,7 +146,7 @@ public class MergeSort implements SortingAlgorithm {
 	public void sortWithMetrics() {
 		mergeSortWithMetrics(0, inputArray.length - 1);
 	}
-	
+
 	private void mergeSortWithMetrics(int left, int right) {
 		metrics.incrementComparisons();
 		if (left < right) {
@@ -172,15 +172,30 @@ public class MergeSort implements SortingAlgorithm {
 		int[] rightArray = new int[rightArraySize];
 
 		// Copy corresponding values from inputArray to temporary arrays
-		for (int i = 0; i < leftArraySize; i++) {
+		// These for loops have been rewritten as while loops for more accurate metrics
+		// tracking
+		int i = 0;
+		while (true) {
 			metrics.incrementComparisons();
+			if (!(i < leftArraySize)) {
+				break;
+			}
+
 			metrics.increaseArrayAccesses(2);
 			leftArray[i] = inputArray[left + i];
+			i++;
 		}
-		for (int i = 0; i < rightArraySize; i++) {
+
+		i = 0;
+		while (true) {
 			metrics.incrementComparisons();
+			if (!(i < rightArraySize)) {
+				break;
+			}
+			
 			metrics.increaseArrayAccesses(2);
 			rightArray[i] = inputArray[midpoint + i + 1];
+			i++;
 		}
 
 		// Merge the arrays into one and sort at the same time
@@ -188,11 +203,15 @@ public class MergeSort implements SortingAlgorithm {
 		int rightIndex = 0;
 		int targetIndex = left;
 
-		while (leftIndex < leftArraySize && rightIndex < rightArraySize) {
-			metrics.incrementComparisons();
-			metrics.incrementComparisons();
-			metrics.incrementComparisons();
-			metrics.increaseArrayAccesses(2);
+		while (true) {
+			// Condition for while loop, with comparisons counted
+			metrics.increaseComparisons(2);
+			if (!(leftIndex < leftArraySize && rightIndex < rightArraySize)) {
+				break;
+			}
+
+			metrics.incrementComparisons(); // Comparison for if statement
+			metrics.increaseArrayAccesses(4); // Array accesses in if statement & swap
 			if (leftArray[leftIndex] <= rightArray[rightIndex]) {
 				inputArray[targetIndex] = leftArray[leftIndex];
 				leftIndex++;
@@ -205,15 +224,23 @@ public class MergeSort implements SortingAlgorithm {
 
 		// Arrays are now merged but there may be leftover values in the temporary
 		// arrays, so copy them to inputArray
-		while (leftIndex < leftArraySize) {
+		while (true) {
+			// Condition for while loop, with comparisons counted
 			metrics.incrementComparisons();
+			if (!(leftIndex < leftArraySize)) {
+				break;
+			}
 			metrics.increaseArrayAccesses(2);
 			inputArray[targetIndex] = leftArray[leftIndex];
 			leftIndex++;
 			targetIndex++;
 		}
-		while (rightIndex < rightArraySize) {
+		while (true) {
+			// Condition for while loop, with comparisons counted
 			metrics.incrementComparisons();
+			if (!(rightIndex < rightArraySize)) {
+				break;
+			}
 			metrics.increaseArrayAccesses(2);
 			inputArray[targetIndex] = rightArray[rightIndex];
 			rightIndex++;
@@ -224,11 +251,10 @@ public class MergeSort implements SortingAlgorithm {
 	/**
 	 * Creates a separate instance of this algorithm as a ManualSorter object with
 	 * an independent copy of inputArray, which will be able to sort the array by
-	 * stepping through a queue of operations that correspond with the merge
-	 * sort algorithm.
+	 * stepping through a queue of operations that correspond with the merge sort
+	 * algorithm.
 	 * 
-	 * @return ManualSorter object queued with operations of merge sort
-	 *         algorithm
+	 * @return ManualSorter object queued with operations of merge sort algorithm
 	 */
 	@Override
 	public ManualSorter preComputeManualSort() {

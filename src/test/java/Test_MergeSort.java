@@ -111,14 +111,14 @@ class Test_MergeSort {
 			// Post-checks
 			assertTrue(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
 					"Test that the basic array inside testMergeSort is sorted after calling sortWithMetrics()");
-			assertEquals(133, testMetrics.getComparisons(),
-					"Test that the comparisons field inside testMergeSort is 133 after calling sortWithMetrics()");
+			assertEquals(187, testMetrics.getComparisons(),
+					"Test that the comparisons field inside testMergeSort is 187 after calling sortWithMetrics()");
 			// Swaps not implemented
-			// assertEquals(23, testMetrics.getSwaps(), "Test that the swaps field inside testMergeSort is 7 after calling sortWithMetrics()");
+			// assertEquals(0, testMetrics.getSwaps(), "Test that the swaps field inside testMergeSort is 7 after calling sortWithMetrics()");
 			// Passes not implemented
 			// assertEquals(9, testMetrics.getPasses(), "Test that the passes field inside testMergeSort is 9 after calling sortWithMetrics()");
-			assertEquals(136, testMetrics.getArrayAccesses(),
-					"Test that the arrayAccesses field inside testMergeSort is 136 after calling sortWithMetrics()");
+			assertEquals(182, testMetrics.getArrayAccesses(),
+					"Test that the arrayAccesses field inside testMergeSort is 182 after calling sortWithMetrics()");
 			AuxiliaryTestMethods.logPass(className, testName);
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);

@@ -130,7 +130,13 @@ public class BubbleSort implements SortingAlgorithm {
 			swapDuringPass = false;
 			metrics.incrementPasses();
 			// Check each pair in the array.
-			for (int i = 0; i < (indicesRemaining - 1); i++) {
+			// For loop is converted to a while loop for more precise comparisons tracking
+			int i = 0;
+			while (true) {
+				metrics.incrementComparisons();
+				if (!(i < (indicesRemaining - 1))) {
+					break;
+				}
 				// If the left number is larger than the right number, swap them.
 				metrics.incrementComparisons();
 				metrics.increaseArrayAccesses(2); // Two accesses during the if statement
@@ -142,6 +148,7 @@ public class BubbleSort implements SortingAlgorithm {
 					inputArray[i + 1] = buffer;
 					swapDuringPass = true;
 				}
+				i++;
 			}
 			// If no swaps have occurred, then the array is sorted, so break the method
 			// early.

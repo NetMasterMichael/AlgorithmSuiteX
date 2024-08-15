@@ -107,14 +107,13 @@ class Test_SelectionSort {
 					"Test that the passes field inside testSelectionSort is zero before calling sortWithMetrics()");
 			assertEquals(0, testMetrics.getArrayAccesses(),
 					"Test that the arrayAccesses field inside testSelectionSort is zero before calling sortWithMetrics()");
-			
 			// Call sortWithMetrics()
 			testSelectionSort.sortWithMetrics();
 			// Post-checks
 			assertTrue(Arrays.equals(sortedArray, testSelectionSort.getInputArray()),
 					"Test that the basic array inside testSelectionSort is sorted after calling sortWithMetrics()");
-			assertEquals(45, testMetrics.getComparisons(),
-					"Test that the comparisons field inside testSelectionSort is 45 after calling sortWithMetrics()");
+			assertEquals(118, testMetrics.getComparisons(),
+					"Test that the comparisons field inside testSelectionSort is 118 after calling sortWithMetrics()");
 			assertEquals(7, testMetrics.getSwaps(),
 					"Test that the swaps field inside testSelectionSort is 7 after calling sortWithMetrics()");
 			assertEquals(9, testMetrics.getPasses(),

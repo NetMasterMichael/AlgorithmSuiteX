@@ -112,14 +112,14 @@ class Test_InsertionSort {
 			// Post-checks
 			assertTrue(Arrays.equals(sortedArray, testInsertionSort.getInputArray()),
 					"Test that the basic array inside testInsertionSort is sorted after calling sortWithMetrics()");
-			assertEquals(32, testMetrics.getComparisons(),
-					"Test that the comparisons field inside testInsertionSort is 32 after calling sortWithMetrics()");
+			assertEquals(74, testMetrics.getComparisons(),
+					"Test that the comparisons field inside testInsertionSort is 74 after calling sortWithMetrics()");
 			assertEquals(23, testMetrics.getSwaps(),
 					"Test that the swaps field inside testInsertionSort is 23 after calling sortWithMetrics()");
 			assertEquals(9, testMetrics.getPasses(),
 					"Test that the passes field inside testInsertionSort is 9 after calling sortWithMetrics()");
-			assertEquals(87, testMetrics.getArrayAccesses(),
-					"Test that the arrayAccesses field inside testInsertionSort is 87 after calling sortWithMetrics()");
+			assertEquals(96, testMetrics.getArrayAccesses(),
+					"Test that the arrayAccesses field inside testInsertionSort is 96 after calling sortWithMetrics()");
 			AuxiliaryTestMethods.logPass(className, testName);
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);

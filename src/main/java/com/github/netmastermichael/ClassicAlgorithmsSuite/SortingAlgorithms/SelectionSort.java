@@ -116,18 +116,30 @@ public class SelectionSort implements SortingAlgorithm {
 	public void sortWithMetrics() {
 		int buffer;
 		int arraylen = inputArray.length; // Small optimisation to avoid recalculating the array length
-		for (int i = 0; i < arraylen - 1; i++) { // Last element will naturally be in the last position
+		int i = 0;
+		while (true) {
+			metrics.incrementComparisons();
+			if (!(i < arraylen - 1)) {
+				break;
+			}
 			// Find the index of the smallest element in the unsorted subset
 			int lowestIndex = i;
-			for (int j = i + 1; j < arraylen; j++) { // Start from i + 1 to avoid comparing an element with itself
+			int j = i + 1;
+			while (true) {
+				metrics.incrementComparisons();
+				if (!(j < arraylen)) {
+					break;
+				}
 				metrics.incrementComparisons();
 				metrics.increaseArrayAccesses(2);
 				if (inputArray[j] < inputArray[lowestIndex]) {
 					lowestIndex = j;
 				}
+				j++;
 			}
 			// Optimisation: We don't want to swap an element with itself if it's already in
 			// the correct position
+			metrics.incrementComparisons();
 			if (lowestIndex != i) {
 				metrics.incrementSwaps();
 				metrics.increaseArrayAccesses(4);
@@ -137,6 +149,7 @@ public class SelectionSort implements SortingAlgorithm {
 				inputArray[i] = buffer;
 			}
 			metrics.incrementPasses();
+			i++;
 		}
 	}
 

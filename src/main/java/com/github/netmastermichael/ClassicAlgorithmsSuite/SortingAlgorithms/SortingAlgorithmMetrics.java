@@ -52,6 +52,10 @@ public class SortingAlgorithmMetrics {
 	public void incrementComparisons() {
 		comparisons++;
 	}
+	
+	public void increaseComparisons(int amount) {
+		comparisons += amount;
+	}
 
 	/**
 	 * Returns the number of swaps currently recorded inside the
