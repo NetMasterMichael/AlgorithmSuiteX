@@ -253,4 +253,30 @@ class Test_SortingAlgorithmMetrics {
 					+ e.getMessage());
 		}
 	}
+	
+	@Test
+	void testIncreaseComparisonss() {
+		String testName = "testIncreaseComparisonss";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			SortingAlgorithmMetrics testSAM = new SortingAlgorithmMetrics();
+			assertEquals(0, testSAM.getComparisons(),
+					"Test that getComparisons() on a SortingAlgorithmMetrics object before calling increaseComparisons() returns 0");
+			testSAM.increaseComparisons(128);
+			assertEquals(128, testSAM.getComparisons(),
+					"Test that getComparisons() on a SortingAlgorithmMetrics object after calling increaseComparisons() returns 128");
+			for (int i = 0; i <= 1000; i++) {
+				assertEquals(i * 4 + 128, testSAM.getComparisons(),
+						"Test that the quantity of comparisons in a SortingAlgorithmMetrics instance equals "
+								+ Integer.toString(i * 4 + 128));
+				testSAM.increaseComparisons(4);
+			}
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e
+					+ " thrown while testing testIncreaseComparisons() on an instance of SortingAlgorithmMetrics; "
+					+ e.getMessage());
+		}
+	}
 }
