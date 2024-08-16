@@ -261,6 +261,11 @@ public class ManualSorter {
 					array[currentIndexA] = array[currentIndexB];
 					array[currentIndexB] = buffer;
 					return true;
+				case MOVE_LITERAL:
+					currentIndexA = indicesDeque.removeLast();
+					currentIndexB = indicesDeque.removeLast();
+					array[currentIndexB] = currentIndexA;
+					return true;
 				default:
 					return false;
 				}
@@ -286,6 +291,16 @@ public class ManualSorter {
 						temporaryArrays.put(currentSelectedArrayKey, tempArray);
 					}
 					return true;
+				case MOVE_LITERAL:
+					currentIndexA = indicesDeque.removeLast();
+					currentIndexB = indicesDeque.removeLast();
+					if (currentSelectedArrayKey == 0) {
+						array[currentIndexB] = currentIndexA;
+					} else {
+						int[] tempArray = temporaryArrays.get(currentSelectedArrayKey);
+						tempArray[currentIndexB] = currentIndexA;
+						temporaryArrays.put(currentSelectedArrayKey, tempArray);
+					}
 				default:
 					return false;
 				}

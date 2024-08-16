@@ -39,5 +39,21 @@ class Test_SortingAlgorithmOperation {
 					+ e.getMessage());
 		}
 	}
+	
+	@Test
+	void testInitialiseSortingAlgorithmOperation_MOVE_LITERAL() {
+		String testName = "testInitialiseSortingAlgorithmOperation_MOVE_LITERAL";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			SortingAlgorithmOperation testSAO = SortingAlgorithmOperation.MOVE_LITERAL;
+			assertTrue(testSAO == SortingAlgorithmOperation.MOVE_LITERAL,
+					"Test that a new SortingAlgorithmObject correctly initialises with operation MOVE_LITERAL");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while testing creating a SortingAlgorithmOperation object of type MOVE_LITERAL; "
+					+ e.getMessage());
+		}
+	}
 
 }

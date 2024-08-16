@@ -231,4 +231,29 @@ class Test_ManualSorter {
 					+ e.getMessage());
 		}
 	}
+
+	@Test
+	void testMoveLiteralOperation() {
+		String testName = "testMoveLiteralOperation";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			ManualSorter testManualSorter = new ManualSorter(new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+					new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+			assertTrue(Arrays.equals(new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, testManualSorter.getArray()),
+					"Test that array in ManualSorter is the original array before the move literal operation");
+			for (int i = 0; i < 10; i++) {
+				testManualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, i + 1, i);
+			}
+			for (int i = 0; i < 10; i++) {
+				testManualSorter.step();
+			}
+			assertTrue(Arrays.equals(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, testManualSorter.getArray()),
+					"Test that array in ManualSorter matches the expected array after the move literal operations");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while testing the move literal operation with an instance of ManualSorter; "
+					+ e.getMessage());
+		}
+	}
 }
