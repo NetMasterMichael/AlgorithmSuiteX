@@ -34,6 +34,13 @@ public class ManualSorter {
 	/** Right index of most recent operation executed by the manual sorter */
 	private int currentIndexB;
 
+	/**
+	 * Key of currently selected array in most recent operation executed by the
+	 * manual sorter. 0 is reserved for the array in the field "array". Anything
+	 * non-zero means the corresponding array inside temporaryArrays is selected.
+	 */
+	private int currentSelectedArrayKey;
+
 	/** Type of most recent operation executed by the manual sorter */
 	private SortingAlgorithmOperation currentOperationType;
 
@@ -67,6 +74,7 @@ public class ManualSorter {
 		this.indicesDeque = new LinkedList<Integer>();
 		this.currentIndexA = -1;
 		this.currentIndexB = -1;
+		this.currentSelectedArrayKey = 0;
 		this.currentOperationType = null;
 
 		this.usingTemporaryArrays = false;
@@ -100,6 +108,7 @@ public class ManualSorter {
 		}
 		this.currentIndexA = -1;
 		this.currentIndexB = -1;
+		this.currentSelectedArrayKey = 0;
 		this.currentOperationType = null;
 
 		this.usingTemporaryArrays = false;
@@ -256,7 +265,7 @@ public class ManualSorter {
 					return false;
 				}
 			} else { // Otherwise, support temporary array options
-				int selectedArray = arrayIndexDeque.removeLast();
+				currentSelectedArrayKey = arrayIndexDeque.removeLast();
 				switch (currentOperationType) {
 				case COMPARE:
 					currentIndexA = indicesDeque.removeLast();
@@ -265,16 +274,16 @@ public class ManualSorter {
 				case SWAP:
 					currentIndexA = indicesDeque.removeLast();
 					currentIndexB = indicesDeque.removeLast();
-					if (selectedArray == 0) {
+					if (currentSelectedArrayKey == 0) {
 						int buffer = array[currentIndexA];
 						array[currentIndexA] = array[currentIndexB];
 						array[currentIndexB] = buffer;
 					} else {
-						int[] tempArray = temporaryArrays.get(selectedArray);
+						int[] tempArray = temporaryArrays.get(currentSelectedArrayKey);
 						int buffer = tempArray[currentIndexA];
 						tempArray[currentIndexA] = tempArray[currentIndexB];
 						tempArray[currentIndexB] = buffer;
-						temporaryArrays.put(selectedArray, tempArray);
+						temporaryArrays.put(currentSelectedArrayKey, tempArray);
 					}
 					return true;
 				default:
@@ -303,5 +312,24 @@ public class ManualSorter {
 	 */
 	public void setUsingTemporaryArraysStatus(boolean newUsingTemporaryArrays) {
 		this.usingTemporaryArrays = newUsingTemporaryArrays;
+	}
+
+	/**
+	 * Gets the key of the currently selected array. Useful when working with
+	 * multiple arrays.
+	 * 
+	 * @return Key of currently selected array
+	 */
+	public int getCurrentSelectedArray_Key() {
+		return currentSelectedArrayKey;
+	}
+
+	/**
+	 * Gets the array currently selected. Useful when working with multiple arrays.
+	 * 
+	 * @return Currently selected array
+	 */
+	public int[] getCurrentSelectedArray_Array() {
+		return temporaryArrays.get(currentSelectedArrayKey);
 	}
 }
