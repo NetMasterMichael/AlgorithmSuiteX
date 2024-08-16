@@ -14,6 +14,13 @@ import java.util.NoSuchElementException;
  * reproduce the original sorting algorithm. Each operation can be queued using
  * enqueueOperation() and each operation can be executed using step().
  * 
+ * ManualSorter supports working on multiple temporary arrays. If you are using
+ * temporary arrays, you must first set usingTemporaryArrays to true by calling
+ * sorter.setUsingTemporaryArraysStatus(true), then call the enqueueOperation()
+ * method with 4 arguments instead of 3. The 4th argument will be the array
+ * number to perform the operation on. If the 4th argument is 0, the operation
+ * will be performed on the default array.
+ * 
  * @author Michael Goodwin (NetMasterMichael)
  */
 public class ManualSorter {
@@ -94,6 +101,10 @@ public class ManualSorter {
 		this.currentIndexA = -1;
 		this.currentIndexB = -1;
 		this.currentOperationType = null;
+
+		this.usingTemporaryArrays = false;
+		this.temporaryArrays = new HashMap<Integer, int[]>();
+		this.arrayIndexDeque = new LinkedList<Integer>();
 	}
 
 	/**
@@ -151,7 +162,8 @@ public class ManualSorter {
 
 	/**
 	 * Enqueue an operation and its corresponding indices on the array into the
-	 * operationsDeque and indicesDeque for later execution by step().
+	 * operationsDeque, indicesDeque and arrayIndexDeque for later execution by
+	 * step().
 	 * 
 	 * @param operation     Operation to perform from the SortingAlgorithmOperation
 	 *                      enum
@@ -272,5 +284,24 @@ public class ManualSorter {
 		} catch (NoSuchElementException nsee) {
 			return false;
 		}
+	}
+
+	/**
+	 * Gets the status of usingTemporaryArrays currently held inside this object.
+	 * 
+	 * @return True if temporary arrays are enabled, otherwise false
+	 */
+	public boolean getUsingTemporaryArraysStatus() {
+		return usingTemporaryArrays;
+	}
+
+	/**
+	 * Sets the status of usingTemporaryArrays currently held inside this object.
+	 * 
+	 * @param newUsingTemporaryArrays True to enable temporary arrays, false to
+	 *                                disable temporary arrays
+	 */
+	public void setUsingTemporaryArraysStatus(boolean newUsingTemporaryArrays) {
+		this.usingTemporaryArrays = newUsingTemporaryArrays;
 	}
 }
