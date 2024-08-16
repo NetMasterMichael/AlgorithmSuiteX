@@ -13,6 +13,16 @@ import java.util.NoSuchElementException;
  * operations, and ManualSorter will follow the operations in the order given to
  * reproduce the original sorting algorithm. Each operation can be queued using
  * enqueueOperation() and each operation can be executed using step().
+ *  
+ * The aim of ManualSorter is not to sort an array quickly; rather, it is to
+ * allow each individual operation of an algorithm to be dissected, visualised
+ * and studied.
+ * 
+ * ManualSorter objects containing many operations can be very memory intensive.
+ * There is no restriction on how many operations can be enqueued, but it is
+ * recommended to keep your arrays below 100 indices in length during normal
+ * use. Remember that this factor will scale with the running time of the chosen
+ * algorithm.
  * 
  * ManualSorter supports working on multiple temporary arrays. If you are using
  * temporary arrays, you must first set usingTemporaryArrays to true by calling
