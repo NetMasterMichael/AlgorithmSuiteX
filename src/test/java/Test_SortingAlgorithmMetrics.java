@@ -255,8 +255,8 @@ class Test_SortingAlgorithmMetrics {
 	}
 	
 	@Test
-	void testIncreaseComparisonss() {
-		String testName = "testIncreaseComparisonss";
+	void testIncreaseComparisons() {
+		String testName = "testIncreaseComparisons";
 		AuxiliaryTestMethods.logMessage(className, testName + " started");
 		try {
 			SortingAlgorithmMetrics testSAM = new SortingAlgorithmMetrics();

@@ -2,6 +2,7 @@ package com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms;
 
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
@@ -35,6 +36,18 @@ public class ManualSorter {
 	/** Deque for holding the indices corresponding to operations */
 	private Deque<Integer> indicesDeque;
 
+	/** Flag for whether temporary arrays are in use or not */
+	private boolean usingTemporaryArrays;
+
+	/** Hash map for holding temporary arrays */
+	private HashMap<Integer, int[]> temporaryArrays;
+
+	/**
+	 * Deque for holding the index of the temporary array to perform the operation
+	 * on
+	 */
+	private Deque<Integer> arrayIndexDeque;
+
 	/**
 	 * Constructor for creating a ManualSorter object for executing operations on an
 	 * array of integers.
@@ -48,6 +61,10 @@ public class ManualSorter {
 		this.currentIndexA = -1;
 		this.currentIndexB = -1;
 		this.currentOperationType = null;
+
+		this.usingTemporaryArrays = false;
+		this.temporaryArrays = new HashMap<Integer, int[]>();
+		this.arrayIndexDeque = new LinkedList<Integer>();
 	}
 
 	/**
@@ -133,6 +150,23 @@ public class ManualSorter {
 	}
 
 	/**
+	 * Enqueue an operation and its corresponding indices on the array into the
+	 * operationsDeque and indicesDeque for later execution by step().
+	 * 
+	 * @param operation     Operation to perform from the SortingAlgorithmOperation
+	 *                      enum
+	 * @param indexA        First index of array
+	 * @param indexB        Second index of array
+	 * @param selectedArray Array to perform operation on
+	 */
+	public void enqueueOperation(SortingAlgorithmOperation operation, int indexA, int indexB, int selectedArray) {
+		operationsDeque.addFirst(operation);
+		indicesDeque.addFirst(indexA);
+		indicesDeque.addFirst(indexB);
+		arrayIndexDeque.addFirst(selectedArray);
+	}
+
+	/**
 	 * Validate that the current array can be sorted within a given quantity of
 	 * operations, solely by following the operations that have been queued. Does
 	 * not modify the original array or deques.
@@ -152,7 +186,12 @@ public class ManualSorter {
 
 		int operationsCount = 0;
 		while (!operationsDequeCopy.isEmpty() && (operationsLimit == -1 || operationsCount < operationsLimit)) {
-			validator.step();
+			// Step through the next operation
+			// If false is returned by step() then an error has occurred, so return -1
+			// immediately
+			if (!validator.step()) {
+				return -1;
+			}
 			if (validator.isSorted()) {
 				return operationsCount;
 			}
@@ -187,20 +226,48 @@ public class ManualSorter {
 	public boolean step() {
 		try {
 			currentOperationType = operationsDeque.removeLast();
-			switch (currentOperationType) {
-			case COMPARE:
-				currentIndexA = indicesDeque.removeLast();
-				currentIndexB = indicesDeque.removeLast();
-				return true;
-			case SWAP:
-				currentIndexA = indicesDeque.removeLast();
-				currentIndexB = indicesDeque.removeLast();
-				int buffer = array[currentIndexA];
-				array[currentIndexA] = array[currentIndexB];
-				array[currentIndexB] = buffer;
-				return true;
-			default:
-				return false;
+			// If temporary arrays are not in use, just operate on the main array
+			if (!usingTemporaryArrays) {
+				switch (currentOperationType) {
+				case COMPARE:
+					currentIndexA = indicesDeque.removeLast();
+					currentIndexB = indicesDeque.removeLast();
+					return true;
+				case SWAP:
+					currentIndexA = indicesDeque.removeLast();
+					currentIndexB = indicesDeque.removeLast();
+					int buffer = array[currentIndexA];
+					array[currentIndexA] = array[currentIndexB];
+					array[currentIndexB] = buffer;
+					return true;
+				default:
+					return false;
+				}
+			} else { // Otherwise, support temporary array options
+				int selectedArray = arrayIndexDeque.removeLast();
+				switch (currentOperationType) {
+				case COMPARE:
+					currentIndexA = indicesDeque.removeLast();
+					currentIndexB = indicesDeque.removeLast();
+					return true;
+				case SWAP:
+					currentIndexA = indicesDeque.removeLast();
+					currentIndexB = indicesDeque.removeLast();
+					if (selectedArray == 0) {
+						int buffer = array[currentIndexA];
+						array[currentIndexA] = array[currentIndexB];
+						array[currentIndexB] = buffer;
+					} else {
+						int[] tempArray = temporaryArrays.get(selectedArray);
+						int buffer = tempArray[currentIndexA];
+						tempArray[currentIndexA] = tempArray[currentIndexB];
+						tempArray[currentIndexB] = buffer;
+						temporaryArrays.put(selectedArray, tempArray);
+					}
+					return true;
+				default:
+					return false;
+				}
 			}
 		} catch (NoSuchElementException nsee) {
 			return false;
