@@ -256,4 +256,43 @@ class Test_ManualSorter {
 					+ e.getMessage());
 		}
 	}
+
+	@Test
+	void testGetUsingTemporaryArraysStatus() {
+		String testName = "testGetUsingTemporaryArraysStatus";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			ManualSorter testManualSorter = new ManualSorter(new int[] { 1, 2, 3 },
+					new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+			assertFalse(testManualSorter.getUsingTemporaryArraysStatus(),
+					"Test that testGetUsingTemporaryArraysStatus() returns false upon the creation of a new ManualSorter instance");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e
+					+ " thrown while testing testGetUsingTemporaryArraysStatus() on an instance of ManualSorter; "
+					+ e.getMessage());
+		}
+	}
+
+	@Test
+	void testSetUsingTemporaryArraysStatus() {
+		String testName = "testSetUsingTemporaryArraysStatus";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			ManualSorter testManualSorter = new ManualSorter(new int[] { 1, 2, 3 },
+					new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+			assertFalse(testManualSorter.getUsingTemporaryArraysStatus(),
+					"Test that testGetUsingTemporaryArraysStatus() returns false upon the creation of a new ManualSorter instance");
+			testManualSorter.setUsingTemporaryArraysStatus(true);
+			assertTrue(testManualSorter.getUsingTemporaryArraysStatus(),
+					"Test that testGetUsingTemporaryArraysStatus() returns true after calling setUsingTemporaryArraysStatus(true)");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e
+					+ " thrown while testing testSetUsingTemporaryArraysStatus() on an instance of ManualSorter; "
+					+ e.getMessage());
+		}
+	}
 }
