@@ -331,7 +331,11 @@ public class ManualSorter {
 				case DELETE_ARRAY:
 					currentIndexA = indicesDeque.removeLast();
 					currentIndexB = -1; // To prevent stale data remaining in the field
-					// We don't need to worry about array 0, since this cannot be created
+					// currentIndexB is unused for this operation, however since an index is still
+					// enqueued, it needs to be removed
+					indicesDeque.removeLast();
+					// We don't need to worry about array 0, since this cannot be created. remove()
+					// will just return null
 					temporaryArrays.remove(currentIndexA);
 					return true;
 				default:
