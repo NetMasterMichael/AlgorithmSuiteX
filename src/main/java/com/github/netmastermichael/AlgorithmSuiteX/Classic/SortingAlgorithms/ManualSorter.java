@@ -45,11 +45,11 @@ public class ManualSorter {
 	private int currentIndexB;
 
 	/**
-	 * Key of currently selected array in most recent operation executed by the
-	 * manual sorter. 0 is reserved for the array in the field "array". Anything
+	 * Key of currently selected primary array in most recent operation executed by
+	 * the manual sorter. 0 is reserved for the array in the field "array". Anything
 	 * non-zero means the corresponding array inside temporaryArrays is selected.
 	 */
-	private int currentSelectedArrayKey;
+	private int primarySelectedArrayKey;
 
 	/** Type of most recent operation executed by the manual sorter */
 	private SortingAlgorithmOperation currentOperationType;
@@ -84,7 +84,8 @@ public class ManualSorter {
 		this.indicesDeque = new LinkedList<Integer>();
 		this.currentIndexA = -1;
 		this.currentIndexB = -1;
-		this.currentSelectedArrayKey = -1;
+		this.primarySelectedArrayKey = -1;
+		this.secondarySelectedArrayKey = -1;
 		this.currentOperationType = null;
 
 		this.usingTemporaryArrays = false;
@@ -118,7 +119,8 @@ public class ManualSorter {
 		}
 		this.currentIndexA = -1;
 		this.currentIndexB = -1;
-		this.currentSelectedArrayKey = -1;
+		this.primarySelectedArrayKey = -1;
+		this.secondarySelectedArrayKey = -1;
 		this.currentOperationType = null;
 
 		this.usingTemporaryArrays = false;
@@ -195,6 +197,29 @@ public class ManualSorter {
 		indicesDeque.addFirst(indexA);
 		indicesDeque.addFirst(indexB);
 		arrayIndexDeque.addFirst(selectedArray);
+		arrayIndexDeque.addFirst(selectedArray);
+	}
+
+	/**
+	 * Enqueue an operation and its corresponding indices on the array into the
+	 * operationsDeque, indicesDeque and arrayIndexDeque for later execution by
+	 * step().
+	 * 
+	 * @param operation   Operation to perform from the SortingAlgorithmOperation
+	 *                    enum
+	 * @param indexA      First index of array
+	 * @param indexB      Second index of array
+	 * @param firstArray  First array to perform operation on
+	 * @param secondArray Second array to perform operation on
+	 * 
+	 */
+	public void enqueueOperation(SortingAlgorithmOperation operation, int indexA, int indexB, int firstArray,
+			int secondArray) {
+		operationsDeque.addFirst(operation);
+		indicesDeque.addFirst(indexA);
+		indicesDeque.addFirst(indexB);
+		arrayIndexDeque.addFirst(firstArray);
+		arrayIndexDeque.addFirst(secondArray);
 	}
 
 	/**
@@ -285,36 +310,36 @@ public class ManualSorter {
 			} else { // Otherwise, support temporary array options
 				switch (currentOperationType) {
 				case COMPARE:
-					currentSelectedArrayKey = arrayIndexDeque.removeLast();
+					primarySelectedArrayKey = arrayIndexDeque.removeLast();
 					currentIndexA = indicesDeque.removeLast();
 					currentIndexB = indicesDeque.removeLast();
 					return true;
 				case SWAP:
-					currentSelectedArrayKey = arrayIndexDeque.removeLast();
+					primarySelectedArrayKey = arrayIndexDeque.removeLast();
 					currentIndexA = indicesDeque.removeLast();
 					currentIndexB = indicesDeque.removeLast();
-					if (currentSelectedArrayKey == 0) {
+					if (primarySelectedArrayKey == 0) {
 						int buffer = array[currentIndexA];
 						array[currentIndexA] = array[currentIndexB];
 						array[currentIndexB] = buffer;
 					} else {
-						int[] tempArray = temporaryArrays.get(currentSelectedArrayKey);
+						int[] tempArray = temporaryArrays.get(primarySelectedArrayKey);
 						int buffer = tempArray[currentIndexA];
 						tempArray[currentIndexA] = tempArray[currentIndexB];
 						tempArray[currentIndexB] = buffer;
-						temporaryArrays.replace(currentSelectedArrayKey, tempArray);
+						temporaryArrays.replace(primarySelectedArrayKey, tempArray);
 					}
 					return true;
 				case MOVE_LITERAL:
-					currentSelectedArrayKey = arrayIndexDeque.removeLast();
+					primarySelectedArrayKey = arrayIndexDeque.removeLast();
 					currentIndexA = indicesDeque.removeLast();
 					currentIndexB = indicesDeque.removeLast();
-					if (currentSelectedArrayKey == 0) {
+					if (primarySelectedArrayKey == 0) {
 						array[currentIndexB] = currentIndexA;
 					} else {
-						int[] tempArray = temporaryArrays.get(currentSelectedArrayKey);
+						int[] tempArray = temporaryArrays.get(primarySelectedArrayKey);
 						tempArray[currentIndexB] = currentIndexA;
-						temporaryArrays.replace(currentSelectedArrayKey, tempArray);
+						temporaryArrays.replace(primarySelectedArrayKey, tempArray);
 					}
 					return true;
 				case CREATE_ARRAY:
@@ -367,25 +392,26 @@ public class ManualSorter {
 	}
 
 	/**
-	 * Gets the key of the currently selected array. Useful when working with
-	 * multiple arrays.
+	 * Gets the key of the currently selected primary array. Useful when working
+	 * with multiple arrays.
 	 * 
-	 * @return Key of currently selected array
+	 * @return Key of currently selected primary array
 	 */
-	public int getCurrentSelectedArray_Key() {
-		return currentSelectedArrayKey;
+	public int getPrimarySelectedArray_Key() {
+		return primarySelectedArrayKey;
 	}
 
 	/**
-	 * Gets the array currently selected. Useful when working with multiple arrays.
+	 * Gets the primary array currently selected. Useful when working with multiple
+	 * arrays.
 	 * 
-	 * @return Currently selected array if it exists, otherwise null
+	 * @return Currently selected primary array if it exists, otherwise null
 	 */
-	public int[] getCurrentSelectedArray_Array() {
-		if (currentSelectedArrayKey == 0) {
+	public int[] getPrimarySelectedArray_Array() {
+		if (primarySelectedArrayKey == 0) {
 			return array;
-		} else if (temporaryArrays.containsKey(currentSelectedArrayKey)) {
-			return temporaryArrays.get(currentSelectedArrayKey);
+		} else if (temporaryArrays.containsKey(primarySelectedArrayKey)) {
+			return temporaryArrays.get(primarySelectedArrayKey);
 		} else {
 			return null;
 		}
