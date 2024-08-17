@@ -371,7 +371,9 @@ public class ManualSorter {
 	 * @return Currently selected array if it exists, otherwise null
 	 */
 	public int[] getCurrentSelectedArray_Array() {
-		if (temporaryArrays.containsKey(currentSelectedArrayKey)) {
+		if (currentSelectedArrayKey == 0) {
+			return array;
+		} else if (temporaryArrays.containsKey(currentSelectedArrayKey)) {
 			return temporaryArrays.get(currentSelectedArrayKey);
 		} else {
 			return null;

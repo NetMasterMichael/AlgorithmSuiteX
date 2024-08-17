@@ -356,8 +356,8 @@ class Test_ManualSorter {
 	}
 
 	@Test
-	void testCreateNewTemporaryArray() {
-		String testName = "testCreateNewTemporaryArray";
+	void testMultiArrayOperation_CREATE_ARRAY() {
+		String testName = "testMultiArrayOperation_CREATE_ARRAY";
 		AuxiliaryTestMethods.logMessage(className, testName + " started");
 		try {
 			ManualSorter testManualSorter = new ManualSorter(new int[] { 1, 2, 3 },
@@ -368,8 +368,134 @@ class Test_ManualSorter {
 			assertFalse(testManualSorter.step(),
 					"Test that a ManualSorter instance will not overwrite the primary array");
 			assertTrue(testManualSorter.step(), "Test that a ManualSorter will create a new array of size 10 at key 1");
+			AuxiliaryTestMethods.logPass(className, testName);
 		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e
+					+ " thrown while testing testMultiArrayOperation_CREATE_ARRAY() on an instance of ManualSorter; "
+					+ e.getMessage());
+		}
+	}
+	
+	@Test
+	void testMultiArrayOperation_MOVE_LITERAL() {
+		String testName = "testMultiArrayOperation_MOVE_LITERAL";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			ManualSorter testManualSorter = new ManualSorter(new int[] { 1, 2, 3, 4, 5 },
+					new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+			testManualSorter.setUsingTemporaryArraysStatus(true);
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 10, 1);
+			for (int i = 0; i < 10; i++) {
+				testManualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, (i + 1) * 10, i, 1);
+			}
+			for (int i = 0; i < 11; i++) {
+				assertTrue(testManualSorter.step(), "Test that the step is executed successfully");
+			}
+			assertTrue(
+					Arrays.equals(new int[] { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 },
+							testManualSorter.getCurrentSelectedArray_Array()),
+					"Test that the temporary array is populated as expected");
+			assertTrue(Arrays.equals(new int[] { 1, 2, 3, 4, 5 }, testManualSorter.getArray()),
+					"Test that the original array has not been modified");
+			for (int i = 0; i < 5; i++) {
+				testManualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, (i + 1) * 50, i, 0);
+			}
+			for (int i = 0; i < 5; i++) {
+				assertTrue(testManualSorter.step(), "Test that the step is executed successfully");
+			}
+			assertTrue(Arrays.equals(new int[] { 50, 100, 150, 200, 250 }, testManualSorter.getArray()),
+					"Test that the original array is updated as expected");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e
+					+ " thrown while testing testMultiArrayOperation_MOVE_LITERAL() on an instance of ManualSorter; "
+					+ e.getMessage());
+		}
+	}
 
+	@Test
+	void testMultiArrayOperation_COMPARE() {
+		String testName = "testMultiArrayOperation_COMPARE";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			ManualSorter testManualSorter = new ManualSorter(new int[] { 1, 2, 3, 4, 5 },
+					new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+			testManualSorter.setUsingTemporaryArraysStatus(true);
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 4, 1);
+			for (int i = 0; i < 4; i++) {
+				testManualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, (i + 1) * 10, i, 1);
+			}
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.COMPARE, 3, 4, 0);
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.COMPARE, 0, 1, 1);
+			for (int i = 0; i < 6; i++) {
+				// All CREATE_ARRAY and MOVE_LITERAL operations are executed, as well as the
+				// first COMPARE operation
+				assertTrue(testManualSorter.step(), "Test that the step is executed successfully");
+			}
+			assertEquals(3, testManualSorter.getCurrentIndexA(), "Test that getCurrentIndexA returns 3");
+			assertEquals(4, testManualSorter.getCurrentIndexB(), "Test that getCurrentIndexB returns 4");
+			assertEquals(0, testManualSorter.getCurrentSelectedArray_Key(),
+					"Test that getCurrentSelectedArray_Key returns 3");
+			assertTrue(testManualSorter.step(), "Test that the next step is executed successfully");
+			assertEquals(0, testManualSorter.getCurrentIndexA(), "Test that getCurrentIndexA returns 0");
+			assertEquals(1, testManualSorter.getCurrentIndexB(), "Test that getCurrentIndexB returns 1");
+			assertEquals(1, testManualSorter.getCurrentSelectedArray_Key(),
+					"Test that getCurrentSelectedArray_Key returns 1");
+			assertFalse(testManualSorter.step(),
+					"Test that there are no operations remaining and step() returns false");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e
+					+ " thrown while testing testMultiArrayOperation_COMPARE() on an instance of ManualSorter; "
+					+ e.getMessage());
+		}
+	}
+
+	@Test
+	void testMultiArrayOperation_SWAP() {
+		String testName = "testMultiArrayOperation_SWAP";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			ManualSorter testManualSorter = new ManualSorter(new int[] { 1, 2, 3, 4, 5 },
+					new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+			testManualSorter.setUsingTemporaryArraysStatus(true);
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 4, 1);
+			for (int i = 0; i < 4; i++) {
+				testManualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, (i + 1) * 10, i, 1);
+			}
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 3, 4, 0);
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 0, 1, 1);
+			for (int i = 0; i < 6; i++) {
+				// All CREATE_ARRAY and MOVE_LITERAL operations are executed, as well as the
+				// first SWAP operation
+				assertTrue(testManualSorter.step(), "Test that the step is executed successfully");
+			}
+			assertTrue(Arrays.equals(new int[] { 1, 2, 3, 5, 4 }, testManualSorter.getArray()),
+					"Test that the SWAP operation was executed on the original array successfully in multi-array mode");
+			assertTrue(Arrays.equals(new int[] { 1, 2, 3, 5, 4 }, testManualSorter.getCurrentSelectedArray_Array()),
+					"Test that the SWAP operation was executed on the original array successfully in multi-array mode");
+			assertEquals(3, testManualSorter.getCurrentIndexA(), "Test that getCurrentIndexA returns 3");
+			assertEquals(4, testManualSorter.getCurrentIndexB(), "Test that getCurrentIndexB returns 4");
+			assertEquals(0, testManualSorter.getCurrentSelectedArray_Key(),
+					"Test that getCurrentSelectedArray_Key returns 3");
+			assertTrue(testManualSorter.step(), "Test that the next step is executed successfully");
+			assertTrue(Arrays.equals(new int[] { 1, 2, 3, 5, 4 }, testManualSorter.getArray()),
+					"Test that the original array has not been touched");
+			assertTrue(Arrays.equals(new int[] { 20, 10, 30, 40 }, testManualSorter.getCurrentSelectedArray_Array()),
+					"Test that the SWAP operation was executed on the temporary array successfully in multi-array mode");
+			assertEquals(0, testManualSorter.getCurrentIndexA(), "Test that getCurrentIndexA returns 0");
+			assertEquals(1, testManualSorter.getCurrentIndexB(), "Test that getCurrentIndexB returns 1");
+			assertEquals(1, testManualSorter.getCurrentSelectedArray_Key(),
+					"Test that getCurrentSelectedArray_Key returns 1");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e
+					+ " thrown while testing testMultiArrayOperation_SWAP() on an instance of ManualSorter; "
+					+ e.getMessage());
 		}
 	}
 }
