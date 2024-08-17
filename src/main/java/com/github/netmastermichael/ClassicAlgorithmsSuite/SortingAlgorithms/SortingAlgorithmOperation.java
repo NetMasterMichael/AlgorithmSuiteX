@@ -8,5 +8,5 @@ package com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms;
  * @author Michael Goodwin (NetMasterMichael)
  */
 public enum SortingAlgorithmOperation {
-	SWAP, COMPARE, MOVE_LITERAL;
+	SWAP, COMPARE, MOVE_LITERAL, CREATE_ARRAY;
 }

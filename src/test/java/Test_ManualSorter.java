@@ -252,7 +252,8 @@ class Test_ManualSorter {
 			AuxiliaryTestMethods.logPass(className, testName);
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);
-			fail("Exception " + e + " thrown while testing the move literal operation with an instance of ManualSorter; "
+			fail("Exception " + e
+					+ " thrown while testing the move literal operation with an instance of ManualSorter; "
 					+ e.getMessage());
 		}
 	}
@@ -270,7 +271,7 @@ class Test_ManualSorter {
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);
 			fail("Exception " + e
-					+ " thrown while testing testGetUsingTemporaryArraysStatus() on an instance of ManualSorter; "
+					+ " thrown while testing getUsingTemporaryArraysStatus() on an instance of ManualSorter; "
 					+ e.getMessage());
 		}
 	}
@@ -291,8 +292,84 @@ class Test_ManualSorter {
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);
 			fail("Exception " + e
-					+ " thrown while testing testSetUsingTemporaryArraysStatus() on an instance of ManualSorter; "
+					+ " thrown while testing setUsingTemporaryArraysStatus() on an instance of ManualSorter; "
 					+ e.getMessage());
+		}
+	}
+
+	@Test
+	void testGetCurrentSelectedArray_Key() {
+		String testName = "testGetCurrentSelectedArray_Key";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			ManualSorter testManualSorter = new ManualSorter(new int[] { 1, 2, 3 },
+					new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+			assertEquals(-1, testManualSorter.getCurrentSelectedArray_Key(),
+					"Test that getCurrentSelectedArray_Key() returns -1 in a newly created ManualSorter instance");
+			testManualSorter.setUsingTemporaryArraysStatus(true);
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 15, 4);
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.COMPARE, 0, 1, 4);
+			assertTrue(testManualSorter.step(), "Test that testManualSorter steps and creates an array successfully");
+			assertTrue(testManualSorter.step(),
+					"Test that testManualSorter steps and loads a compare operation successfully");
+			assertEquals(4, testManualSorter.getCurrentSelectedArray_Key(),
+					"Test that getCurrentSelectedArray_Key() returns 4 after comparing elements in array 4");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e
+					+ " thrown while testing getCurrentSelectedArray_Key() on an instance of ManualSorter; "
+					+ e.getMessage());
+		}
+	}
+
+	@Test
+	void testGetCurrentSelectedArray_Array() {
+		String testName = "testGetCurrentSelectedArray_Array";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			ManualSorter testManualSorter = new ManualSorter(new int[] { 1, 2, 3 },
+					new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+			assertEquals(null, testManualSorter.getCurrentSelectedArray_Array(),
+					"Test that getCurrentSelectedArray_Array() returns null in a newly created ManualSorter instance");
+			testManualSorter.setUsingTemporaryArraysStatus(true);
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 10, 4);
+			for (int i = 0; i < 10; i++) {
+				testManualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, i + 1, i, 4);
+			}
+			for (int i = 0; i < 11; i++) {
+				assertTrue(testManualSorter.step(), "Test that the step was executed successfully");
+			}
+			assertTrue(
+					Arrays.equals(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
+							testManualSorter.getCurrentSelectedArray_Array()),
+					"Test that testGetCurrentSelectedArray_Array() returns the correct array after comparing elements in array 4");
+			assertTrue(Arrays.equals(new int[] { 1, 2, 3 }, testManualSorter.getArray()),
+					"Test that the original array in testManualSorter remains unmodified");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e
+					+ " thrown while testing testGetCurrentSelectedArray_Array() on an instance of ManualSorter; "
+					+ e.getMessage());
+		}
+	}
+
+	@Test
+	void testCreateNewTemporaryArray() {
+		String testName = "testCreateNewTemporaryArray";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			ManualSorter testManualSorter = new ManualSorter(new int[] { 1, 2, 3 },
+					new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+			testManualSorter.setUsingTemporaryArraysStatus(true);
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 10, 0);
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 10, 1);
+			assertFalse(testManualSorter.step(),
+					"Test that a ManualSorter instance will not overwrite the primary array");
+			assertTrue(testManualSorter.step(), "Test that a ManualSorter will create a new array of size 10 at key 1");
+		} catch (Exception e) {
+
 		}
 	}
 }

@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
  * operations, and ManualSorter will follow the operations in the order given to
  * reproduce the original sorting algorithm. Each operation can be queued using
  * enqueueOperation() and each operation can be executed using step().
- *  
+ * 
  * The aim of ManualSorter is not to sort an array quickly; rather, it is to
  * allow each individual operation of an algorithm to be dissected, visualised
  * and studied.
@@ -84,7 +84,7 @@ public class ManualSorter {
 		this.indicesDeque = new LinkedList<Integer>();
 		this.currentIndexA = -1;
 		this.currentIndexB = -1;
-		this.currentSelectedArrayKey = 0;
+		this.currentSelectedArrayKey = -1;
 		this.currentOperationType = null;
 
 		this.usingTemporaryArrays = false;
@@ -118,7 +118,7 @@ public class ManualSorter {
 		}
 		this.currentIndexA = -1;
 		this.currentIndexB = -1;
-		this.currentSelectedArrayKey = 0;
+		this.currentSelectedArrayKey = -1;
 		this.currentOperationType = null;
 
 		this.usingTemporaryArrays = false;
@@ -276,17 +276,20 @@ public class ManualSorter {
 					currentIndexB = indicesDeque.removeLast();
 					array[currentIndexB] = currentIndexA;
 					return true;
+				case CREATE_ARRAY:
+					// Operation not supported
 				default:
 					return false;
 				}
 			} else { // Otherwise, support temporary array options
-				currentSelectedArrayKey = arrayIndexDeque.removeLast();
 				switch (currentOperationType) {
 				case COMPARE:
+					currentSelectedArrayKey = arrayIndexDeque.removeLast();
 					currentIndexA = indicesDeque.removeLast();
 					currentIndexB = indicesDeque.removeLast();
 					return true;
 				case SWAP:
+					currentSelectedArrayKey = arrayIndexDeque.removeLast();
 					currentIndexA = indicesDeque.removeLast();
 					currentIndexB = indicesDeque.removeLast();
 					if (currentSelectedArrayKey == 0) {
@@ -298,10 +301,11 @@ public class ManualSorter {
 						int buffer = tempArray[currentIndexA];
 						tempArray[currentIndexA] = tempArray[currentIndexB];
 						tempArray[currentIndexB] = buffer;
-						temporaryArrays.put(currentSelectedArrayKey, tempArray);
+						temporaryArrays.replace(currentSelectedArrayKey, tempArray);
 					}
 					return true;
 				case MOVE_LITERAL:
+					currentSelectedArrayKey = arrayIndexDeque.removeLast();
 					currentIndexA = indicesDeque.removeLast();
 					currentIndexB = indicesDeque.removeLast();
 					if (currentSelectedArrayKey == 0) {
@@ -309,8 +313,20 @@ public class ManualSorter {
 					} else {
 						int[] tempArray = temporaryArrays.get(currentSelectedArrayKey);
 						tempArray[currentIndexB] = currentIndexA;
-						temporaryArrays.put(currentSelectedArrayKey, tempArray);
+						temporaryArrays.replace(currentSelectedArrayKey, tempArray);
 					}
+					return true;
+				case CREATE_ARRAY:
+					// currentIndexA will be used as the size of the array
+					// currentIndexB will be used as the key of the new array
+					currentIndexA = indicesDeque.removeLast();
+					currentIndexB = indicesDeque.removeLast();
+					// For now, overwriting array 0 is not supported
+					if (currentIndexB == 0) {
+						return false;
+					}
+					temporaryArrays.put(currentIndexB, new int[currentIndexA]);
+					return true;
 				default:
 					return false;
 				}
@@ -352,9 +368,13 @@ public class ManualSorter {
 	/**
 	 * Gets the array currently selected. Useful when working with multiple arrays.
 	 * 
-	 * @return Currently selected array
+	 * @return Currently selected array if it exists, otherwise null
 	 */
 	public int[] getCurrentSelectedArray_Array() {
-		return temporaryArrays.get(currentSelectedArrayKey);
+		if (temporaryArrays.containsKey(currentSelectedArrayKey)) {
+			return temporaryArrays.get(currentSelectedArrayKey);
+		} else {
+			return null;
+		}
 	}
 }
