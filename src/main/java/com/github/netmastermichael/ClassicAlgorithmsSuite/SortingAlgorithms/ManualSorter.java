@@ -276,8 +276,9 @@ public class ManualSorter {
 					currentIndexB = indicesDeque.removeLast();
 					array[currentIndexB] = currentIndexA;
 					return true;
+				// Multi-array operations are unsupported in this mode
 				case CREATE_ARRAY:
-					// Operation not supported
+				case DELETE_ARRAY:
 				default:
 					return false;
 				}
@@ -326,6 +327,12 @@ public class ManualSorter {
 						return false;
 					}
 					temporaryArrays.put(currentIndexB, new int[currentIndexA]);
+					return true;
+				case DELETE_ARRAY:
+					currentIndexA = indicesDeque.removeLast();
+					currentIndexB = -1; // To prevent stale data remaining in the field
+					// We don't need to worry about array 0, since this cannot be created
+					temporaryArrays.remove(currentIndexA);
 					return true;
 				default:
 					return false;

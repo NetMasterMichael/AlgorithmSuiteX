@@ -376,7 +376,7 @@ class Test_ManualSorter {
 					+ e.getMessage());
 		}
 	}
-	
+
 	@Test
 	void testMultiArrayOperation_MOVE_LITERAL() {
 		String testName = "testMultiArrayOperation_MOVE_LITERAL";
@@ -495,6 +495,37 @@ class Test_ManualSorter {
 			AuxiliaryTestMethods.logFail(className, testName);
 			fail("Exception " + e
 					+ " thrown while testing testMultiArrayOperation_SWAP() on an instance of ManualSorter; "
+					+ e.getMessage());
+		}
+	}
+
+	@Test
+	void testMultiArrayOperation_DELETE_ARRAY() {
+		String testName = "testMultiArrayOperation_DELETE_ARRAY";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			ManualSorter testManualSorter = new ManualSorter(new int[] { 1, 2, 3, 4, 5 },
+					new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+			testManualSorter.setUsingTemporaryArraysStatus(true);
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 4, 1);
+			for (int i = 0; i < 4; i++) {
+				testManualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, (i + 1) * 10, i, 1);
+			}
+			for (int i = 0; i < 5; i++) {
+				// All CREATE_ARRAY and MOVE_LITERAL operations are executed
+				assertTrue(testManualSorter.step(), "Test that the step is executed successfully");
+			}
+			assertTrue(Arrays.equals(new int[] { 10, 20, 30, 40 }, testManualSorter.getCurrentSelectedArray_Array()),
+					"Test that getCurrentSelectedArray_Array() returns the populated array after creating it");
+			testManualSorter.enqueueOperation(SortingAlgorithmOperation.DELETE_ARRAY, 1, 0);
+			assertTrue(testManualSorter.step(), "Test that the DELETE_ARRAY operation is executed successfully");
+			assertEquals(null, testManualSorter.getCurrentSelectedArray_Array(),
+					"Test that getCurrentSelectedArray_Array() returns null after deleting the temporary array");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e
+					+ " thrown while testing testMultiArrayOperation_DELETE_ARRAY() on an instance of ManualSorter; "
 					+ e.getMessage());
 		}
 	}
