@@ -1,4 +1,7 @@
-package com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms;
+package com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms;
+
+import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
  * MergeSort is a class that implements the merge sort algorithm for sorting an
@@ -24,6 +27,17 @@ public class MergeSort implements SortingAlgorithm {
 
 	/** SortingAlgorithmMetrics object for tracking metrics of the algorithm */
 	private SortingAlgorithmMetrics metrics;
+
+	/**
+	 * ManualSorter object for sorting an array step by step.
+	 * 
+	 * Unlike the other sorting algorithm classes, the manualSorter object is a
+	 * class-level field in the MergeSort object, due to the recursive nature of the
+	 * mergeSort and merge methods. This does not change how it works functionally,
+	 * and like the other classes, there are no getter or setter methods, except for
+	 * preComputeManualSort().
+	 */
+	private ManualSorter manualSorter;
 
 	/**
 	 * Constructor for creating a MergeSort object to sort an array of integers.
@@ -193,7 +207,7 @@ public class MergeSort implements SortingAlgorithm {
 			if (!(i < rightArraySize)) {
 				break;
 			}
-			
+
 			metrics.increaseArrayAccesses(2);
 			metrics.incrementSwaps();
 			rightArray[i] = inputArray[midpoint + i + 1];
@@ -263,8 +277,78 @@ public class MergeSort implements SortingAlgorithm {
 	 */
 	@Override
 	public ManualSorter preComputeManualSort() {
-		// TODO Auto-generated method stub
+		// Method is not ready, return null while it is WIP
 		return null;
+		/*manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length),
+				new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+		manualSorter.setUsingTemporaryArraysStatus(true);
+		mergeSortForManualSorter(0, inputArray.length - 1);
+		return manualSorter;*/
 	}
 
+	private void mergeSortForManualSorter(int left, int right) {
+		if (left < right) {
+			// Find the midpoint in the array
+			int midpoint = (left + right) / 2;
+
+			// Call mergeSort() on the first and second halves
+			mergeSortForManualSorter(left, midpoint);
+			mergeSortForManualSorter(midpoint + 1, right);
+
+			// Merge the sorted halves
+			mergeForManualSorter(left, midpoint, right);
+		}
+	}
+
+	private void mergeForManualSorter(int left, int midpoint, int right) {
+		// Find size of two subarrays to be merged
+		int leftArraySize = midpoint - left + 1;
+		int rightArraySize = right - midpoint;
+
+		// Create temporary arrays
+		int[] leftArray = new int[leftArraySize];
+		int[] rightArray = new int[rightArraySize];
+		manualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, leftArraySize, 1);
+		manualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, rightArraySize, 2);
+
+		// Copy corresponding values from inputArray to temporary arrays
+		for (int i = 0; i < leftArraySize; i++) {
+			leftArray[i] = inputArray[left + i];
+			manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, inputArray[left + i], i, 1);
+		}
+		for (int i = 0; i < rightArraySize; i++) {
+			rightArray[i] = inputArray[midpoint + i + 1];
+			manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, inputArray[midpoint + i + 1], i, 2);
+		}
+
+		// Merge the arrays into one and sort at the same time
+		int leftIndex = 0;
+		int rightIndex = 0;
+		int targetIndex = left;
+
+		while (leftIndex < leftArraySize && rightIndex < rightArraySize) {
+			//manualSorter.enqueueOperation(SortingAlgorithmOperation.COMPARE, rightIndex, targetIndex);
+			if (leftArray[leftIndex] <= rightArray[rightIndex]) {
+				inputArray[targetIndex] = leftArray[leftIndex];
+				leftIndex++;
+			} else {
+				inputArray[targetIndex] = rightArray[rightIndex];
+				rightIndex++;
+			}
+			targetIndex++;
+		}
+
+		// Arrays are now merged but there may be leftover values in the temporary
+		// arrays, so copy them to inputArray
+		while (leftIndex < leftArraySize) {
+			inputArray[targetIndex] = leftArray[leftIndex];
+			leftIndex++;
+			targetIndex++;
+		}
+		while (rightIndex < rightArraySize) {
+			inputArray[targetIndex] = rightArray[rightIndex];
+			rightIndex++;
+			targetIndex++;
+		}
+	}
 }

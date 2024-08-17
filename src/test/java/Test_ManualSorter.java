@@ -5,10 +5,10 @@ import java.util.LinkedList;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.BubbleSort;
-import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.ManualSorter;
-import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SelectionSort;
-import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithmOperation;
+import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.BubbleSort;
+import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.ManualSorter;
+import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.SelectionSort;
+import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.SortingAlgorithmOperation;
 
 class Test_ManualSorter {
 

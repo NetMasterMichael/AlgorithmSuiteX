@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.BubbleSort;
-import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.ManualSorter;
-import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithmMetrics;
+import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.BubbleSort;
+import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.ManualSorter;
+import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.SortingAlgorithmMetrics;
 
 class Test_BubbleSort {
 

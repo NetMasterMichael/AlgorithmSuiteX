@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.MergeSort;
-import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithmMetrics;
+import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.MergeSort;
+import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.SortingAlgorithmMetrics;
 
 class Test_MergeSort {
 
