@@ -152,4 +152,105 @@ class Test_MergeSort {
 					+ e.getMessage());
 		}
 	}
+	
+	@Test
+	void stressTestMergeSort() {
+		String testName = "stressTestMergeSort";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			int arraySize = 50000;
+			AuxiliaryTestMethods.logMessage(className,
+					testName + " : Stress test array size: " + Integer.toString(arraySize));
+
+			int[] sortedArray = AuxiliaryTestMethods.generateSortedArray(arraySize);
+			int[] unsortedArray = AuxiliaryTestMethods.generateUnsortedArray(arraySize);
+
+			MergeSort testMergeSort = new MergeSort(unsortedArray);
+			assertFalse(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
+					"Test that the random array inside testMergeSort is unsorted before calling sort()");
+			assertFalse(testMergeSort.isSorted(), "Test that isSorted() returns false before calling sort()");
+			testMergeSort.sort();
+			assertTrue(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
+					"Test that the random array inside testMergeSort is sorted after calling sort()");
+			assertTrue(testMergeSort.isSorted(), "Test that isSorted() returns true after calling sort()");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while stress testing merge sort; " + e.getMessage());
+		}
+	}
+
+	@Test
+	void stressTestMergeSortWithMetrics() {
+		String testName = "stressTestMergeSortWithMetrics";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			int arraySize = 50000;
+			AuxiliaryTestMethods.logMessage(className,
+					testName + " : Stress test array size: " + Integer.toString(arraySize));
+
+			int[] sortedArray = AuxiliaryTestMethods.generateSortedArray(arraySize);
+			int[] unsortedArray = AuxiliaryTestMethods.generateUnsortedArray(arraySize);
+
+			MergeSort testMergeSort = new MergeSort(unsortedArray);
+			SortingAlgorithmMetrics testMetrics = testMergeSort.getMetrics();
+			// Pre-checks
+			assertFalse(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
+					"Test that the basic array inside testMergeSort is unsorted before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getComparisons(),
+					"Test that the comparisons field inside testMergeSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getSwaps(),
+					"Test that the swaps field inside testMergeSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getPasses(),
+					"Test that the passes field inside testMergeSort is zero before calling sortWithMetrics()");
+			// Call sortWithMetrics()
+			testMergeSort.sortWithMetrics();
+			// Post-checks
+			assertTrue(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
+					"Test that the basic array inside testMergeSort is sorted after calling sortWithMetrics()");
+			assertNotEquals(0, testMetrics.getComparisons(),
+					"Test that the comparisons field inside testMergeSort is no longer zero after calling sortWithMetrics()");
+			assertNotEquals(0, testMetrics.getSwaps(),
+					"Test that the swaps field inside testMergeSort is no longer zero after calling sortWithMetrics()");
+			//assertNotEquals(0, testMetrics.getPasses(),
+					//"Test that the passes field inside testMergeSort is no longer zero after calling sortWithMetrics()");
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while stress testing merge sort with metrics; " + e.getMessage());
+		}
+	}
+
+	@Test
+	void stressTestMergeSortWithManualSorter() {
+		String testName = "stressTestMergeSortWithManualSorter";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			int arraySize = 50000;
+			AuxiliaryTestMethods.logMessage(className,
+					testName + " : Stress test array size: " + Integer.toString(arraySize));
+
+			int[] sortedArray = AuxiliaryTestMethods.generateSortedArray(arraySize);
+			int[] unsortedArray = AuxiliaryTestMethods.generateUnsortedArray(arraySize);
+
+			MergeSort testMergeSort = new MergeSort(unsortedArray);
+			AuxiliaryTestMethods.logMessage(className,
+					testName + " : Pre-computing all the operations into a ManualSort object...");
+			ManualSorter testManualSorter = testMergeSort.preComputeManualSort();
+
+			AuxiliaryTestMethods.logMessage(className,
+					testName + " : Stepping through all queued operations until the array is sorted...");
+			while (true) {
+				testManualSorter.step();
+				if (Arrays.equals(testManualSorter.getArray(), sortedArray)) {
+					assertTrue(true);
+					break;
+				}
+			}
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while stress testing merge sort; " + e.getMessage());
+		}
+	}
 }
