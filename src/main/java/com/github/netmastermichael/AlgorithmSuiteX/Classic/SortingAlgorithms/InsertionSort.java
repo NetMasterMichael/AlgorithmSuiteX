@@ -1,4 +1,4 @@
-package com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms;
+package com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -98,24 +98,37 @@ public class InsertionSort implements SortingAlgorithm {
 	@Override
 	public void sortWithMetrics() {
 		int arrayLength = inputArray.length;
-		for (int i = 1; i < arrayLength; i++) {
+		// For loop has been converted into a while loop for more accurate comparisons
+		// tracking
+		int i = 1;
+		while (true) {
+			metrics.incrementComparisons();
+			if (!(i < arrayLength)) {
+				break;
+			}
+
 			int buffer = inputArray[i];
+			metrics.increaseArrayAccesses(1);
 			int j = i - 1;
 
 			// While value at j'th index is less than buffer, move each j'th index forward
 			// by one
-			while (j >= 0 && inputArray[j] > buffer) {
-				metrics.incrementComparisons();
+			while (true) {
+				metrics.increaseComparisons(2);
+				metrics.increaseArrayAccesses(1);
+				if (!(j >= 0 && inputArray[j] > buffer)) {
+					break;
+				}
 				inputArray[j + 1] = inputArray[j];
+				metrics.increaseArrayAccesses(2); // One access during condition, two accesses on line above
 				metrics.incrementSwaps();
 				j--;
 			}
 
-			// Count comparison after exiting the while loop
-			metrics.incrementComparisons();
-
 			inputArray[j + 1] = buffer;
+			metrics.increaseArrayAccesses(1);
 			metrics.incrementPasses();
+			i++;
 		}
 	}
 

@@ -1,4 +1,4 @@
-package com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms;
+package com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms;
 
 /**
  * SortingAlgorithm is an interface that will be implemented by all sorting

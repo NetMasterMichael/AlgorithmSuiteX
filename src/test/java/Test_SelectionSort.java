@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.ManualSorter;
-import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SelectionSort;
-import com.github.netmastermichael.ClassicAlgorithmsSuite.SortingAlgorithms.SortingAlgorithmMetrics;
+import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.ManualSorter;
+import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.SelectionSort;
+import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.SortingAlgorithmMetrics;
 
 class Test_SelectionSort {
 
@@ -105,17 +105,21 @@ class Test_SelectionSort {
 					"Test that the swaps field inside testSelectionSort is zero before calling sortWithMetrics()");
 			assertEquals(0, testMetrics.getPasses(),
 					"Test that the passes field inside testSelectionSort is zero before calling sortWithMetrics()");
+			assertEquals(0, testMetrics.getArrayAccesses(),
+					"Test that the arrayAccesses field inside testSelectionSort is zero before calling sortWithMetrics()");
 			// Call sortWithMetrics()
 			testSelectionSort.sortWithMetrics();
 			// Post-checks
 			assertTrue(Arrays.equals(sortedArray, testSelectionSort.getInputArray()),
 					"Test that the basic array inside testSelectionSort is sorted after calling sortWithMetrics()");
-			assertEquals(45, testMetrics.getComparisons(),
-					"Test that the comparisons field inside testSelectionSort is 45 after calling sortWithMetrics()");
+			assertEquals(118, testMetrics.getComparisons(),
+					"Test that the comparisons field inside testSelectionSort is 118 after calling sortWithMetrics()");
 			assertEquals(7, testMetrics.getSwaps(),
 					"Test that the swaps field inside testSelectionSort is 7 after calling sortWithMetrics()");
 			assertEquals(9, testMetrics.getPasses(),
 					"Test that the passes field inside testSelectionSort is 9 after calling sortWithMetrics()");
+			assertEquals(118, testMetrics.getArrayAccesses(),
+					"Test that the arrayAccesses field inside testSelectionSort is 118 after calling sortWithMetrics()");
 			AuxiliaryTestMethods.logPass(className, testName);
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);
