@@ -1,7 +1,6 @@
 package com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 
 /**
  * InsertionSort is a class that implements the insertion sort algorithm for sorting an array of
@@ -139,8 +138,7 @@ public class InsertionSort implements SortingAlgorithm {
    */
   @Override
   public ManualSorter preComputeManualSort() {
-    ManualSorter manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length),
-        new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+    ManualSorter manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length));
     int[] inputArrayDuplicate = (Arrays.copyOf(inputArray, inputArray.length));
 
     int arrayLength = inputArrayDuplicate.length;

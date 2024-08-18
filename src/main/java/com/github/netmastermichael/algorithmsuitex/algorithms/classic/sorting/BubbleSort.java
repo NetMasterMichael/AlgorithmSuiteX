@@ -1,7 +1,6 @@
 package com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 
 /**
  * BubbleSort is a class that implements the bubble sort algorithm for sorting an array of integers.
@@ -168,8 +167,7 @@ public class BubbleSort implements SortingAlgorithm {
   public ManualSorter preComputeManualSort() {
     // Create new ManualSorter object, which will be an independent copy of the
     // algorithm
-    ManualSorter manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length),
-        new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+    ManualSorter manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length));
     // Make independent copy of inputArray to sort without modifying original
     // inputArray
     int[] inputArrayDuplicate = Arrays.copyOf(inputArray, inputArray.length);

@@ -9,7 +9,6 @@ import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.Ma
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SelectionSort;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmOperation;
 import java.util.Arrays;
-import java.util.LinkedList;
 import org.junit.jupiter.api.Test;
 
 class TestManualSorter {
@@ -21,8 +20,7 @@ class TestManualSorter {
     String testName = "testCreateManualSorter";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertTrue(testManualSorter instanceof ManualSorter,
           "Test that a new instance of ManualSorter is created successfully");
       AuxiliaryTestMethods.logPass(className, testName);
@@ -38,8 +36,7 @@ class TestManualSorter {
     String testName = "testGetArray";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertArrayEquals(new int[] {1, 2, 3}, testManualSorter.getArray(),
           "Test that getArray() returns the correct array from a ManualSorter instance");
       AuxiliaryTestMethods.logPass(className, testName);
@@ -55,8 +52,7 @@ class TestManualSorter {
     String testName = "testEnqueueOperation";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.COMPARE, 0, 1);
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 0, 1);
       assertTrue(true, "Test that enqueueOperation() executes successfully with no exceptions on "
@@ -75,8 +71,7 @@ class TestManualSorter {
     String testName = "testSwapOperation";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2});
       assertArrayEquals(new int[] {1, 2}, testManualSorter.getArray(),
           "Test that array in ManualSorter is the original array before the swap operation");
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 0, 1);
@@ -97,8 +92,7 @@ class TestManualSorter {
     String testName = "testIsSorted";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 5, 4, 6, 7},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 5, 4, 6, 7});
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 3, 4);
       assertFalse(testManualSorter.isSorted(),
           "Test that isSorted returns false when array is not sorted");
@@ -122,8 +116,6 @@ class TestManualSorter {
       int[] array = new int[] {12, 23, 15, 22, 17, 6, 19, 8, 1, 3, 16, 24, 10, 7, 5, 25, 18, 13, 14,
           9, 4, 20, 2, 11, 21};
       BubbleSort bubbleSorter = new BubbleSort(array);
-
-
       ManualSorter testManualSorter = bubbleSorter.preComputeManualSort();
       assertEquals(454, testManualSorter.isSortable(-1),
           "Test that ManualSorter.isSortable() can verify if an array is "
@@ -161,8 +153,7 @@ class TestManualSorter {
     String testName = "testGetCurrentIndexA";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertEquals(-1, testManualSorter.getCurrentIndexA(),
           "Test that currentIndexA in a ManualSorter instance starts at -1");
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 1, 2);
@@ -186,8 +177,7 @@ class TestManualSorter {
     String testName = "testGetCurrentIndexB";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertEquals(-1, testManualSorter.getCurrentIndexB(),
           "Test that currentIndexB in a ManualSorter instance starts at -1");
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 1, 2);
@@ -211,8 +201,7 @@ class TestManualSorter {
     String testName = "testGetCurrentOperationType";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertEquals(null, testManualSorter.getCurrentOperationType(),
           "Test that currentOperationType in a ManualSorter instance starts as null");
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 1, 2);
@@ -236,8 +225,7 @@ class TestManualSorter {
     String testName = "testStepOnEmptyDequeReturnsFalse";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertFalse(testManualSorter.step(),
           "Test that stepping on a ManualSorter instance with no queued operations returns false");
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 0, 1);
@@ -261,8 +249,7 @@ class TestManualSorter {
     String testName = "testMoveLiteralOperation";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
       assertTrue(
           Arrays.equals(new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, testManualSorter.getArray()),
           "Test that array in ManualSorter is the original array before the "
@@ -291,8 +278,7 @@ class TestManualSorter {
     String testName = "testGetUsingTemporaryArraysStatus";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertFalse(testManualSorter.getUsingTemporaryArraysStatus(),
           "Test that testGetUsingTemporaryArraysStatus() returns false upon the "
               + "creation of a new ManualSorter instance");
@@ -310,8 +296,7 @@ class TestManualSorter {
     String testName = "testSetUsingTemporaryArraysStatus";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertFalse(testManualSorter.getUsingTemporaryArraysStatus(),
           "Test that testGetUsingTemporaryArraysStatus() returns false upon the "
               + "creation of a new ManualSorter instance");
@@ -333,8 +318,7 @@ class TestManualSorter {
     String testName = "testGetPrimarySelectedArray_Key";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertEquals(-1, testManualSorter.getPrimarySelectedArray_Key(),
           "Test that getPrimarySelectedArray_Key() returns -1 in a newly created "
               + "ManualSorter instance");
@@ -361,8 +345,7 @@ class TestManualSorter {
     String testName = "testGetPrimarySelectedArray_Array";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertEquals(null, testManualSorter.getPrimarySelectedArray_Array(),
           "Test that getPrimarySelectedArray_Array() returns null in a newly "
               + "created ManualSorter instance");
@@ -394,8 +377,7 @@ class TestManualSorter {
     String testName = "testMultiArrayOperation_Create_Array";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       testManualSorter.setUsingTemporaryArraysStatus(true);
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 10, 0);
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 10, 1);
@@ -417,8 +399,7 @@ class TestManualSorter {
     String testName = "testMultiArrayOperation_Move_Literal";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 4, 5},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 4, 5});
       testManualSorter.setUsingTemporaryArraysStatus(true);
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 10, 1);
       for (int i = 0; i < 10; i++) {
@@ -456,8 +437,7 @@ class TestManualSorter {
     String testName = "testMultiArrayOperation_Compare";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 4, 5},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 4, 5});
       testManualSorter.setUsingTemporaryArraysStatus(true);
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 4, 1);
       for (int i = 0; i < 4; i++) {
@@ -495,8 +475,7 @@ class TestManualSorter {
     String testName = "testMultiArrayOperation_Swap";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 4, 5},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 4, 5});
       testManualSorter.setUsingTemporaryArraysStatus(true);
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 4, 1);
       for (int i = 0; i < 4; i++) {
@@ -559,8 +538,7 @@ class TestManualSorter {
     String testName = "testMultiArrayOperation_Delete_Array";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 4, 5},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 4, 5});
       testManualSorter.setUsingTemporaryArraysStatus(true);
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 4, 1);
       for (int i = 0; i < 4; i++) {
@@ -595,8 +573,7 @@ class TestManualSorter {
     String testName = "testGetSecondarySelectedArray_Key";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertEquals(-1, testManualSorter.getSecondarySelectedArray_Key(),
           "Test that getSecondarySelectedArray_Key() returns -1 in a newly "
               + "created ManualSorter instance");
@@ -627,8 +604,7 @@ class TestManualSorter {
     String testName = "testGetSecondarySelectedArray_Array";
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
-      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
-          new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertEquals(null, testManualSorter.getSecondarySelectedArray_Array(),
           "Test that getSecondarySelectedArray_Array() returns null in a newly "
               + "created ManualSorter instance");

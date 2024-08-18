@@ -1,7 +1,6 @@
 package com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 
 /**
  * MergeSort is a class that implements the merge sort algorithm for sorting an array of integers.
@@ -273,8 +272,7 @@ public class MergeSort implements SortingAlgorithm {
    */
   @Override
   public ManualSorter preComputeManualSort() {
-    manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length),
-        new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+    manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length));
     manualSorter.setUsingTemporaryArraysStatus(true);
     mergeSortForManualSorter(0, inputArray.length - 1);
     return manualSorter;

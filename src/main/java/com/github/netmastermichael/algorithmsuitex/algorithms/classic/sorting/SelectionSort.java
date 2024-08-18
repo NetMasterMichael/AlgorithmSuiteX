@@ -1,7 +1,6 @@
 package com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 
 /**
  * SelectionSort is a class that implements the selection sort algorithm for sorting an array of
@@ -158,8 +157,7 @@ public class SelectionSort implements SortingAlgorithm {
    */
   @Override
   public ManualSorter preComputeManualSort() {
-    ManualSorter manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length),
-        new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
+    ManualSorter manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length));
     int[] inputArrayDuplicate = Arrays.copyOf(inputArray, inputArray.length);
     int buffer;
     // Small optimisation to avoid recalculating the array length
