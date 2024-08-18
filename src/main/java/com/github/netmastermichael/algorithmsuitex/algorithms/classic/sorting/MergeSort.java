@@ -38,6 +38,17 @@ public class MergeSort implements SortingAlgorithm {
   private ManualSorter manualSorter;
 
   /**
+   * Array that is currently being worked on by preComputeManualSort().
+   * <p>
+   * Unlike the other sorting algorithm classes, the inputArrayDuplicate array is a class-level
+   * field in the MergeSort object, due to the recursive nature of the mergeSort and merge methods.
+   * This does not change how it works functionally, and like the other classes, there are no getter
+   * or setter methods.
+   * </p>
+   */
+  private int[] inputArrayDuplicate;
+
+  /**
    * Constructor for creating a MergeSort object to sort an array of integers.
    * 
    * @param inputArray array to sort
@@ -273,8 +284,9 @@ public class MergeSort implements SortingAlgorithm {
   @Override
   public ManualSorter preComputeManualSort() {
     manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length));
+    inputArrayDuplicate = Arrays.copyOf(inputArray, inputArray.length);
     manualSorter.setUsingTemporaryArraysStatus(true);
-    mergeSortForManualSorter(0, inputArray.length - 1);
+    mergeSortForManualSorter(0, inputArrayDuplicate.length - 1);
     return manualSorter;
   }
 
@@ -300,19 +312,19 @@ public class MergeSort implements SortingAlgorithm {
     // Create temporary arrays
     manualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, leftArraySize, 1);
     manualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, rightArraySize, 2);
-    
+
     // Copy corresponding values from inputArray to temporary left array
     int[] leftArray = new int[leftArraySize];
     for (int i = 0; i < leftArraySize; i++) {
-      leftArray[i] = inputArray[left + i];
+      leftArray[i] = inputArrayDuplicate[left + i];
       manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, inputArray[left + i], i,
           1);
     }
-    
+
     // Copy corresponding values from inputArray to temporary right array
     int[] rightArray = new int[rightArraySize];
     for (int i = 0; i < rightArraySize; i++) {
-      rightArray[i] = inputArray[midpoint + i + 1];
+      rightArray[i] = inputArrayDuplicate[midpoint + i + 1];
       manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL,
           inputArray[midpoint + i + 1], i, 2);
     }
@@ -327,12 +339,12 @@ public class MergeSort implements SortingAlgorithm {
       if (leftArray[leftIndex] <= rightArray[rightIndex]) {
         manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, leftArray[leftIndex],
             targetIndex, 0);
-        inputArray[targetIndex] = leftArray[leftIndex];
+        inputArrayDuplicate[targetIndex] = leftArray[leftIndex];
         leftIndex++;
       } else {
         manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL,
             rightArray[rightIndex], targetIndex, 0);
-        inputArray[targetIndex] = rightArray[rightIndex];
+        inputArrayDuplicate[targetIndex] = rightArray[rightIndex];
         rightIndex++;
       }
       targetIndex++;
@@ -343,14 +355,14 @@ public class MergeSort implements SortingAlgorithm {
     while (leftIndex < leftArraySize) {
       manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, leftArray[leftIndex],
           targetIndex, 0);
-      inputArray[targetIndex] = leftArray[leftIndex];
+      inputArrayDuplicate[targetIndex] = leftArray[leftIndex];
       leftIndex++;
       targetIndex++;
     }
     while (rightIndex < rightArraySize) {
       manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, rightArray[rightIndex],
           targetIndex, 0);
-      inputArray[targetIndex] = rightArray[rightIndex];
+      inputArrayDuplicate[targetIndex] = rightArray[rightIndex];
       rightIndex++;
       targetIndex++;
     }
