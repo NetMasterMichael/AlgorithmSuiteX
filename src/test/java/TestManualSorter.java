@@ -1,3 +1,4 @@
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -39,7 +40,7 @@ class TestManualSorter {
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3},
           new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
-      assertTrue(Arrays.equals(new int[] {1, 2, 3}, testManualSorter.getArray()),
+      assertArrayEquals(new int[] {1, 2, 3}, testManualSorter.getArray(),
           "Test that getArray() returns the correct array from a ManualSorter instance");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
@@ -76,11 +77,11 @@ class TestManualSorter {
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2},
           new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
-      assertTrue(Arrays.equals(new int[] {1, 2}, testManualSorter.getArray()),
+      assertArrayEquals(new int[] {1, 2}, testManualSorter.getArray(),
           "Test that array in ManualSorter is the original array before the swap operation");
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 0, 1);
       testManualSorter.step();
-      assertTrue(Arrays.equals(new int[] {2, 1}, testManualSorter.getArray()),
+      assertArrayEquals(new int[] {2, 1}, testManualSorter.getArray(),
           "Test that array in ManualSorter is modified after the swap operation");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
@@ -378,7 +379,7 @@ class TestManualSorter {
               testManualSorter.getPrimarySelectedArray_Array()),
           "Test that testGetPrimarySelectedArray_Array() returns the correct "
               + "array after comparing elements in array 4");
-      assertTrue(Arrays.equals(new int[] {1, 2, 3}, testManualSorter.getArray()),
+      assertArrayEquals(new int[] {1, 2, 3}, testManualSorter.getArray(),
           "Test that the original array in testManualSorter remains unmodified");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
@@ -431,7 +432,7 @@ class TestManualSorter {
           Arrays.equals(new int[] {10, 20, 30, 40, 50, 60, 70, 80, 90, 100},
               testManualSorter.getPrimarySelectedArray_Array()),
           "Test that the temporary array is populated as expected");
-      assertTrue(Arrays.equals(new int[] {1, 2, 3, 4, 5}, testManualSorter.getArray()),
+      assertArrayEquals(new int[] {1, 2, 3, 4, 5}, testManualSorter.getArray(),
           "Test that the original array has not been modified");
       for (int i = 0; i < 5; i++) {
         testManualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, (i + 1) * 50, i,
@@ -440,7 +441,7 @@ class TestManualSorter {
       for (int i = 0; i < 5; i++) {
         assertTrue(testManualSorter.step(), "Test that the step is executed successfully");
       }
-      assertTrue(Arrays.equals(new int[] {50, 100, 150, 200, 250}, testManualSorter.getArray()),
+      assertArrayEquals(new int[] {50, 100, 150, 200, 250}, testManualSorter.getArray(),
           "Test that the original array is updated as expected");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
@@ -510,7 +511,7 @@ class TestManualSorter {
         // first SWAP operation
         assertTrue(testManualSorter.step(), "Test that the step is executed successfully");
       }
-      assertTrue(Arrays.equals(new int[] {1, 2, 3, 5, 4}, testManualSorter.getArray()),
+      assertArrayEquals(new int[] {1, 2, 3, 5, 4}, testManualSorter.getArray(),
           "Test that the SWAP operation was executed on the original array "
               + "successfully in multi-array mode");
       assertTrue(
@@ -523,11 +524,10 @@ class TestManualSorter {
       assertEquals(0, testManualSorter.getPrimarySelectedArray_Key(),
           "Test that getPrimarySelectedArray_Key returns 3");
       assertTrue(testManualSorter.step(), "Test that the next step is executed successfully");
-      assertTrue(Arrays.equals(new int[] {1, 2, 3, 5, 4}, testManualSorter.getArray()),
+      assertArrayEquals(new int[] {1, 2, 3, 5, 4}, testManualSorter.getArray(),
           "Test that the original array has not been touched");
-      assertTrue(
-          Arrays.equals(new int[] {20, 10, 30, 40},
-              testManualSorter.getPrimarySelectedArray_Array()),
+      assertArrayEquals(new int[] {20, 10, 30, 40},
+          testManualSorter.getPrimarySelectedArray_Array(),
           "Test that the SWAP operation was executed on the temporary array "
               + "successfully in multi-array mode");
       assertEquals(0, testManualSorter.getCurrentIndexA(), "Test that getCurrentIndexA returns 0");
@@ -651,7 +651,7 @@ class TestManualSorter {
               testManualSorter.getSecondarySelectedArray_Array()),
           "Test that getSecondarySelectedArray_Array() returns the correct array "
               + "after comparing elements in array 4 and 7");
-      assertTrue(Arrays.equals(new int[] {1, 2, 3}, testManualSorter.getArray()),
+      assertArrayEquals(new int[] {1, 2, 3}, testManualSorter.getArray(),
           "Test that the original array in testManualSorter remains unmodified");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {

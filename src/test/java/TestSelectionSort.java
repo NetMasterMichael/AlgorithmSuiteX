@@ -1,3 +1,4 @@
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -37,7 +38,7 @@ class TestSelectionSort {
     try {
       SelectionSort testSelectionSort = new SelectionSort(new int[] {5, 10, 15});
       int[] expectedArray = {5, 10, 15};
-      assertTrue(Arrays.equals(expectedArray, testSelectionSort.getInputArray()),
+      assertArrayEquals(expectedArray, testSelectionSort.getInputArray(),
           "Test that getInputArray() returns the correct array");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
@@ -59,7 +60,7 @@ class TestSelectionSort {
       assertFalse(Arrays.equals(array2, testSelectionSort.getInputArray()), "Test that the array "
           + "in testSelectionSort is different to array2 before using setInputArray()");
       testSelectionSort.setInputArray(array2);
-      assertTrue(Arrays.equals(array2, testSelectionSort.getInputArray()),
+      assertArrayEquals(array2, testSelectionSort.getInputArray(),
           "Test that the new array is returned correctly after using setInputArray()");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
@@ -83,7 +84,7 @@ class TestSelectionSort {
       assertFalse(testSelectionSort.isSorted(), "Test that isSorted() returns false before calling "
           + "sort()");
       testSelectionSort.sort();
-      assertTrue(Arrays.equals(sortedArray, testSelectionSort.getInputArray()), "Test that the "
+      assertArrayEquals(sortedArray, testSelectionSort.getInputArray(), "Test that the "
           + "basic array inside testSelectionSort is sorted after calling sort()");
       assertTrue(testSelectionSort.isSorted(), "Test that isSorted() returns true after calling "
           + "sort()");
@@ -118,7 +119,7 @@ class TestSelectionSort {
       // Call sortWithMetrics()
       testSelectionSort.sortWithMetrics();
       // Post-checks
-      assertTrue(Arrays.equals(sortedArray, testSelectionSort.getInputArray()), "Test that the "
+      assertArrayEquals(sortedArray, testSelectionSort.getInputArray(), "Test that the "
           + "basic array inside testSelectionSort is sorted after calling sortWithMetrics()");
       assertEquals(118, testMetrics.getComparisons(), "Test that the comparisons field inside "
           + "testSelectionSort is 118 after calling sortWithMetrics()");
@@ -178,7 +179,7 @@ class TestSelectionSort {
       assertFalse(testSelectionSort.isSorted(),
           "Test that isSorted() returns false before calling sort()");
       testSelectionSort.sort();
-      assertTrue(Arrays.equals(sortedArray, testSelectionSort.getInputArray()),
+      assertArrayEquals(sortedArray, testSelectionSort.getInputArray(),
           "Test that the random array inside testSelectionSort is sorted after calling sort()");
       assertTrue(testSelectionSort.isSorted(),
           "Test that isSorted() returns true after calling sort()");
@@ -215,7 +216,7 @@ class TestSelectionSort {
       // Call sortWithMetrics()
       testSelectionSort.sortWithMetrics();
       // Post-checks
-      assertTrue(Arrays.equals(sortedArray, testSelectionSort.getInputArray()), 
+      assertArrayEquals(sortedArray, testSelectionSort.getInputArray(), 
           "Test that the basic array inside testSelectionSort is sorted after calling "
           + "sortWithMetrics()");
       assertNotEquals(0, testMetrics.getComparisons(),

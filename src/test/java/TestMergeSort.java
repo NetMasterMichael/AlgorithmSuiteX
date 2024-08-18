@@ -1,3 +1,4 @@
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -38,7 +39,7 @@ class TestMergeSort {
     try {
       MergeSort testMergeSort = new MergeSort(new int[] {5, 10, 15});
       int[] expectedArray = {5, 10, 15};
-      assertTrue(Arrays.equals(expectedArray, testMergeSort.getInputArray()),
+      assertArrayEquals(expectedArray, testMergeSort.getInputArray(),
           "Test that getInputArray() returns the correct array");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
@@ -61,7 +62,7 @@ class TestMergeSort {
           "Test that the array in testMergeSort is different to array2 "
               + "before using setInputArray()");
       testMergeSort.setInputArray(array2);
-      assertTrue(Arrays.equals(array2, testMergeSort.getInputArray()),
+      assertArrayEquals(array2, testMergeSort.getInputArray(),
           "Test that the new array is returned correctly after using setInputArray()");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
@@ -85,7 +86,7 @@ class TestMergeSort {
       assertFalse(testMergeSort.isSorted(),
           "Test that isSorted() returns false before calling sort()");
       testMergeSort.sort();
-      assertTrue(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
+      assertArrayEquals(sortedArray, testMergeSort.getInputArray(),
           "Test that the basic array inside testMergeSort is sorted after calling sort()");
       assertTrue(testMergeSort.isSorted(),
           "Test that isSorted() returns true after calling sort()");
@@ -125,7 +126,7 @@ class TestMergeSort {
       // Call sortWithMetrics()
       testMergeSort.sortWithMetrics();
       // Post-checks
-      assertTrue(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
+      assertArrayEquals(sortedArray, testMergeSort.getInputArray(),
           "Test that the basic array inside testMergeSort is sorted after calling "
               + "sortWithMetrics()");
       assertEquals(187, testMetrics.getComparisons(),
@@ -191,7 +192,7 @@ class TestMergeSort {
       assertFalse(testMergeSort.isSorted(),
           "Test that isSorted() returns false before calling sort()");
       testMergeSort.sort();
-      assertTrue(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
+      assertArrayEquals(sortedArray, testMergeSort.getInputArray(),
           "Test that the random array inside testMergeSort is sorted after calling sort()");
       assertTrue(testMergeSort.isSorted(),
           "Test that isSorted() returns true after calling sort()");
@@ -229,7 +230,7 @@ class TestMergeSort {
       // Call sortWithMetrics()
       testMergeSort.sortWithMetrics();
       // Post-checks
-      assertTrue(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
+      assertArrayEquals(sortedArray, testMergeSort.getInputArray(),
           "Test that the basic array inside testMergeSort is sorted after calling "
               + "sortWithMetrics()");
       assertNotEquals(0, testMetrics.getComparisons(),
