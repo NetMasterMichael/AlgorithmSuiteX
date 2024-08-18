@@ -135,6 +135,49 @@ public class ManualSorter {
   }
 
   /**
+   * Constructor for creating a ManualSorter object for executing operations on an array of
+   * integers.
+   * 
+   * @param array Array of integers to be sorted
+   * @param operationsDeque Deque of operations to perform on array. Can be provided as
+   *        pre-populated, or provided as empty and then populated afterwards using
+   *        enqueueOperation()
+   * @param indicesDeque Deque of indices in the array to be operated on. Can be provided as
+   *        pre-populated, or provided as empty and then populated afterwards using
+   *        enqueueOperation()
+   * @param arrayIndexDeque Deque of indices of which array(s) to operate on. Can be provided as
+   *        pre-populated, or provided as empty and then populated afterwards using
+   *        enqueueOperation()
+   */
+  public ManualSorter(int[] array, Deque<SortingAlgorithmOperation> operationsDeque,
+      Deque<Integer> indicesDeque, Deque<Integer> arrayIndexDeque) {
+    this.array = array;
+    if (operationsDeque != null) {
+      this.operationsDeque = operationsDeque;
+    } else {
+      this.operationsDeque = new LinkedList<SortingAlgorithmOperation>();
+    }
+    if (indicesDeque != null) {
+      this.indicesDeque = indicesDeque;
+    } else {
+      this.indicesDeque = new LinkedList<Integer>();
+    }
+    if (arrayIndexDeque != null) {
+      this.arrayIndexDeque = arrayIndexDeque;
+    } else {
+      this.arrayIndexDeque = new LinkedList<Integer>();
+    }
+    this.currentIndexA = -1;
+    this.currentIndexB = -1;
+    this.primarySelectedArrayKey = -1;
+    this.secondarySelectedArrayKey = -1;
+    this.currentOperationType = null;
+
+    this.usingTemporaryArrays = true;
+    this.temporaryArrays = new HashMap<Integer, int[]>();
+  }
+
+  /**
    * Gets the array currently held inside the ManualSorter object.
    * 
    * @return Array currently held inside ManualSorter
@@ -238,10 +281,16 @@ public class ManualSorter {
   public int isSortable(int operationsLimit) {
     // Make clones of all the parameters
     int[] arrayCopy = Arrays.copyOf(array, array.length);
+    ManualSorter validator;
     Deque<SortingAlgorithmOperation> operationsDequeCopy = new LinkedList<>(operationsDeque);
     Deque<Integer> indicesDequeCopy = new LinkedList<>(indicesDeque);
-    ManualSorter validator = new ManualSorter(arrayCopy, operationsDequeCopy, indicesDequeCopy);
-
+    if (!usingTemporaryArrays) {
+      validator = new ManualSorter(arrayCopy, operationsDequeCopy, indicesDequeCopy);
+    } else {
+      Deque<Integer> arrayIndexDequeCopy = new LinkedList<>(arrayIndexDeque);
+      validator =
+          new ManualSorter(arrayCopy, operationsDequeCopy, indicesDequeCopy, arrayIndexDequeCopy);
+    }
     int operationsCount = 0;
     while (!operationsDequeCopy.isEmpty()
         && (operationsLimit == -1 || operationsCount < operationsLimit)) {
