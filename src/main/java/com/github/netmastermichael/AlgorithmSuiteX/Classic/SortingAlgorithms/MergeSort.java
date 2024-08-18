@@ -277,13 +277,11 @@ public class MergeSort implements SortingAlgorithm {
 	 */
 	@Override
 	public ManualSorter preComputeManualSort() {
-		// Method is not ready, return null while it is WIP
-		return null;
-		/*manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length),
+		manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length),
 				new LinkedList<SortingAlgorithmOperation>(), new LinkedList<Integer>());
 		manualSorter.setUsingTemporaryArraysStatus(true);
 		mergeSortForManualSorter(0, inputArray.length - 1);
-		return manualSorter;*/
+		return manualSorter;
 	}
 
 	private void mergeSortForManualSorter(int left, int right) {
@@ -327,11 +325,15 @@ public class MergeSort implements SortingAlgorithm {
 		int targetIndex = left;
 
 		while (leftIndex < leftArraySize && rightIndex < rightArraySize) {
-			//manualSorter.enqueueOperation(SortingAlgorithmOperation.COMPARE, rightIndex, targetIndex);
+			manualSorter.enqueueOperation(SortingAlgorithmOperation.COMPARE, leftIndex, rightIndex, 1, 2);
 			if (leftArray[leftIndex] <= rightArray[rightIndex]) {
+				manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, leftArray[leftIndex], targetIndex,
+						0);
 				inputArray[targetIndex] = leftArray[leftIndex];
 				leftIndex++;
 			} else {
+				manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, rightArray[rightIndex],
+						targetIndex, 0);
 				inputArray[targetIndex] = rightArray[rightIndex];
 				rightIndex++;
 			}
@@ -341,14 +343,19 @@ public class MergeSort implements SortingAlgorithm {
 		// Arrays are now merged but there may be leftover values in the temporary
 		// arrays, so copy them to inputArray
 		while (leftIndex < leftArraySize) {
+			manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, leftArray[leftIndex], targetIndex, 0);
 			inputArray[targetIndex] = leftArray[leftIndex];
 			leftIndex++;
 			targetIndex++;
 		}
 		while (rightIndex < rightArraySize) {
+			manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, rightArray[rightIndex],
+					targetIndex, 0);
 			inputArray[targetIndex] = rightArray[rightIndex];
 			rightIndex++;
 			targetIndex++;
 		}
+		manualSorter.enqueueOperation(SortingAlgorithmOperation.DELETE_ARRAY, 1, 0);
+		manualSorter.enqueueOperation(SortingAlgorithmOperation.DELETE_ARRAY, 2, 0);
 	}
 }

@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.BubbleSort;
+import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.ManualSorter;
 import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.MergeSort;
 import com.github.netmastermichael.AlgorithmSuiteX.Classic.SortingAlgorithms.SortingAlgorithmMetrics;
 
@@ -123,6 +125,30 @@ class Test_MergeSort {
 		} catch (Exception e) {
 			AuxiliaryTestMethods.logFail(className, testName);
 			fail("Exception " + e + " thrown while testing merge sort with metrics with a basic array; "
+					+ e.getMessage());
+		}
+	}
+	
+	@Test
+	void testMergeSortWithManualSorter() {
+		String testName = "testMergeSortWithManualSorter";
+		AuxiliaryTestMethods.logMessage(className, testName + " started");
+		try {
+			int[] unsortedArray = { 7, 5, 3, 6, 10, 1, 4, 9, 2, 8 };
+			int[] sortedArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+			MergeSort testMergeSort = new MergeSort(unsortedArray);
+			ManualSorter testManualSorter = testMergeSort.preComputeManualSort();
+			while (true) {
+				testManualSorter.step();
+				if (Arrays.equals(testManualSorter.getArray(), sortedArray)) {
+					assertTrue(true);
+					break;
+				}
+			}
+			AuxiliaryTestMethods.logPass(className, testName);
+		} catch (Exception e) {
+			AuxiliaryTestMethods.logFail(className, testName);
+			fail("Exception " + e + " thrown while testing merge sort with a manual sorter with a basic array; "
 					+ e.getMessage());
 		}
 	}
