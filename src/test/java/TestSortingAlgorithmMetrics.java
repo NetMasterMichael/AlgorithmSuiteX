@@ -20,9 +20,8 @@ class TestSortingAlgorithmMetrics {
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
-      fail("Exception " + e
-          + " thrown while testing creating an instance of SortingAlgorithmMetrics; "
-          + e.getMessage());
+      fail("Exception " + e + " thrown while testing creating an instance of "
+          + "SortingAlgorithmMetrics; " + e.getMessage());
     }
   }
 
@@ -32,15 +31,13 @@ class TestSortingAlgorithmMetrics {
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
       SortingAlgorithmMetrics testMetrics = new SortingAlgorithmMetrics();
-      assertEquals(0, testMetrics.getComparisons(),
-          "Test that getComparisons() on a SortingAlgorithmMetrics object "
-          + "after initialization returns 0");
+      assertEquals(0, testMetrics.getComparisons(), "Test that getComparisons() on a "
+          + "SortingAlgorithmMetrics object after initialization returns 0");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
-      fail("Exception " + e
-          + " thrown while testing getComparisons() on an instance of SortingAlgorithmMetrics; "
-          + e.getMessage());
+      fail("Exception " + e + " thrown while testing getComparisons() on an instance of "
+          + "SortingAlgorithmMetrics; " + e.getMessage());
     }
   }
 
@@ -50,15 +47,13 @@ class TestSortingAlgorithmMetrics {
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
       SortingAlgorithmMetrics testMetrics = new SortingAlgorithmMetrics();
-      assertEquals(0, testMetrics.getSwaps(),
-          "Test that getSwaps() on a SortingAlgorithmMetrics object after "
-          + "initialization returns 0");
+      assertEquals(0, testMetrics.getSwaps(), "Test that getSwaps() on a SortingAlgorithmMetrics "
+          + "object after initialization returns 0");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
-      fail("Exception " + e
-          + " thrown while testing getSwaps() on an instance of SortingAlgorithmMetrics; "
-          + e.getMessage());
+      fail("Exception " + e + " thrown while testing getSwaps() on an instance of "
+          + "SortingAlgorithmMetrics; " + e.getMessage());
     }
   }
 
@@ -68,15 +63,13 @@ class TestSortingAlgorithmMetrics {
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
       SortingAlgorithmMetrics testMetrics = new SortingAlgorithmMetrics();
-      assertEquals(0, testMetrics.getPasses(),
-          "Test that getPasses() on a SortingAlgorithmMetrics object after "
-          + "initialization returns 0");
+      assertEquals(0, testMetrics.getPasses(), "Test that getPasses() on a SortingAlgorithmMetrics "
+          + "object after initialization returns 0");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
-      fail("Exception " + e
-          + " thrown while testing getPasses() on an instance of SortingAlgorithmMetrics; "
-          + e.getMessage());
+      fail("Exception " + e + " thrown while testing getPasses() on an instance of "
+          + "SortingAlgorithmMetrics; " + e.getMessage());
     }
   }
 
@@ -86,19 +79,16 @@ class TestSortingAlgorithmMetrics {
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
       SortingAlgorithmMetrics testMetrics = new SortingAlgorithmMetrics();
-      assertEquals(0, testMetrics.getComparisons(),
-          "Test that getComparisons() on a SortingAlgorithmMetrics object before "
-          + "calling setComparisons() returns 0");
+      assertEquals(0, testMetrics.getComparisons(), "Test that getComparisons() on a "
+          + "SortingAlgorithmMetrics object before calling setComparisons() returns 0");
       testMetrics.setComparisons(50);
-      assertEquals(50, testMetrics.getComparisons(),
-          "Test that getComparisons() on a SortingAlgorithmMetrics object after "
-          + "calling setComparisons() returns 50");
+      assertEquals(50, testMetrics.getComparisons(), "Test that getComparisons() on a "
+          + "SortingAlgorithmMetrics object after calling setComparisons() returns 50");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
-      fail("Exception " + e
-          + " thrown while testing setComparisons() on an instance of SortingAlgorithmMetrics; "
-          + e.getMessage());
+      fail("Exception " + e + " thrown while testing setComparisons() on an instance of "
+          + "SortingAlgorithmMetrics; " + e.getMessage());
     }
   }
 
@@ -108,19 +98,16 @@ class TestSortingAlgorithmMetrics {
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
       SortingAlgorithmMetrics testMetrics = new SortingAlgorithmMetrics();
-      assertEquals(0, testMetrics.getSwaps(),
-          "Test that getSwaps() on a SortingAlgorithmMetrics object before "
-          + "calling setSwaps() returns 0");
+      assertEquals(0, testMetrics.getSwaps(), "Test that getSwaps() on a SortingAlgorithmMetrics "
+          + "object before calling setSwaps() returns 0");
       testMetrics.setSwaps(100);
-      assertEquals(100, testMetrics.getSwaps(),
-          "Test that getSwaps() on a SortingAlgorithmMetrics object after "
-          + "calling setSwaps() returns 100");
+      assertEquals(100, testMetrics.getSwaps(), "Test that getSwaps() on a SortingAlgorithmMetrics "
+          + "object after calling setSwaps() returns 100");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
-      fail("Exception " + e
-          + " thrown while testing setSwaps() on an instance of SortingAlgorithmMetrics; "
-          + e.getMessage());
+      fail("Exception " + e + " thrown while testing setSwaps() on an instance of "
+          + "SortingAlgorithmMetrics; " + e.getMessage());
     }
   }
 
@@ -130,19 +117,16 @@ class TestSortingAlgorithmMetrics {
     AuxiliaryTestMethods.logMessage(className, testName + "started");
     try {
       SortingAlgorithmMetrics testMetrics = new SortingAlgorithmMetrics();
-      assertEquals(0, testMetrics.getPasses(),
-          "Test that getPasses() on a SortingAlgorithmMetrics object before "
-          + "calling setPasses() returns 0");
+      assertEquals(0, testMetrics.getPasses(), "Test that getPasses() on a SortingAlgorithmMetrics "
+          + "object before calling setPasses() returns 0");
       testMetrics.setPasses(150);
-      assertEquals(150, testMetrics.getPasses(),
-          "Test that getPasses() on a SortingAlgorithmMetrics object after "
-          + "calling setPasses() returns 150");
+      assertEquals(150, testMetrics.getPasses(), "Test that getPasses() on a "
+          + "SortingAlgorithmMetrics object after calling setPasses() returns 150");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
-      fail("Exception " + e
-          + " thrown while testing setPasses() on an instance of SortingAlgorithmMetrics; "
-          + e.getMessage());
+      fail("Exception " + e + " thrown while testing setPasses() on an instance of "
+          + "SortingAlgorithmMetrics; " + e.getMessage());
     }
   }
 
@@ -153,9 +137,8 @@ class TestSortingAlgorithmMetrics {
     try {
       SortingAlgorithmMetrics testMetrics = new SortingAlgorithmMetrics();
       for (int i = 0; i <= 1000; i++) {
-        assertEquals(i, testMetrics.getComparisons(),
-            "Test that the quantity of comparisons in a SortingAlgorithmMetrics instance equals "
-                + Integer.toString(i));
+        assertEquals(i, testMetrics.getComparisons(), "Test that the quantity of comparisons in a "
+            + "SortingAlgorithmMetrics instance equals " + Integer.toString(i));
         testMetrics.incrementComparisons();
       }
       AuxiliaryTestMethods.logPass(className, testName);
@@ -173,9 +156,8 @@ class TestSortingAlgorithmMetrics {
     try {
       SortingAlgorithmMetrics testMetrics = new SortingAlgorithmMetrics();
       for (int i = 0; i <= 1000; i++) {
-        assertEquals(i, testMetrics.getSwaps(),
-            "Test that the quantity of swaps in a SortingAlgorithmMetrics instance equals "
-                + Integer.toString(i));
+        assertEquals(i, testMetrics.getSwaps(), "Test that the quantity of swaps in a "
+            + "SortingAlgorithmMetrics instance equals " + Integer.toString(i));
         testMetrics.incrementSwaps();
       }
       AuxiliaryTestMethods.logPass(className, testName);
@@ -193,9 +175,8 @@ class TestSortingAlgorithmMetrics {
     try {
       SortingAlgorithmMetrics testMetrics = new SortingAlgorithmMetrics();
       for (int i = 0; i <= 1000; i++) {
-        assertEquals(i, testMetrics.getPasses(),
-            "Test that the quantity of passes in a SortingAlgorithmMetrics instance equals "
-                + Integer.toString(i));
+        assertEquals(i, testMetrics.getPasses(), "Test that the quantity of passes in a "
+            + "SortingAlgorithmMetrics instance equals " + Integer.toString(i));
         testMetrics.incrementPasses();
       }
       AuxiliaryTestMethods.logPass(className, testName);
@@ -247,13 +228,11 @@ class TestSortingAlgorithmMetrics {
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
       SortingAlgorithmMetrics testMetrics = new SortingAlgorithmMetrics();
-      assertEquals(0, testMetrics.getArrayAccesses(),
-          "Test that getArrayAccesses() on a SortingAlgorithmMetrics object before calling "
-          + "increaseArrayAccesses() returns 0");
+      assertEquals(0, testMetrics.getArrayAccesses(), "Test that getArrayAccesses() on a "
+          + "SortingAlgorithmMetrics object before calling increaseArrayAccesses() returns 0");
       testMetrics.increaseArrayAccesses(128);
-      assertEquals(128, testMetrics.getArrayAccesses(),
-          "Test that getArrayAccesses() on a SortingAlgorithmMetrics object after calling "
-          + "increaseArrayAccesses() returns 128");
+      assertEquals(128, testMetrics.getArrayAccesses(), "Test that getArrayAccesses() on a "
+          + "SortingAlgorithmMetrics object after calling increaseArrayAccesses() returns 128");
       for (int i = 0; i <= 1000; i++) {
         assertEquals(i * 4 + 128, testMetrics.getArrayAccesses(),
             "Test that the quantity of array accesses in a SortingAlgorithmMetrics instance equals "
@@ -280,15 +259,15 @@ class TestSortingAlgorithmMetrics {
       assertEquals(128, testMetrics.getComparisons(), "Test that getComparisons() on a "
           + "SortingAlgorithmMetrics object after calling increaseComparisons() returns 128");
       for (int i = 0; i <= 1000; i++) {
-        assertEquals(i * 4 + 128, testMetrics.getComparisons(), "Test that the quantity of "
-            + "comparisons in a SortingAlgorithmMetrics instance equals " 
-            + Integer.toString(i * 4 + 128));
+        assertEquals(i * 4 + 128, testMetrics.getComparisons(),
+            "Test that the quantity of comparisons in a SortingAlgorithmMetrics instance equals "
+                + Integer.toString(i * 4 + 128));
         testMetrics.increaseComparisons(4);
       }
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
-      fail("Exception " + e  + " thrown while testing testIncreaseComparisons() on an instance of "
+      fail("Exception " + e + " thrown while testing testIncreaseComparisons() on an instance of "
           + "SortingAlgorithmMetrics; " + e.getMessage());
     }
   }

@@ -44,9 +44,8 @@ class TestMergeSort {
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
-      fail("Exception " + e
-          + " thrown while testing getting the input array from an instance of MergeSort; "
-          + e.getMessage());
+      fail("Exception " + e + " thrown while testing getting the input array from an instance of "
+          + "MergeSort; " + e.getMessage());
     }
   }
 
@@ -67,9 +66,8 @@ class TestMergeSort {
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
-      fail("Exception " + e
-          + " thrown while testing setting the input array of an instance of MergeSort; "
-          + e.getMessage());
+      fail("Exception " + e + " thrown while testing setting the input array of an instance of "
+          + "MergeSort; " + e.getMessage());
     }
   }
 
@@ -108,39 +106,31 @@ class TestMergeSort {
       MergeSort testMergeSort = new MergeSort(unsortedArray);
       SortingAlgorithmMetrics testMetrics = testMergeSort.getMetrics();
       // Pre-checks
-      assertFalse(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
-          "Test that the basic array inside testMergeSort is unsorted before "
-              + "calling sortWithMetrics()");
-      assertEquals(0, testMetrics.getComparisons(),
-          "Test that the comparisons field inside testMergeSort is zero before "
-              + "calling sortWithMetrics()");
-      assertEquals(0, testMetrics.getSwaps(),
-          "Test that the swaps field inside testMergeSort is zero before calling "
-              + "sortWithMetrics()");
-      assertEquals(0, testMetrics.getPasses(),
-          "Test that the passes field inside testMergeSort is zero before calling "
-              + "sortWithMetrics()");
-      assertEquals(0, testMetrics.getArrayAccesses(),
-          "Test that the arrayAccesses field inside testMergeSort is zero before "
-              + "calling sortWithMetrics()");
+      assertFalse(Arrays.equals(sortedArray, testMergeSort.getInputArray()), "Test that the basic "
+          + "array inside testMergeSort is unsorted before calling sortWithMetrics()");
+      assertEquals(0, testMetrics.getComparisons(), "Test that the comparisons field inside "
+          + "testMergeSort is zero before calling sortWithMetrics()");
+      assertEquals(0, testMetrics.getSwaps(), "Test that the swaps field inside testMergeSort is "
+          + "zero before calling sortWithMetrics()");
+      assertEquals(0, testMetrics.getPasses(), "Test that the passes field inside testMergeSort is "
+          + "zero before calling sortWithMetrics()");
+      assertEquals(0, testMetrics.getArrayAccesses(), "Test that the arrayAccesses field inside "
+          + "testMergeSort is zero before calling sortWithMetrics()");
       // Call sortWithMetrics()
       testMergeSort.sortWithMetrics();
       // Post-checks
-      assertArrayEquals(sortedArray, testMergeSort.getInputArray(),
-          "Test that the basic array inside testMergeSort is sorted after calling "
-              + "sortWithMetrics()");
-      assertEquals(187, testMetrics.getComparisons(),
-          "Test that the comparisons field inside testMergeSort is 187 after calling "
-              + "sortWithMetrics()");
+      assertArrayEquals(sortedArray, testMergeSort.getInputArray(), "Test that the basic array "
+          + "inside testMergeSort is sorted after calling sortWithMetrics()");
+      assertEquals(187, testMetrics.getComparisons(), "Test that the comparisons field inside "
+          + "testMergeSort is 187 after calling sortWithMetrics()");
       // Swaps not implemented
-      assertEquals(68, testMetrics.getSwaps(),
-          "Test that the swaps field inside testMergeSort is 68 after calling sortWithMetrics()");
+      assertEquals(68, testMetrics.getSwaps(), "Test that the swaps field inside testMergeSort is "
+          + "68 after calling sortWithMetrics()");
       // Passes not implemented
       // assertEquals(9, testMetrics.getPasses(), "Test that the passes field inside testMergeSort
       // is 9 after calling sortWithMetrics()");
-      assertEquals(182, testMetrics.getArrayAccesses(),
-          "Test that the arrayAccesses field inside testMergeSort is 182 after calling "
-              + "sortWithMetrics()");
+      assertEquals(182, testMetrics.getArrayAccesses(), "Test that the arrayAccesses field inside "
+          + "testMergeSort is 182 after calling sortWithMetrics()");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
@@ -168,9 +158,8 @@ class TestMergeSort {
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
-      fail("Exception " + e
-          + " thrown while testing merge sort with a manual sorter with a basic array; "
-          + e.getMessage());
+      fail("Exception " + e + " thrown while testing merge sort with a manual sorter with a basic "
+          + "array; " + e.getMessage());
     }
   }
 
@@ -218,27 +207,21 @@ class TestMergeSort {
       MergeSort testMergeSort = new MergeSort(unsortedArray);
       SortingAlgorithmMetrics testMetrics = testMergeSort.getMetrics();
       // Pre-checks
-      assertFalse(Arrays.equals(sortedArray, testMergeSort.getInputArray()),
-          "Test that the basic array inside testMergeSort is unsorted before "
-              + "calling sortWithMetrics()");
-      assertEquals(0, testMetrics.getComparisons(),
-          "Test that the comparisons field inside testMergeSort is zero before "
-              + "calling sortWithMetrics()");
-      assertEquals(0, testMetrics.getSwaps(),
-          "Test that the swaps field inside testMergeSort is zero before calling "
-              + "sortWithMetrics()");
+      assertFalse(Arrays.equals(sortedArray, testMergeSort.getInputArray()), "Test that the basic "
+          + "array inside testMergeSort is unsorted before calling sortWithMetrics()");
+      assertEquals(0, testMetrics.getComparisons(), "Test that the comparisons field inside "
+          + "testMergeSort is zero before calling sortWithMetrics()");
+      assertEquals(0, testMetrics.getSwaps(), "Test that the swaps field inside testMergeSort is "
+          + "zero before calling sortWithMetrics()");
       // Call sortWithMetrics()
       testMergeSort.sortWithMetrics();
       // Post-checks
-      assertArrayEquals(sortedArray, testMergeSort.getInputArray(),
-          "Test that the basic array inside testMergeSort is sorted after calling "
-              + "sortWithMetrics()");
-      assertNotEquals(0, testMetrics.getComparisons(),
-          "Test that the comparisons field inside testMergeSort is no longer zero "
-              + "after calling sortWithMetrics()");
-      assertNotEquals(0, testMetrics.getSwaps(),
-          "Test that the swaps field inside testMergeSort is no longer zero after "
-              + "calling sortWithMetrics()");
+      assertArrayEquals(sortedArray, testMergeSort.getInputArray(), "Test that the basic array "
+          + "inside testMergeSort is sorted after calling sortWithMetrics()");
+      assertNotEquals(0, testMetrics.getComparisons(), "Test that the comparisons field inside "
+          + "testMergeSort is no longer zero after calling sortWithMetrics()");
+      assertNotEquals(0, testMetrics.getSwaps(), "Test that the swaps field inside testMergeSort is"
+          + " no longer zero after calling sortWithMetrics()");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);

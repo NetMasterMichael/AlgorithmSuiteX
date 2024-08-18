@@ -20,9 +20,8 @@ class TestSortingAlgorithmOperation {
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
-      fail("Exception " + e
-          + " thrown while testing creating a SortingAlgorithmOperation object of type SWAP; "
-          + e.getMessage());
+      fail("Exception " + e + " thrown while testing creating a SortingAlgorithmOperation object of"
+          + " type SWAP; " + e.getMessage());
     }
   }
 
@@ -32,14 +31,13 @@ class TestSortingAlgorithmOperation {
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
       SortingAlgorithmOperation testOperation = SortingAlgorithmOperation.COMPARE;
-      assertTrue(testOperation == SortingAlgorithmOperation.COMPARE,
-          "Test that a new SortingAlgorithmObject correctly initialises with operation COMPARE");
+      assertTrue(testOperation == SortingAlgorithmOperation.COMPARE, "Test that a new "
+          + "SortingAlgorithmObject correctly initialises with operation COMPARE");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
-      fail("Exception " + e
-          + " thrown while testing creating a SortingAlgorithmOperation object of type COMPARE; "
-          + e.getMessage());
+      fail("Exception " + e + " thrown while testing creating a SortingAlgorithmOperation object of"
+          + " type COMPARE; " + e.getMessage());
     }
   }
 
@@ -49,16 +47,13 @@ class TestSortingAlgorithmOperation {
     AuxiliaryTestMethods.logMessage(className, testName + " started");
     try {
       SortingAlgorithmOperation testOperation = SortingAlgorithmOperation.MOVE_LITERAL;
-      assertTrue(testOperation == SortingAlgorithmOperation.MOVE_LITERAL,
-          "Test that a new SortingAlgorithmObject correctly initialises with "
-          + "operation MOVE_LITERAL");
+      assertTrue(testOperation == SortingAlgorithmOperation.MOVE_LITERAL, "Test that a new "
+          + "SortingAlgorithmObject correctly initialises with operation MOVE_LITERAL");
       AuxiliaryTestMethods.logPass(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logFail(className, testName);
-      fail("Exception " + e
-          + " thrown while testing creating a SortingAlgorithmOperation object of "
-          + "type MOVE_LITERAL; "
-          + e.getMessage());
+      fail("Exception " + e + " thrown while testing creating a SortingAlgorithmOperation object "
+          + "of type MOVE_LITERAL; " + e.getMessage());
     }
   }
 
