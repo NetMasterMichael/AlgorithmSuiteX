@@ -51,6 +51,14 @@ public class ManualSorter {
 	 */
 	private int primarySelectedArrayKey;
 
+	/**
+	 * Key of currently selected secondary array in most recent operation executed
+	 * by the manual sorter. 0 is reserved for the array in the field "array".
+	 * Anything non-zero means the corresponding array inside temporaryArrays is
+	 * selected.
+	 */
+	private int secondarySelectedArrayKey;
+
 	/** Type of most recent operation executed by the manual sorter */
 	private SortingAlgorithmOperation currentOperationType;
 
@@ -209,8 +217,8 @@ public class ManualSorter {
 	 *                    enum
 	 * @param indexA      First index of array
 	 * @param indexB      Second index of array
-	 * @param firstArray  First array to perform operation on
-	 * @param secondArray Second array to perform operation on
+	 * @param firstArray  First array to perform operation with
+	 * @param secondArray Second array to perform operation with
 	 * 
 	 */
 	public void enqueueOperation(SortingAlgorithmOperation operation, int indexA, int indexB, int firstArray,
@@ -311,27 +319,43 @@ public class ManualSorter {
 				switch (currentOperationType) {
 				case COMPARE:
 					primarySelectedArrayKey = arrayIndexDeque.removeLast();
+					secondarySelectedArrayKey = arrayIndexDeque.removeLast();
 					currentIndexA = indicesDeque.removeLast();
 					currentIndexB = indicesDeque.removeLast();
 					return true;
 				case SWAP:
 					primarySelectedArrayKey = arrayIndexDeque.removeLast();
+					secondarySelectedArrayKey = arrayIndexDeque.removeLast();
 					currentIndexA = indicesDeque.removeLast();
 					currentIndexB = indicesDeque.removeLast();
+					int[] tempArray1;
+					int[] tempArray2;
+					// Initialise temporary arrays. If either key is 0, point to array
 					if (primarySelectedArrayKey == 0) {
-						int buffer = array[currentIndexA];
-						array[currentIndexA] = array[currentIndexB];
-						array[currentIndexB] = buffer;
+						tempArray1 = array;
 					} else {
-						int[] tempArray = temporaryArrays.get(primarySelectedArrayKey);
-						int buffer = tempArray[currentIndexA];
-						tempArray[currentIndexA] = tempArray[currentIndexB];
-						tempArray[currentIndexB] = buffer;
-						temporaryArrays.replace(primarySelectedArrayKey, tempArray);
+						tempArray1 = temporaryArrays.get(primarySelectedArrayKey);
+					}
+					if (secondarySelectedArrayKey == 0) {
+						tempArray2 = array;
+					} else {
+						tempArray2 = temporaryArrays.get(secondarySelectedArrayKey);
+					}
+					// Perform the swap
+					int buffer = tempArray1[currentIndexA];
+					tempArray1[currentIndexA] = tempArray2[currentIndexB];
+					tempArray2[currentIndexB] = buffer;
+					// Write any arrays back to the temporaryArrays HashMap
+					if (primarySelectedArrayKey != 0) {
+						temporaryArrays.replace(primarySelectedArrayKey, tempArray1);
+					}
+					if (secondarySelectedArrayKey != 0) {
+						temporaryArrays.replace(secondarySelectedArrayKey, tempArray2);
 					}
 					return true;
 				case MOVE_LITERAL:
 					primarySelectedArrayKey = arrayIndexDeque.removeLast();
+					secondarySelectedArrayKey = arrayIndexDeque.removeLast();
 					currentIndexA = indicesDeque.removeLast();
 					currentIndexB = indicesDeque.removeLast();
 					if (primarySelectedArrayKey == 0) {
@@ -412,6 +436,32 @@ public class ManualSorter {
 			return array;
 		} else if (temporaryArrays.containsKey(primarySelectedArrayKey)) {
 			return temporaryArrays.get(primarySelectedArrayKey);
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Gets the key of the currently selected secondary array. Useful when working
+	 * with multiple arrays.
+	 * 
+	 * @return Key of currently selected secondary array
+	 */
+	public int getSecondarySelectedArray_Key() {
+		return secondarySelectedArrayKey;
+	}
+
+	/**
+	 * Gets the secondary array currently selected. Useful when working with
+	 * multiple arrays.
+	 * 
+	 * @return Currently selected secondary array if it exists, otherwise null
+	 */
+	public int[] getSecondarySelectedArray_Array() {
+		if (secondarySelectedArrayKey == 0) {
+			return array;
+		} else if (temporaryArrays.containsKey(secondarySelectedArrayKey)) {
+			return temporaryArrays.get(secondarySelectedArrayKey);
 		} else {
 			return null;
 		}
