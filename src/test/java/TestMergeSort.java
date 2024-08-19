@@ -33,25 +33,25 @@ class TestMergeSort {
   }
 
   @Test
-  void testGetInputArray() {
-    String testName = "testGetInputArray";
+  void testGetMainArray() {
+    String testName = "testGetMainArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       MergeSort testMergeSort = new MergeSort(new int[] {5, 10, 15});
       int[] expectedArray = {5, 10, 15};
       assertArrayEquals(expectedArray, testMergeSort.getMainArray(),
-          "Test that getInputArray() returns the correct array");
+          "Test that getMainArray() returns the correct array");
       AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logExceptionThrown(className, testName);
-      fail("Exception " + e + " thrown while testing getting the input array from an instance of "
+      fail("Exception " + e + " thrown while testing getting the main array from an instance of "
           + "MergeSort; " + e.getMessage());
     }
   }
 
   @Test
-  void testSetInputArray() {
-    String testName = "testSetInputArray";
+  void testSetMainArray() {
+    String testName = "testSetMainArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int[] array1 = {1, 2, 3, 4, 5};
@@ -59,14 +59,14 @@ class TestMergeSort {
       MergeSort testMergeSort = new MergeSort(array1);
       assertFalse(Arrays.equals(array2, testMergeSort.getMainArray()),
           "Test that the array in testMergeSort is different to array2 "
-              + "before using setInputArray()");
+              + "before using setMainArray()");
       testMergeSort.setMainArray(array2);
       assertArrayEquals(array2, testMergeSort.getMainArray(),
-          "Test that the new array is returned correctly after using setInputArray()");
+          "Test that the new array is returned correctly after using setMainArray()");
       AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logExceptionThrown(className, testName);
-      fail("Exception " + e + " thrown while testing setting the input array of an instance of "
+      fail("Exception " + e + " thrown while testing setting the main array of an instance of "
           + "MergeSort; " + e.getMessage());
     }
   }

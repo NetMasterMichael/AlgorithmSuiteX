@@ -32,39 +32,39 @@ class TestInsertionSort {
   }
 
   @Test
-  void testGetInputArray() {
-    String testName = "testGetInputArray";
+  void testGetMainArray() {
+    String testName = "testGetMainArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       InsertionSort testInsertionSort = new InsertionSort(new int[] {5, 10, 15});
       int[] expectedArray = {5, 10, 15};
       assertArrayEquals(expectedArray, testInsertionSort.getMainArray(),
-          "Test that getInputArray() returns the correct array");
+          "Test that getMainArray() returns the correct array");
       AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logExceptionThrown(className, testName);
-      fail("Exception " + e + " thrown while testing getting the input array from an instance of "
+      fail("Exception " + e + " thrown while testing getting the main array from an instance of "
           + "InsertionSort; " + e.getMessage());
     }
   }
 
   @Test
-  void testSetInputArray() {
-    String testName = "testSetInputArray";
+  void testSetMainArray() {
+    String testName = "testSetMainArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int[] array1 = {1, 2, 3, 4, 5};
       int[] array2 = {5, 10, 15, 20, 25};
       InsertionSort testInsertionSort = new InsertionSort(array1);
       assertFalse(Arrays.equals(array2, testInsertionSort.getMainArray()), "Test that the array "
-          + "in testInsertionSort is different to array2 before using setInputArray()");
+          + "in testInsertionSort is different to array2 before using setMainArray()");
       testInsertionSort.setMainArray(array2);
       assertArrayEquals(array2, testInsertionSort.getMainArray(),
-          "Test that the new array is returned correctly after using setInputArray()");
+          "Test that the new array is returned correctly after using setMainArray()");
       AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logExceptionThrown(className, testName);
-      fail("Exception " + e + " thrown while testing setting the input array of an instance of "
+      fail("Exception " + e + " thrown while testing setting the main array of an instance of "
           + "InsertionSort; " + e.getMessage());
     }
   }
