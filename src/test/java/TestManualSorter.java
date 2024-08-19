@@ -20,14 +20,14 @@ class TestManualSorter {
   @Test
   void testCreateManualSorter() {
     String testName = "testCreateManualSorter";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertTrue(testManualSorter instanceof ManualSorter,
           "Test that a new instance of ManualSorter is created successfully");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing creating an instance of ManualSorter; "
           + e.getMessage());
     }
@@ -36,14 +36,14 @@ class TestManualSorter {
   @Test
   void testGetArray() {
     String testName = "testGetArray";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertArrayEquals(new int[] {1, 2, 3}, testManualSorter.getArray(),
           "Test that getArray() returns the correct array from a ManualSorter instance");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing getArray() on an instance of ManualSorter; "
           + e.getMessage());
     }
@@ -52,16 +52,16 @@ class TestManualSorter {
   @Test
   void testEnqueueOperation() {
     String testName = "testEnqueueOperation";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.COMPARE, 0, 1);
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 0, 1);
       assertTrue(true, "Test that enqueueOperation() executes successfully with no exceptions on "
           + "a ManualSorter instance");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing enqueueOperation() on an instance of "
           + "ManualSorter; " + e.getMessage());
     }
@@ -70,7 +70,7 @@ class TestManualSorter {
   @Test
   void testSwapOperation() {
     String testName = "testSwapOperation";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2});
       assertArrayEquals(new int[] {1, 2}, testManualSorter.getArray(),
@@ -79,9 +79,9 @@ class TestManualSorter {
       testManualSorter.step();
       assertArrayEquals(new int[] {2, 1}, testManualSorter.getArray(),
           "Test that array in ManualSorter is modified after the swap operation");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing a swap operation with an instance of "
           + "ManualSorter; " + e.getMessage());
     }
@@ -90,7 +90,7 @@ class TestManualSorter {
   @Test
   void testIsSorted() {
     String testName = "testIsSorted";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 5, 4, 6, 7});
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 3, 4);
@@ -99,9 +99,9 @@ class TestManualSorter {
       testManualSorter.step();
       assertTrue(testManualSorter.isSorted(),
           "Test that isSorted returns true when array is sorted");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing the isSorted() method on a ManualSorter "
           + "instance; " + e.getMessage());
     }
@@ -110,7 +110,7 @@ class TestManualSorter {
   @Test
   void testIsSortable_BubbleSort() {
     String testName = "testIsSortable_BubbleSort";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int[] array = new int[] {12, 23, 15, 22, 17, 6, 19, 8, 1, 3, 16, 24, 10, 7, 5, 25, 18, 13, 14,
           9, 4, 20, 2, 11, 21};
@@ -124,9 +124,9 @@ class TestManualSorter {
       assertEquals(454, testManualSorter.isSortable(-1),
           "Test that ManualSorter.isSortable() returns the correct number of operations required to"
               + " sort an array, excluding unnecessary operations");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing isSortable() on a ManualSorter instance with "
           + "the bubble sort algorithm; " + e.getMessage());
     }
@@ -135,7 +135,7 @@ class TestManualSorter {
   @Test
   void testIsSortable_SelectionSort() {
     String testName = "testIsSortable_SelectionSort";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int[] array = new int[] {12, 23, 15, 22, 17, 6, 19, 8, 1, 3, 16, 24, 10, 7, 5, 25, 18, 13, 14,
           9, 4, 20, 2, 11, 21};
@@ -150,9 +150,9 @@ class TestManualSorter {
       assertEquals(318, testManualSorter.isSortable(-1),
           "Test that ManualSorter.isSortable() returns the correct number of operations required to"
               + " sort an array, excluding unnecessary operations");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing isSortable() on a ManualSorter instance with "
           + "the selection sort algorithm; " + e.getMessage());
     }
@@ -161,7 +161,7 @@ class TestManualSorter {
   @Test
   void testIsSortable_InsertionSort() {
     String testName = "testIsSortable_InsertionSort";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int[] array = new int[] {12, 23, 15, 22, 17, 6, 19, 8, 1, 3, 16, 24, 10, 7, 5, 25, 18, 13, 14,
           9, 4, 20, 2, 11, 21};
@@ -176,9 +176,9 @@ class TestManualSorter {
       assertEquals(325, testManualSorter.isSortable(-1),
           "Test that ManualSorter.isSortable() returns the correct number of operations required to"
               + " sort an array, excluding unnecessary operations");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing isSortable() on a ManualSorter instance with "
           + "the insertion sort algorithm; " + e.getMessage());
     }
@@ -187,7 +187,7 @@ class TestManualSorter {
   @Test
   void testIsSortable_MergeSort() {
     String testName = "testIsSortable_MergeSort";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int[] array = new int[] {12, 23, 15, 22, 17, 6, 19, 8, 1, 3, 16, 24, 10, 7, 5, 25, 18, 13, 14,
           9, 4, 20, 2, 11, 21};
@@ -202,9 +202,9 @@ class TestManualSorter {
       assertEquals(418, testManualSorter.isSortable(-1),
           "Test that ManualSorter.isSortable() returns the correct number of operations required to"
               + " sort an array, excluding unnecessary operations");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing isSortable() on a ManualSorter instance with "
           + "the merge sort algorithm; " + e.getMessage());
     }
@@ -213,7 +213,7 @@ class TestManualSorter {
   @Test
   void testGetCurrentIndexA() {
     String testName = "testGetCurrentIndexA";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertEquals(-1, testManualSorter.getCurrentIndexA(),
@@ -225,9 +225,9 @@ class TestManualSorter {
       testManualSorter.step();
       assertEquals(1, testManualSorter.getCurrentIndexA(),
           "Test that currentIndexA in a ManualSorter instance is now 1 after execution");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing testGetCurrentIndexA() on a ManualSorter "
           + "instance; " + e.getMessage());
     }
@@ -236,7 +236,7 @@ class TestManualSorter {
   @Test
   void testGetCurrentIndexB() {
     String testName = "testGetCurrentIndexB";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertEquals(-1, testManualSorter.getCurrentIndexB(),
@@ -247,9 +247,9 @@ class TestManualSorter {
       testManualSorter.step();
       assertEquals(2, testManualSorter.getCurrentIndexB(),
           "Test that currentIndexB in a ManualSorter instance is now 2 after execution");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e
           + " thrown while testing testGetCurrentIndexB() on a ManualSorter instance; "
           + e.getMessage());
@@ -259,7 +259,7 @@ class TestManualSorter {
   @Test
   void testGetCurrentOperationType() {
     String testName = "testGetCurrentOperationType";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertEquals(null, testManualSorter.getCurrentOperationType(),
@@ -271,9 +271,9 @@ class TestManualSorter {
       testManualSorter.step();
       assertEquals(SortingAlgorithmOperation.SWAP, testManualSorter.getCurrentOperationType(),
           "Test that currentOperationType in a ManualSorter instance is now SWAP after execution");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing testGetCurrentOperationType() on a "
           + "ManualSorter instance; " + e.getMessage());
     }
@@ -282,7 +282,7 @@ class TestManualSorter {
   @Test
   void testStepOnEmptyDequeReturnsFalse() {
     String testName = "testStepOnEmptyDequeReturnsFalse";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertFalse(testManualSorter.step(), "Test that stepping on a ManualSorter instance with no "
@@ -292,9 +292,9 @@ class TestManualSorter {
           + "enqueueing an operation returns true");
       assertFalse(testManualSorter.step(), "Test that stepping on a ManualSorter instance with no "
           + "more queued operations returns false");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing testStepOnEmptyDequeReturnsFalse() on a "
           + "ManualSorter instance; " + e.getMessage());
     }
@@ -303,7 +303,7 @@ class TestManualSorter {
   @Test
   void testMoveLiteralOperation() {
     String testName = "testMoveLiteralOperation";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
       assertTrue(
@@ -320,9 +320,9 @@ class TestManualSorter {
           Arrays.equals(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, testManualSorter.getArray()),
           "Test that array in ManualSorter matches the expected array after the move literal "
               + "operations");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing the move literal operation with an instance "
           + "of ManualSorter; " + e.getMessage());
     }
@@ -331,15 +331,15 @@ class TestManualSorter {
   @Test
   void testGetUsingTemporaryArraysStatus() {
     String testName = "testGetUsingTemporaryArraysStatus";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertFalse(testManualSorter.getUsingTemporaryArraysStatus(), "Test that "
           + "getUsingTemporaryArraysStatus() returns false upon the creation of a new ManualSorter "
           + "instance");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing getUsingTemporaryArraysStatus() on an instance"
           + " of ManualSorter; " + e.getMessage());
     }
@@ -348,7 +348,7 @@ class TestManualSorter {
   @Test
   void testSetUsingTemporaryArraysStatus() {
     String testName = "testSetUsingTemporaryArraysStatus";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertFalse(testManualSorter.getUsingTemporaryArraysStatus(), "Test that "
@@ -358,9 +358,9 @@ class TestManualSorter {
       assertTrue(testManualSorter.getUsingTemporaryArraysStatus(),
           "Test that getUsingTemporaryArraysStatus() returns true after calling "
               + "setUsingTemporaryArraysStatus(true)");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing setUsingTemporaryArraysStatus() on an instance"
           + " of ManualSorter; " + e.getMessage());
     }
@@ -369,7 +369,7 @@ class TestManualSorter {
   @Test
   void testGetPrimarySelectedArray_Key() {
     String testName = "testGetPrimarySelectedArray_Key";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertEquals(-1, testManualSorter.getPrimarySelectedArray_Key(),
@@ -384,9 +384,9 @@ class TestManualSorter {
           "Test that testManualSorter steps and loads a compare operation successfully");
       assertEquals(4, testManualSorter.getPrimarySelectedArray_Key(),
           "Test that getPrimarySelectedArray_Key() returns 4 after comparing elements in array 4");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing getPrimarySelectedArray_Key() on an instance "
           + "of ManualSorter; " + e.getMessage());
     }
@@ -395,7 +395,7 @@ class TestManualSorter {
   @Test
   void testGetPrimarySelectedArray_Array() {
     String testName = "testGetPrimarySelectedArray_Array";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertEquals(null, testManualSorter.getPrimarySelectedArray_Array(),
@@ -416,9 +416,9 @@ class TestManualSorter {
               + "elements in array 4");
       assertArrayEquals(new int[] {1, 2, 3}, testManualSorter.getArray(),
           "Test that the original array in testManualSorter remains unmodified");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing testGetPrimarySelectedArray_Array() on an "
           + "instance of ManualSorter; " + e.getMessage());
     }
@@ -427,7 +427,7 @@ class TestManualSorter {
   @Test
   void testMultiArrayOperation_Create_Array() {
     String testName = "testMultiArrayOperation_Create_Array";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       testManualSorter.setUsingTemporaryArraysStatus(true);
@@ -437,9 +437,9 @@ class TestManualSorter {
           "Test that a ManualSorter instance will not overwrite the primary array");
       assertTrue(testManualSorter.step(),
           "Test that a ManualSorter will create a new array of size 10 at key 1");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing a CREATE_ARRAY operation on an instance of "
           + "ManualSorter; " + e.getMessage());
     }
@@ -448,7 +448,7 @@ class TestManualSorter {
   @Test
   void testMultiArrayOperation_Move_Literal() {
     String testName = "testMultiArrayOperation_Move_Literal";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 4, 5});
       testManualSorter.setUsingTemporaryArraysStatus(true);
@@ -475,9 +475,9 @@ class TestManualSorter {
       }
       assertArrayEquals(new int[] {50, 100, 150, 200, 250}, testManualSorter.getArray(),
           "Test that the original array is updated as expected");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing a MOVE_LITERAL operation on "
           + "an instance of ManualSorter; " + e.getMessage());
     }
@@ -486,7 +486,7 @@ class TestManualSorter {
   @Test
   void testMultiArrayOperation_Compare() {
     String testName = "testMultiArrayOperation_Compare";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 4, 5});
       testManualSorter.setUsingTemporaryArraysStatus(true);
@@ -513,9 +513,9 @@ class TestManualSorter {
           "Test that getCurrentSelectedArray_Key returns 1");
       assertFalse(testManualSorter.step(),
           "Test that there are no operations remaining and step() returns false");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing testMultiArrayOperation_COMPARE() on an "
           + "instance of ManualSorter; " + e.getMessage());
     }
@@ -524,7 +524,7 @@ class TestManualSorter {
   @Test
   void testMultiArrayOperation_Swap() {
     String testName = "testMultiArrayOperation_Swap";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 4, 5});
       testManualSorter.setUsingTemporaryArraysStatus(true);
@@ -572,9 +572,9 @@ class TestManualSorter {
       assertArrayEquals(new int[] {1, 10, 30, 40},
           testManualSorter.getSecondarySelectedArray_Array(), "Test that the SWAP operation between"
               + " two different arrays correctly modified the temporary array");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing a SWAP operation on an instance of "
           + "ManualSorter; " + e.getMessage());
     }
@@ -583,7 +583,7 @@ class TestManualSorter {
   @Test
   void testMultiArrayOperation_Delete_Array() {
     String testName = "testMultiArrayOperation_Delete_Array";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3, 4, 5});
       testManualSorter.setUsingTemporaryArraysStatus(true);
@@ -605,9 +605,9 @@ class TestManualSorter {
       assertEquals(null, testManualSorter.getPrimarySelectedArray_Array(),
           "Test that getCurrentSelectedArray_Array() returns null after "
               + "deleting the temporary array");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing a DELETE_ARRAY operation "
           + "on an instance of ManualSorter; " + e.getMessage());
     }
@@ -616,7 +616,7 @@ class TestManualSorter {
   @Test
   void testGetSecondarySelectedArray_Key() {
     String testName = "testGetSecondarySelectedArray_Key";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertEquals(-1, testManualSorter.getSecondarySelectedArray_Key(),
@@ -634,9 +634,9 @@ class TestManualSorter {
           "Test that testManualSorter steps and loads a compare operation successfully");
       assertEquals(6, testManualSorter.getSecondarySelectedArray_Key(), "Test that "
           + "getSecondarySelectedArray_Key() returns 6 after comparing elements in array 4");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing getSecondarySelectedArray_Key() on an instance"
           + " of ManualSorter; " + e.getMessage());
     }
@@ -645,7 +645,7 @@ class TestManualSorter {
   @Test
   void testGetSecondarySelectedArray_Array() {
     String testName = "testGetSecondarySelectedArray_Array";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       ManualSorter testManualSorter = new ManualSorter(new int[] {1, 2, 3});
       assertEquals(null, testManualSorter.getSecondarySelectedArray_Array(),
@@ -672,9 +672,9 @@ class TestManualSorter {
               + "elements in array 4 and 7");
       assertArrayEquals(new int[] {1, 2, 3}, testManualSorter.getArray(),
           "Test that the original array in testManualSorter remains unmodified");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing getSecondarySelectedArray_Array() on an "
           + "instance of ManualSorter; " + e.getMessage());
     }

@@ -12,14 +12,14 @@ class TestSortingAlgorithmOperation {
   @Test
   void testInitialiseSortingAlgorithmOperation_Swap() {
     String testName = "testInitialiseSortingAlgorithmOperation_Swap";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       SortingAlgorithmOperation testOperation = SortingAlgorithmOperation.SWAP;
       assertTrue(testOperation == SortingAlgorithmOperation.SWAP,
           "Test that a new SortingAlgorithmObject correctly initialises with operation SWAP");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing creating a SortingAlgorithmOperation object of"
           + " type SWAP; " + e.getMessage());
     }
@@ -28,14 +28,14 @@ class TestSortingAlgorithmOperation {
   @Test
   void testInitialiseSortingAlgorithmOperation_Compare() {
     String testName = "testInitialiseSortingAlgorithmOperation_Compare";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       SortingAlgorithmOperation testOperation = SortingAlgorithmOperation.COMPARE;
       assertTrue(testOperation == SortingAlgorithmOperation.COMPARE, "Test that a new "
           + "SortingAlgorithmObject correctly initialises with operation COMPARE");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing creating a SortingAlgorithmOperation object of"
           + " type COMPARE; " + e.getMessage());
     }
@@ -44,14 +44,14 @@ class TestSortingAlgorithmOperation {
   @Test
   void testInitialiseSortingAlgorithmOperation_Move_Literal() {
     String testName = "testInitialiseSortingAlgorithmOperation_Move_Literal";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       SortingAlgorithmOperation testOperation = SortingAlgorithmOperation.MOVE_LITERAL;
       assertTrue(testOperation == SortingAlgorithmOperation.MOVE_LITERAL, "Test that a new "
           + "SortingAlgorithmObject correctly initialises with operation MOVE_LITERAL");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing creating a SortingAlgorithmOperation object "
           + "of type MOVE_LITERAL; " + e.getMessage());
     }

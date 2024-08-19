@@ -18,14 +18,14 @@ class TestSelectionSort {
   @Test
   void testCreateSelectionSortInstance() {
     String testName = "testCreateSelectionSortInstance";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       SelectionSort testSelectionSort = new SelectionSort(new int[] {1, 2, 3});
       assertTrue(testSelectionSort instanceof SelectionSort,
           "Test that a new instance of SelectionSort is created successfully");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing creating an instance of SelectionSort; "
           + e.getMessage());
     }
@@ -34,15 +34,15 @@ class TestSelectionSort {
   @Test
   void testGetInputArray() {
     String testName = "testGetInputArray";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       SelectionSort testSelectionSort = new SelectionSort(new int[] {5, 10, 15});
       int[] expectedArray = {5, 10, 15};
       assertArrayEquals(expectedArray, testSelectionSort.getInputArray(),
           "Test that getInputArray() returns the correct array");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing getting the input array from an instance of "
           + "SelectionSort; " + e.getMessage());
     }
@@ -51,7 +51,7 @@ class TestSelectionSort {
   @Test
   void testSetInputArray() {
     String testName = "testSetInputArray";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int[] array1 = {1, 2, 3, 4, 5};
       int[] array2 = {5, 10, 15, 20, 25};
@@ -61,9 +61,9 @@ class TestSelectionSort {
       testSelectionSort.setInputArray(array2);
       assertArrayEquals(array2, testSelectionSort.getInputArray(),
           "Test that the new array is returned correctly after using setInputArray()");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing setting the input array of an instance of "
           + "SelectionSort; " + e.getMessage());
     }
@@ -72,7 +72,7 @@ class TestSelectionSort {
   @Test
   void testSelectionSort() {
     String testName = "testSelectionSort";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int[] unsortedArray = {5, 1, 7, 3, 4, 8, 2, 6};
       int[] sortedArray = {1, 2, 3, 4, 5, 6, 7, 8};
@@ -86,9 +86,9 @@ class TestSelectionSort {
           "Test that the basic array inside testSelectionSort is sorted after calling sort()");
       assertTrue(testSelectionSort.isSorted(),
           "Test that isSorted() returns true after calling " + "sort()");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing selection sort with a basic array; "
           + e.getMessage());
     }
@@ -97,7 +97,7 @@ class TestSelectionSort {
   @Test
   void testSelectionSortWithMetrics() {
     String testName = "testSelectionSortWithMetrics";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int[] unsortedArray = {3, 9, 1, 7, 8, 2, 5, 4, 10, 6};
       int[] sortedArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -127,9 +127,9 @@ class TestSelectionSort {
           + "testSelectionSort is 9 after calling sortWithMetrics()");
       assertEquals(118, testMetrics.getArrayAccesses(), "Test that the arrayAccesses field inside "
           + "testSelectionSort is 118 after calling sortWithMetrics()");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing selection sort with metrics with a basic "
           + "array; " + e.getMessage());
     }
@@ -138,7 +138,7 @@ class TestSelectionSort {
   @Test
   void testSelectionSortWithManualSorter() {
     String testName = "testSelectionSortWithManualSorter";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int[] unsortedArray = {7, 5, 3, 6, 10, 1, 4, 9, 2, 8};
       int[] sortedArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -151,9 +151,9 @@ class TestSelectionSort {
           break;
         }
       }
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing selection sort with a manual sorter with a "
           + "basic array; " + e.getMessage());
     }
@@ -162,7 +162,7 @@ class TestSelectionSort {
   @Test
   void stressTestSelectionSort() {
     String testName = "stressTestSelectionSort";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int arraySize = 50000;
       AuxiliaryTestMethods.logMessage(className,
@@ -181,9 +181,9 @@ class TestSelectionSort {
           + " inside testSelectionSort is sorted after calling sort()");
       assertTrue(testSelectionSort.isSorted(),
           "Test that isSorted() returns true after calling sort()");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while stress testing selection sort; " + e.getMessage());
     }
   }
@@ -191,7 +191,7 @@ class TestSelectionSort {
   @Test
   void stressTestSelectionSortWithMetrics() {
     String testName = "stressTestSelectionSortWithMetrics";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int arraySize = 50000;
       AuxiliaryTestMethods.logMessage(className,
@@ -222,9 +222,9 @@ class TestSelectionSort {
           + "testSelectionSort is no longer zero after calling sortWithMetrics()");
       assertNotEquals(0, testMetrics.getPasses(), "Test that the passes field inside "
           + "testSelectionSort is no longer zero after calling sortWithMetrics()");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while stress testing selection sort with metrics; "
           + e.getMessage());
     }
@@ -233,7 +233,7 @@ class TestSelectionSort {
   @Test
   void stressTestSelectionSortWithManualSorter() {
     String testName = "stressTestSelectionSortWithManualSorter";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int arraySize = 2500;
       AuxiliaryTestMethods.logMessage(className,
@@ -256,9 +256,9 @@ class TestSelectionSort {
           break;
         }
       }
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while stress testing selection sort with a manual sorter; "
           + e.getMessage());
     }

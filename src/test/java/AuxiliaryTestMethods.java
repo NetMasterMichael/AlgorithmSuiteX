@@ -48,6 +48,19 @@ public class AuxiliaryTestMethods {
         RESET + "[" + BRIGHT_BLUE_BOLD_TEXT + testClassName + RESET + "] => " + message + RESET);
   }
 
+
+  /**
+   * Outputs a message to the console consistent with the format used by other logging methods in
+   * AuxiliaryTestMethods. Used for outputting a test started message.
+   * 
+   * @param testClassName Name of test class
+   * @param testMethodName Name of test method
+   */
+  public static void logStartTest(String testClassName, String testMethodName) {
+    System.out.println(RESET + "[" + BRIGHT_BLUE_BOLD_TEXT + testClassName + RESET + "] => "
+        + testMethodName + RESET + " started");
+  }
+
   /**
    * Outputs a message to the console consistent with the format used by other logging methods in
    * AuxiliaryTestMethods. Used for outputting a colourful pass message.
@@ -55,7 +68,7 @@ public class AuxiliaryTestMethods {
    * @param testClassName Name of test class
    * @param testMethodName Name of test method that has passed
    */
-  public static void logPass(String testClassName, String testMethodName) {
+  public static void logPassTest(String testClassName, String testMethodName) {
     System.out.println(RESET + "[" + BRIGHT_BLUE_BOLD_TEXT + testClassName + RESET + "] => "
         + testMethodName + " has " + BRIGHT_GREEN_BOLD_TEXT + "PASSED" + RESET);
   }
@@ -67,9 +80,9 @@ public class AuxiliaryTestMethods {
    * @param testClassName Name of test class
    * @param testMethodName Name of test method that has failed
    */
-  public static void logFail(String testClassName, String testMethodName) {
+  public static void logExceptionThrown(String testClassName, String testMethodName) {
     System.out.println(RESET + RED_BACKGROUND_WHITE_BOLD_TEXT + "[" + testClassName + "] => "
-        + testMethodName + " has FAILED. See reason below:" + RESET);
+        + testMethodName + " has thrown an exception. See EXCEPTION below:" + RESET);
   }
 
   /**

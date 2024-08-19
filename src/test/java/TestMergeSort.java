@@ -19,14 +19,14 @@ class TestMergeSort {
   @Test
   void testCreateMergeSortObject() {
     String testName = "testCreateMergeSortObject";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       MergeSort testMergeSort = new MergeSort(new int[] {1, 2, 3});
       assertTrue(testMergeSort instanceof MergeSort,
           "Test that a new instance of MergeSort is created successfully");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing creating an instance of MergeSort; "
           + e.getMessage());
     }
@@ -35,15 +35,15 @@ class TestMergeSort {
   @Test
   void testGetInputArray() {
     String testName = "testGetInputArray";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       MergeSort testMergeSort = new MergeSort(new int[] {5, 10, 15});
       int[] expectedArray = {5, 10, 15};
       assertArrayEquals(expectedArray, testMergeSort.getInputArray(),
           "Test that getInputArray() returns the correct array");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing getting the input array from an instance of "
           + "MergeSort; " + e.getMessage());
     }
@@ -52,7 +52,7 @@ class TestMergeSort {
   @Test
   void testSetInputArray() {
     String testName = "testSetInputArray";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int[] array1 = {1, 2, 3, 4, 5};
       int[] array2 = {5, 10, 15, 20, 25};
@@ -63,9 +63,9 @@ class TestMergeSort {
       testMergeSort.setInputArray(array2);
       assertArrayEquals(array2, testMergeSort.getInputArray(),
           "Test that the new array is returned correctly after using setInputArray()");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing setting the input array of an instance of "
           + "MergeSort; " + e.getMessage());
     }
@@ -74,7 +74,7 @@ class TestMergeSort {
   @Test
   void testMergeSort() {
     String testName = "testMergeSort";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int[] unsortedArray = {8, 6, 3, 7, 2, 5, 4, 1};
       int[] sortedArray = {1, 2, 3, 4, 5, 6, 7, 8};
@@ -88,9 +88,9 @@ class TestMergeSort {
           "Test that the basic array inside testMergeSort is sorted after calling sort()");
       assertTrue(testMergeSort.isSorted(),
           "Test that isSorted() returns true after calling sort()");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing merge sort with a basic array; "
           + e.getMessage());
     }
@@ -99,7 +99,7 @@ class TestMergeSort {
   @Test
   void testMergeSortWithMetrics() {
     String testName = "testMergeSortWithMetrics";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int[] unsortedArray = {2, 10, 3, 4, 8, 9, 7, 1, 6, 5};
       int[] sortedArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -131,9 +131,9 @@ class TestMergeSort {
       // is 9 after calling sortWithMetrics()");
       assertEquals(182, testMetrics.getArrayAccesses(), "Test that the arrayAccesses field inside "
           + "testMergeSort is 182 after calling sortWithMetrics()");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing merge sort with metrics with a basic array; "
           + e.getMessage());
     }
@@ -142,7 +142,7 @@ class TestMergeSort {
   @Test
   void testMergeSortWithManualSorter() {
     String testName = "testMergeSortWithManualSorter";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int[] unsortedArray = {7, 5, 3, 6, 10, 1, 4, 9, 2, 8};
       int[] sortedArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -155,9 +155,9 @@ class TestMergeSort {
           break;
         }
       }
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing merge sort with a manual sorter with a basic "
           + "array; " + e.getMessage());
     }
@@ -166,7 +166,7 @@ class TestMergeSort {
   @Test
   void stressTestMergeSort() {
     String testName = "stressTestMergeSort";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int arraySize = 50000;
       AuxiliaryTestMethods.logMessage(className,
@@ -185,9 +185,9 @@ class TestMergeSort {
           "Test that the random array inside testMergeSort is sorted after calling sort()");
       assertTrue(testMergeSort.isSorted(),
           "Test that isSorted() returns true after calling sort()");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while stress testing merge sort; " + e.getMessage());
     }
   }
@@ -195,7 +195,7 @@ class TestMergeSort {
   @Test
   void stressTestMergeSortWithMetrics() {
     String testName = "stressTestMergeSortWithMetrics";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int arraySize = 50000;
       AuxiliaryTestMethods.logMessage(className,
@@ -222,9 +222,9 @@ class TestMergeSort {
           + "testMergeSort is no longer zero after calling sortWithMetrics()");
       assertNotEquals(0, testMetrics.getSwaps(), "Test that the swaps field inside testMergeSort is"
           + " no longer zero after calling sortWithMetrics()");
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while stress testing merge sort with metrics; "
           + e.getMessage());
     }
@@ -233,7 +233,7 @@ class TestMergeSort {
   @Test
   void stressTestMergeSortWithManualSorter() {
     String testName = "stressTestMergeSortWithManualSorter";
-    AuxiliaryTestMethods.logMessage(className, testName + " started");
+    AuxiliaryTestMethods.logStartTest(className, testName);
     try {
       int arraySize = 50000;
       AuxiliaryTestMethods.logMessage(className,
@@ -256,9 +256,9 @@ class TestMergeSort {
           break;
         }
       }
-      AuxiliaryTestMethods.logPass(className, testName);
+      AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
-      AuxiliaryTestMethods.logFail(className, testName);
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while stress testing merge sort; " + e.getMessage());
     }
   }
