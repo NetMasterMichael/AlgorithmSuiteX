@@ -62,6 +62,17 @@ public class BubbleSort implements SortingAlgorithm {
     this.inputArray = newInputArray;
     this.metrics = new SortingAlgorithmMetrics();
   }
+  
+  /**
+   * Gets the SortingAlgorithmMetrics object containing performance metrics from this BubbleSort
+   * object.
+   * 
+   * @return SortingAlgorithmMetrics object containing performance metrics
+   */
+  @Override
+  public SortingAlgorithmMetrics getMetrics() {
+    return metrics;
+  }
 
   /**
    * Sorts the array inside inputArray using the bubble sort algorithm with optimisations. Use this
@@ -96,17 +107,6 @@ public class BubbleSort implements SortingAlgorithm {
       // Otherwise, reduce number of pairs to check and run another pass.
       indicesRemaining--;
     }
-  }
-
-  /**
-   * Gets the SortingAlgorithmMetrics object containing performance metrics from this BubbleSort
-   * object.
-   * 
-   * @return SortingAlgorithmMetrics object containing performance metrics
-   */
-  @Override
-  public SortingAlgorithmMetrics getMetrics() {
-    return metrics;
   }
 
   /**

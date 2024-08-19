@@ -65,6 +65,17 @@ public class SelectionSort implements SortingAlgorithm {
   }
 
   /**
+   * Gets the SortingAlgorithmMetrics object containing performance metrics from this SelectionSort
+   * object.
+   * 
+   * @return SortingAlgorithmMetrics object containing performance metrics
+   */
+  @Override
+  public SortingAlgorithmMetrics getMetrics() {
+    return metrics;
+  }
+
+  /**
    * Sorts the array inside inputArray using the selection sort algorithm with optimisations. Use
    * this method when assessing raw algorithm performance.
    */
@@ -90,17 +101,6 @@ public class SelectionSort implements SortingAlgorithm {
         inputArray[i] = buffer;
       }
     }
-  }
-
-  /**
-   * Gets the SortingAlgorithmMetrics object containing performance metrics from this SelectionSort
-   * object.
-   * 
-   * @return SortingAlgorithmMetrics object containing performance metrics
-   */
-  @Override
-  public SortingAlgorithmMetrics getMetrics() {
-    return metrics;
   }
 
   /**
