@@ -21,7 +21,7 @@ import java.util.Arrays;
 public class InsertionSort implements SortingAlgorithm {
 
   /** Array that is currently being worked on by the sorting algorithm. */
-  private int[] inputArray;
+  private int[] mainArray;
 
   /** SortingAlgorithmMetrics object for tracking metrics of the algorithm. */
   private SortingAlgorithmMetrics metrics;
@@ -29,10 +29,10 @@ public class InsertionSort implements SortingAlgorithm {
   /**
    * Constructor for creating a InsertionSort object to sort an array of integers.
    * 
-   * @param inputArray array to sort
+   * @param inputArray Array to initialise into mainArray for sorting
    */
   public InsertionSort(int[] inputArray) {
-    this.inputArray = inputArray;
+    this.mainArray = inputArray;
     this.metrics = new SortingAlgorithmMetrics();
   }
 
@@ -42,18 +42,18 @@ public class InsertionSort implements SortingAlgorithm {
    * @return Array currently inside of InsertionSort instance
    */
   @Override
-  public int[] getInputArray() {
-    return inputArray;
+  public int[] getMainArray() {
+    return mainArray;
   }
 
   /**
    * Sets the array inside the InsertionSort object to the provided array.
    * 
-   * @param newInputArray Array to set inside InsertionSort instance
+   * @param inputArray New array to initialise into mainArray for sorting
    */
   @Override
-  public void setInputArray(int[] newInputArray) {
-    this.inputArray = newInputArray;
+  public void setMainArray(int[] inputArray) {
+    this.mainArray = inputArray;
   }
 
   /**
@@ -68,33 +68,33 @@ public class InsertionSort implements SortingAlgorithm {
   }
 
   /**
-   * Sorts the array inside inputArray using the insertion sort algorithm with optimisations. Use
+   * Sorts the array inside mainArray using the insertion sort algorithm with optimisations. Use
    * this method when assessing raw algorithm performance.
    */
   @Override
   public void sort() {
-    int arrayLength = inputArray.length;
+    int arrayLength = mainArray.length;
     for (int i = 1; i < arrayLength; i++) {
-      int buffer = inputArray[i];
+      int buffer = mainArray[i];
       int j = i - 1;
 
       // While value at j'th index is less than buffer, move each j'th index forward
       // by one
-      while (j >= 0 && inputArray[j] > buffer) {
-        inputArray[j + 1] = inputArray[j];
+      while (j >= 0 && mainArray[j] > buffer) {
+        mainArray[j + 1] = mainArray[j];
         j--;
       }
-      inputArray[j + 1] = buffer;
+      mainArray[j + 1] = buffer;
     }
   }
 
   /**
-   * Sorts the array inside inputArray using the insertion sort algorithm with optimisations, while
+   * Sorts the array inside mainArray using the insertion sort algorithm with optimisations, while
    * keeping track of metrics. Use this method when assessing algorithm optimisation.
    */
   @Override
   public void sortWithMetrics() {
-    int arrayLength = inputArray.length;
+    int arrayLength = mainArray.length;
     // For loop has been converted into a while loop for more accurate comparisons
     // tracking
     int i = 1;
@@ -104,7 +104,7 @@ public class InsertionSort implements SortingAlgorithm {
         break;
       }
 
-      int buffer = inputArray[i];
+      int buffer = mainArray[i];
       metrics.increaseArrayAccesses(1);
       int j = i - 1;
 
@@ -113,16 +113,16 @@ public class InsertionSort implements SortingAlgorithm {
       while (true) {
         metrics.increaseComparisons(2);
         metrics.increaseArrayAccesses(1);
-        if (!(j >= 0 && inputArray[j] > buffer)) {
+        if (!(j >= 0 && mainArray[j] > buffer)) {
           break;
         }
-        inputArray[j + 1] = inputArray[j];
+        mainArray[j + 1] = mainArray[j];
         metrics.increaseArrayAccesses(2); // One access during condition, two accesses on line above
         metrics.incrementSwaps();
         j--;
       }
 
-      inputArray[j + 1] = buffer;
+      mainArray[j + 1] = buffer;
       metrics.increaseArrayAccesses(1);
       metrics.incrementPasses();
       i++;
@@ -131,30 +131,30 @@ public class InsertionSort implements SortingAlgorithm {
 
   /**
    * Creates a separate instance of this algorithm as a ManualSorter object with an independent copy
-   * of inputArray, which will be able to sort the array by stepping through a queue of operations
+   * of mainArray, which will be able to sort the array by stepping through a queue of operations
    * that correspond with the insertion sort algorithm.
    * 
    * @return ManualSorter object queued with operations of insertion sort algorithm
    */
   @Override
   public ManualSorter preComputeManualSort() {
-    ManualSorter manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length));
-    int[] inputArrayDuplicate = (Arrays.copyOf(inputArray, inputArray.length));
+    ManualSorter manualSorter = new ManualSorter(Arrays.copyOf(mainArray, mainArray.length));
+    int[] mainArrayDuplicate = (Arrays.copyOf(mainArray, mainArray.length));
 
-    int arrayLength = inputArrayDuplicate.length;
+    int arrayLength = mainArrayDuplicate.length;
     for (int i = 1; i < arrayLength; i++) {
-      int buffer = inputArrayDuplicate[i];
+      int buffer = mainArrayDuplicate[i];
       int j = i - 1;
 
       // While value at j'th index is less than buffer, move each j'th index forward
       // by one
-      while (j >= 0 && inputArrayDuplicate[j] > buffer) {
+      while (j >= 0 && mainArrayDuplicate[j] > buffer) {
         manualSorter.enqueueOperation(SortingAlgorithmOperation.COMPARE, j, i);
         manualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, j, j + 1);
-        inputArrayDuplicate[j + 1] = inputArrayDuplicate[j];
+        mainArrayDuplicate[j + 1] = mainArrayDuplicate[j];
         j--;
       }
-      inputArrayDuplicate[j + 1] = buffer;
+      mainArrayDuplicate[j + 1] = buffer;
     }
     return manualSorter;
   }

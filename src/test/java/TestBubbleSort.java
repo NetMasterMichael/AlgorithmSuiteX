@@ -39,7 +39,7 @@ class TestBubbleSort {
     try {
       BubbleSort testBubbleSort = new BubbleSort(new int[] {5, 10, 15});
       int[] expectedArray = {5, 10, 15};
-      assertArrayEquals(expectedArray, testBubbleSort.getInputArray(),
+      assertArrayEquals(expectedArray, testBubbleSort.getMainArray(),
           "Test that getInputArray() " + "returns the correct array");
       AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
@@ -57,10 +57,10 @@ class TestBubbleSort {
       int[] array1 = {1, 2, 3, 4, 5};
       int[] array2 = {5, 10, 15, 20, 25};
       BubbleSort testBubbleSort = new BubbleSort(array1);
-      assertFalse(Arrays.equals(array2, testBubbleSort.getInputArray()), "Test that the array in "
+      assertFalse(Arrays.equals(array2, testBubbleSort.getMainArray()), "Test that the array in "
           + "testBubbleSort is different to array2 before using setInputArray()");
-      testBubbleSort.setInputArray(array2);
-      assertArrayEquals(array2, testBubbleSort.getInputArray(),
+      testBubbleSort.setMainArray(array2);
+      assertArrayEquals(array2, testBubbleSort.getMainArray(),
           "Test that the new array is returned correctly after using setInputArray()");
       AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
@@ -78,12 +78,12 @@ class TestBubbleSort {
       int[] unsortedArray = {8, 6, 3, 7, 2, 5, 4, 1};
       int[] sortedArray = {1, 2, 3, 4, 5, 6, 7, 8};
       BubbleSort testBubbleSort = new BubbleSort(unsortedArray);
-      assertFalse(Arrays.equals(sortedArray, testBubbleSort.getInputArray()),
+      assertFalse(Arrays.equals(sortedArray, testBubbleSort.getMainArray()),
           "Test that the basic array inside testBubbleSort is unsorted before calling sort()");
       assertFalse(testBubbleSort.isSorted(),
           "Test that isSorted() returns false before calling sort()");
       testBubbleSort.sort();
-      assertArrayEquals(sortedArray, testBubbleSort.getInputArray(),
+      assertArrayEquals(sortedArray, testBubbleSort.getMainArray(),
           "Test that the basic array inside testBubbleSort is sorted after calling sort()");
       assertTrue(testBubbleSort.isSorted(),
           "Test that isSorted() returns true after calling sort()");
@@ -105,7 +105,7 @@ class TestBubbleSort {
       BubbleSort testBubbleSort = new BubbleSort(unsortedArray);
       SortingAlgorithmMetrics testMetrics = testBubbleSort.getMetrics();
       // Pre-checks
-      assertFalse(Arrays.equals(sortedArray, testBubbleSort.getInputArray()), "Test that the basic "
+      assertFalse(Arrays.equals(sortedArray, testBubbleSort.getMainArray()), "Test that the basic "
           + "array inside testBubbleSort is unsorted before calling sortWithMetrics()");
       assertEquals(0, testMetrics.getComparisons(), "Test that the comparisons field inside "
           + "testBubbleSort is zero before calling sortWithMetrics()");
@@ -118,7 +118,7 @@ class TestBubbleSort {
       // Call sortWithMetrics()
       testBubbleSort.sortWithMetrics();
       // Post-checks
-      assertArrayEquals(sortedArray, testBubbleSort.getInputArray(), "Test that the basic array "
+      assertArrayEquals(sortedArray, testBubbleSort.getMainArray(), "Test that the basic array "
           + "inside testBubbleSort is sorted after calling sortWithMetrics()");
       assertEquals(96, testMetrics.getComparisons(), "Test that the comparisons field inside "
           + "testBubbleSort is 44 after calling sortWithMetrics()");
@@ -174,12 +174,12 @@ class TestBubbleSort {
       int[] unsortedArray = AuxiliaryTestMethods.generateUnsortedArray(arraySize);
 
       BubbleSort testBubbleSort = new BubbleSort(unsortedArray);
-      assertFalse(Arrays.equals(sortedArray, testBubbleSort.getInputArray()), "Test that the "
+      assertFalse(Arrays.equals(sortedArray, testBubbleSort.getMainArray()), "Test that the "
           + "random array inside testBubbleSort is unsorted before calling sort()");
       assertFalse(testBubbleSort.isSorted(),
           "Test that isSorted() returns false before calling sort()");
       testBubbleSort.sort();
-      assertArrayEquals(sortedArray, testBubbleSort.getInputArray(),
+      assertArrayEquals(sortedArray, testBubbleSort.getMainArray(),
           "Test that the random array inside testBubbleSort is sorted after calling sort()");
       assertTrue(testBubbleSort.isSorted(),
           "Test that isSorted() returns true after calling sort()");
@@ -205,7 +205,7 @@ class TestBubbleSort {
       BubbleSort testBubbleSort = new BubbleSort(unsortedArray);
       SortingAlgorithmMetrics testMetrics = testBubbleSort.getMetrics();
       // Pre-checks
-      assertFalse(Arrays.equals(sortedArray, testBubbleSort.getInputArray()), "Test that the basic "
+      assertFalse(Arrays.equals(sortedArray, testBubbleSort.getMainArray()), "Test that the basic "
           + "array inside testBubbleSort is unsorted before calling sortWithMetrics()");
       assertEquals(0, testMetrics.getComparisons(), "Test that the comparisons field inside "
           + "testBubbleSort is zero before calling sortWithMetrics()");
@@ -216,7 +216,7 @@ class TestBubbleSort {
       // Call sortWithMetrics()
       testBubbleSort.sortWithMetrics();
       // Post-checks
-      assertArrayEquals(sortedArray, testBubbleSort.getInputArray(), "Test that the basic array "
+      assertArrayEquals(sortedArray, testBubbleSort.getMainArray(), "Test that the basic array "
           + "inside testBubbleSort is sorted after calling sortWithMetrics()");
       assertNotEquals(0, testMetrics.getComparisons(), "Test that the comparisons field inside "
           + "testBubbleSort is no longer zero after calling sortWithMetrics()");

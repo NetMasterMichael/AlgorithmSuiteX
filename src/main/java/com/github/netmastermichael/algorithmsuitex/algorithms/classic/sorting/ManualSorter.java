@@ -72,9 +72,7 @@ public class ManualSorter {
   /** Hash map for holding temporary arrays. */
   private HashMap<Integer, int[]> temporaryArrays;
 
-  /**
-   * Deque for holding the index of the temporary array to perform the operation on.
-   */
+  /** Deque for holding the index of the temporary array to perform the operation on. */
   private Deque<Integer> arrayIndexDeque;
 
   /**

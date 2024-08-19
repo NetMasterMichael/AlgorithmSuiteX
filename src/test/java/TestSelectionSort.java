@@ -38,7 +38,7 @@ class TestSelectionSort {
     try {
       SelectionSort testSelectionSort = new SelectionSort(new int[] {5, 10, 15});
       int[] expectedArray = {5, 10, 15};
-      assertArrayEquals(expectedArray, testSelectionSort.getInputArray(),
+      assertArrayEquals(expectedArray, testSelectionSort.getMainArray(),
           "Test that getInputArray() returns the correct array");
       AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
@@ -56,10 +56,10 @@ class TestSelectionSort {
       int[] array1 = {1, 2, 3, 4, 5};
       int[] array2 = {5, 10, 15, 20, 25};
       SelectionSort testSelectionSort = new SelectionSort(array1);
-      assertFalse(Arrays.equals(array2, testSelectionSort.getInputArray()), "Test that the array "
+      assertFalse(Arrays.equals(array2, testSelectionSort.getMainArray()), "Test that the array "
           + "in testSelectionSort is different to array2 before using setInputArray()");
-      testSelectionSort.setInputArray(array2);
-      assertArrayEquals(array2, testSelectionSort.getInputArray(),
+      testSelectionSort.setMainArray(array2);
+      assertArrayEquals(array2, testSelectionSort.getMainArray(),
           "Test that the new array is returned correctly after using setInputArray()");
       AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
@@ -77,12 +77,12 @@ class TestSelectionSort {
       int[] unsortedArray = {5, 1, 7, 3, 4, 8, 2, 6};
       int[] sortedArray = {1, 2, 3, 4, 5, 6, 7, 8};
       SelectionSort testSelectionSort = new SelectionSort(unsortedArray);
-      assertFalse(Arrays.equals(sortedArray, testSelectionSort.getInputArray()), "Test that the "
+      assertFalse(Arrays.equals(sortedArray, testSelectionSort.getMainArray()), "Test that the "
           + "basic array inside testSelectionSort is unsorted before calling sort()");
       assertFalse(testSelectionSort.isSorted(),
           "Test that isSorted() returns false before calling sort()");
       testSelectionSort.sort();
-      assertArrayEquals(sortedArray, testSelectionSort.getInputArray(),
+      assertArrayEquals(sortedArray, testSelectionSort.getMainArray(),
           "Test that the basic array inside testSelectionSort is sorted after calling sort()");
       assertTrue(testSelectionSort.isSorted(),
           "Test that isSorted() returns true after calling " + "sort()");
@@ -104,7 +104,7 @@ class TestSelectionSort {
       SelectionSort testSelectionSort = new SelectionSort(unsortedArray);
       SortingAlgorithmMetrics testMetrics = testSelectionSort.getMetrics();
       // Pre-checks
-      assertFalse(Arrays.equals(sortedArray, testSelectionSort.getInputArray()), "Test that the "
+      assertFalse(Arrays.equals(sortedArray, testSelectionSort.getMainArray()), "Test that the "
           + "basic array inside testSelectionSort is unsorted before calling sortWithMetrics()");
       assertEquals(0, testMetrics.getComparisons(), "Test that the comparisons field inside "
           + "testSelectionSort is zero before calling sortWithMetrics()");
@@ -117,7 +117,7 @@ class TestSelectionSort {
       // Call sortWithMetrics()
       testSelectionSort.sortWithMetrics();
       // Post-checks
-      assertArrayEquals(sortedArray, testSelectionSort.getInputArray(), "Test that the "
+      assertArrayEquals(sortedArray, testSelectionSort.getMainArray(), "Test that the "
           + "basic array inside testSelectionSort is sorted after calling sortWithMetrics()");
       assertEquals(118, testMetrics.getComparisons(), "Test that the comparisons field inside "
           + "testSelectionSort is 118 after calling sortWithMetrics()");
@@ -172,12 +172,12 @@ class TestSelectionSort {
       int[] unsortedArray = AuxiliaryTestMethods.generateUnsortedArray(arraySize);
 
       SelectionSort testSelectionSort = new SelectionSort(unsortedArray);
-      assertFalse(Arrays.equals(sortedArray, testSelectionSort.getInputArray()), "Test that the "
+      assertFalse(Arrays.equals(sortedArray, testSelectionSort.getMainArray()), "Test that the "
           + "random array inside testSelectionSort is unsorted before calling sort()");
       assertFalse(testSelectionSort.isSorted(),
           "Test that isSorted() returns false before calling " + "sort()");
       testSelectionSort.sort();
-      assertArrayEquals(sortedArray, testSelectionSort.getInputArray(), "Test that the random array"
+      assertArrayEquals(sortedArray, testSelectionSort.getMainArray(), "Test that the random array"
           + " inside testSelectionSort is sorted after calling sort()");
       assertTrue(testSelectionSort.isSorted(),
           "Test that isSorted() returns true after calling sort()");
@@ -203,7 +203,7 @@ class TestSelectionSort {
       SelectionSort testSelectionSort = new SelectionSort(unsortedArray);
       SortingAlgorithmMetrics testMetrics = testSelectionSort.getMetrics();
       // Pre-checks
-      assertFalse(Arrays.equals(sortedArray, testSelectionSort.getInputArray()), "Test that the "
+      assertFalse(Arrays.equals(sortedArray, testSelectionSort.getMainArray()), "Test that the "
           + "basic array inside testSelectionSort is unsorted before calling sortWithMetrics()");
       assertEquals(0, testMetrics.getComparisons(), "Test that the comparisons field inside "
           + "testSelectionSort is zero before calling sortWithMetrics()");
@@ -214,7 +214,7 @@ class TestSelectionSort {
       // Call sortWithMetrics()
       testSelectionSort.sortWithMetrics();
       // Post-checks
-      assertArrayEquals(sortedArray, testSelectionSort.getInputArray(), "Test that the basic array "
+      assertArrayEquals(sortedArray, testSelectionSort.getMainArray(), "Test that the basic array "
           + "inside testSelectionSort is sorted after calling sortWithMetrics()");
       assertNotEquals(0, testMetrics.getComparisons(), "Test that the comparisons field inside "
           + "testSelectionSort is no longer zero after calling sortWithMetrics()");

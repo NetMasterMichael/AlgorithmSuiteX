@@ -13,14 +13,14 @@ public interface SortingAlgorithm {
    * 
    * @return the input array
    */
-  int[] getInputArray();
+  int[] getMainArray();
 
   /**
    * Sets a new input array to be sorted.
    * 
    * @param newInputArray the new input array
    */
-  void setInputArray(int[] newInputArray);
+  void setMainArray(int[] newInputArray);
 
   /**
    * Gets the SortingAlgorithmMetrics object containing performance metrics from the
@@ -57,7 +57,7 @@ public interface SortingAlgorithm {
    * @return true if array is sorted, otherwise false
    */
   default boolean isSorted() {
-    int[] array = this.getInputArray();
+    int[] array = this.getMainArray();
     // Check that for all pairs in an array, the left number is smaller than the
     // right number
     for (int i = 0; i < (array.length - 1); i++) {

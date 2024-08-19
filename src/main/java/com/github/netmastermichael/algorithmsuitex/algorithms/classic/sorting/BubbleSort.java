@@ -25,7 +25,7 @@ import java.util.Arrays;
 public class BubbleSort implements SortingAlgorithm {
 
   /** Array that is currently being worked on by the sorting algorithm. */
-  private int[] inputArray;
+  private int[] mainArray;
 
   /**
    * SortingAlgorithmMetrics object for tracking performance metrics of the algorithm.
@@ -35,10 +35,10 @@ public class BubbleSort implements SortingAlgorithm {
   /**
    * Constructor for creating a BubbleSort object to sort an array of integers.
    * 
-   * @param inputArray array to sort
+   * @param inputArray Array to initialise into mainArray for sorting
    */
   public BubbleSort(int[] inputArray) {
-    this.inputArray = inputArray;
+    this.mainArray = inputArray;
     this.metrics = new SortingAlgorithmMetrics();
   }
 
@@ -48,18 +48,18 @@ public class BubbleSort implements SortingAlgorithm {
    * @return Array currently inside of BubbleSort instance
    */
   @Override
-  public int[] getInputArray() {
-    return inputArray;
+  public int[] getMainArray() {
+    return mainArray;
   }
 
   /**
    * Sets the array inside the BubbleSort object to the provided array.
    * 
-   * @param newInputArray Array to set inside BubbleSort instance
+   * @param inputArray New array to initialise into mainArray for sorting
    */
   @Override
-  public void setInputArray(int[] newInputArray) {
-    this.inputArray = newInputArray;
+  public void setMainArray(int[] inputArray) {
+    this.mainArray = inputArray;
     this.metrics = new SortingAlgorithmMetrics();
   }
   
@@ -75,7 +75,7 @@ public class BubbleSort implements SortingAlgorithm {
   }
 
   /**
-   * Sorts the array inside inputArray using the bubble sort algorithm with optimisations. Use this
+   * Sorts the array inside mainArray using the bubble sort algorithm with optimisations. Use this
    * method when assessing raw algorithm performance.
    */
   @Override
@@ -86,16 +86,16 @@ public class BubbleSort implements SortingAlgorithm {
     // Optimisation: During each pass, the highest value bubbles to the end. We know
     // the highest value moved will be sorted, so there's no need to check that
     // again. Reduce number of checks each pass.
-    int indicesRemaining = inputArray.length;
+    int indicesRemaining = mainArray.length;
     while (true) {
       swapDuringPass = false;
       // Check each pair in the array.
       for (int i = 0; i < (indicesRemaining - 1); i++) {
         // If the left number is larger than the right number, swap them.
-        if (inputArray[i] > inputArray[i + 1]) {
-          buffer = inputArray[i];
-          inputArray[i] = inputArray[i + 1];
-          inputArray[i + 1] = buffer;
+        if (mainArray[i] > mainArray[i + 1]) {
+          buffer = mainArray[i];
+          mainArray[i] = mainArray[i + 1];
+          mainArray[i + 1] = buffer;
           swapDuringPass = true;
         }
       }
@@ -110,7 +110,7 @@ public class BubbleSort implements SortingAlgorithm {
   }
 
   /**
-   * Sorts the array inside inputArray using the bubble sort algorithm with optimisations, while
+   * Sorts the array inside mainArray using the bubble sort algorithm with optimisations, while
    * keeping track of metrics. Use this method when assessing algorithm optimisation.
    */
   @Override
@@ -121,7 +121,7 @@ public class BubbleSort implements SortingAlgorithm {
     // Optimisation: During each pass, the highest value bubbles to the end. We know
     // the highest value moved will be sorted, so there's no need to check that
     // again. Reduce number of checks each pass.
-    int indicesRemaining = inputArray.length;
+    int indicesRemaining = mainArray.length;
     while (true) {
       swapDuringPass = false;
       metrics.incrementPasses();
@@ -136,12 +136,12 @@ public class BubbleSort implements SortingAlgorithm {
         // If the left number is larger than the right number, swap them.
         metrics.incrementComparisons();
         metrics.increaseArrayAccesses(2); // Two accesses during the if statement
-        if (inputArray[i] > inputArray[i + 1]) {
+        if (mainArray[i] > mainArray[i + 1]) {
           metrics.incrementSwaps();
           metrics.increaseArrayAccesses(4); // Four accesses for swapping two indices
-          buffer = inputArray[i];
-          inputArray[i] = inputArray[i + 1];
-          inputArray[i + 1] = buffer;
+          buffer = mainArray[i];
+          mainArray[i] = mainArray[i + 1];
+          mainArray[i + 1] = buffer;
           swapDuringPass = true;
         }
         i++;
@@ -158,7 +158,7 @@ public class BubbleSort implements SortingAlgorithm {
 
   /**
    * Creates a separate instance of this algorithm as a ManualSorter object with an independent copy
-   * of inputArray, which will be able to sort the array by stepping through a queue of operations
+   * of mainArray, which will be able to sort the array by stepping through a queue of operations
    * that correspond with the bubble sort algorithm.
    * 
    * @return ManualSorter object queued with operations of bubble sort algorithm
@@ -167,16 +167,16 @@ public class BubbleSort implements SortingAlgorithm {
   public ManualSorter preComputeManualSort() {
     // Create new ManualSorter object, which will be an independent copy of the
     // algorithm
-    ManualSorter manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length));
-    // Make independent copy of inputArray to sort without modifying original
-    // inputArray
-    int[] inputArrayDuplicate = Arrays.copyOf(inputArray, inputArray.length);
+    ManualSorter manualSorter = new ManualSorter(Arrays.copyOf(mainArray, mainArray.length));
+    // Make independent copy of mainArray to sort without modifying original
+    // mainArray
+    int[] mainArrayDuplicate = Arrays.copyOf(mainArray, mainArray.length);
     // Optimisation: If no swaps occur during a pass, end the algorithm early.
     boolean swapDuringPass;
     // Optimisation: During each pass, the highest value bubbles to the end. We know
     // the highest value moved will be sorted, so there's no need to check that
     // again. Reduce number of checks each pass.
-    int indicesRemaining = inputArrayDuplicate.length;
+    int indicesRemaining = mainArrayDuplicate.length;
     int buffer; // Buffer used for temporarily holding a value while swapping two indices
 
     // Sort the inputArrayDuplicate array while queueing each operation into
@@ -187,11 +187,11 @@ public class BubbleSort implements SortingAlgorithm {
       for (int i = 0; i < (indicesRemaining - 1); i++) {
         manualSorter.enqueueOperation(SortingAlgorithmOperation.COMPARE, i, i + 1);
         // If the left number is larger than the right number, swap them.
-        if (inputArrayDuplicate[i] > inputArrayDuplicate[i + 1]) {
+        if (mainArrayDuplicate[i] > mainArrayDuplicate[i + 1]) {
           manualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, i, i + 1);
-          buffer = inputArrayDuplicate[i];
-          inputArrayDuplicate[i] = inputArrayDuplicate[i + 1];
-          inputArrayDuplicate[i + 1] = buffer;
+          buffer = mainArrayDuplicate[i];
+          mainArrayDuplicate[i] = mainArrayDuplicate[i + 1];
+          mainArrayDuplicate[i + 1] = buffer;
           swapDuringPass = true;
         }
       }

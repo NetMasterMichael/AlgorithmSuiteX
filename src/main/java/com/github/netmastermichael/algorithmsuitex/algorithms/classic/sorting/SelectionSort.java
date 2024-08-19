@@ -10,7 +10,7 @@ import java.util.Arrays;
  * considered inefficient all-around for its quadratic time complexity and poor performance in
  * comparison to most other sorting algorithms. However, like bubble sort, it is also very simple to
  * understand and great for an introduction to algorithms. Its best case time complexity is also
- * still O(n^2), due to the way it makes comparisons, even if the input array is already sorted.
+ * still O(n^2), due to the way it makes comparisons, even if the main array is already sorted.
  * <p>
  * Time Complexity Best Case: O(n^2)
  * </p>
@@ -26,7 +26,7 @@ import java.util.Arrays;
 public class SelectionSort implements SortingAlgorithm {
 
   /** Array that is currently being worked on by the sorting algorithm. */
-  private int[] inputArray;
+  private int[] mainArray;
 
   /**
    * SortingAlgorithmMetrics object for tracking performance metrics of the algorithm.
@@ -39,7 +39,7 @@ public class SelectionSort implements SortingAlgorithm {
    * @param inputArray array to sort
    */
   public SelectionSort(int[] inputArray) {
-    this.inputArray = inputArray;
+    this.mainArray = inputArray;
     this.metrics = new SortingAlgorithmMetrics();
   }
 
@@ -49,18 +49,18 @@ public class SelectionSort implements SortingAlgorithm {
    * @return Array currently inside of SelectionSort instance
    */
   @Override
-  public int[] getInputArray() {
-    return inputArray;
+  public int[] getMainArray() {
+    return mainArray;
   }
 
   /**
    * Sets the array inside the SelectionSort object to the provided array.
    * 
-   * @param newInputArray Array to set inside SelectionSort instance
+   * @param inputArray Array to set inside SelectionSort instance
    */
   @Override
-  public void setInputArray(int[] newInputArray) {
-    this.inputArray = newInputArray;
+  public void setMainArray(int[] inputArray) {
+    this.mainArray = inputArray;
     this.metrics = new SortingAlgorithmMetrics();
   }
 
@@ -76,19 +76,19 @@ public class SelectionSort implements SortingAlgorithm {
   }
 
   /**
-   * Sorts the array inside inputArray using the selection sort algorithm with optimisations. Use
+   * Sorts the array inside mainArray using the selection sort algorithm with optimisations. Use
    * this method when assessing raw algorithm performance.
    */
   @Override
   public void sort() {
     int buffer;
-    int arraylen = inputArray.length; // Small optimisation to avoid recalculating the array length
+    int arraylen = mainArray.length; // Small optimisation to avoid recalculating the array length
     for (int i = 0; i < arraylen - 1; i++) { // Last element will naturally be in the last position
       // Find the index of the smallest element in the unsorted subset
       int lowestIndex = i;
       // Start from i + 1 to avoid comparing an element with itself
       for (int j = i + 1; j < arraylen; j++) {
-        if (inputArray[j] < inputArray[lowestIndex]) {
+        if (mainArray[j] < mainArray[lowestIndex]) {
           lowestIndex = j;
         }
       }
@@ -96,21 +96,21 @@ public class SelectionSort implements SortingAlgorithm {
       // the correct position
       if (lowestIndex != i) {
         // Swap the elements at i and lowestIndex
-        buffer = inputArray[lowestIndex];
-        inputArray[lowestIndex] = inputArray[i];
-        inputArray[i] = buffer;
+        buffer = mainArray[lowestIndex];
+        mainArray[lowestIndex] = mainArray[i];
+        mainArray[i] = buffer;
       }
     }
   }
 
   /**
-   * Sorts the array inside inputArray using the selection sort algorithm, while keeping track of
+   * Sorts the array inside mainArray using the selection sort algorithm, while keeping track of
    * metrics. Use this method when assessing algorithm optimisation.
    */
   @Override
   public void sortWithMetrics() {
     int buffer;
-    int arraylen = inputArray.length; // Small optimisation to avoid recalculating the array length
+    int arraylen = mainArray.length; // Small optimisation to avoid recalculating the array length
     int i = 0;
     while (true) {
       metrics.incrementComparisons();
@@ -127,7 +127,7 @@ public class SelectionSort implements SortingAlgorithm {
         }
         metrics.incrementComparisons();
         metrics.increaseArrayAccesses(2);
-        if (inputArray[j] < inputArray[lowestIndex]) {
+        if (mainArray[j] < mainArray[lowestIndex]) {
           lowestIndex = j;
         }
         j++;
@@ -139,9 +139,9 @@ public class SelectionSort implements SortingAlgorithm {
         metrics.incrementSwaps();
         metrics.increaseArrayAccesses(4);
         // Swap the elements at i and lowestIndex
-        buffer = inputArray[lowestIndex];
-        inputArray[lowestIndex] = inputArray[i];
-        inputArray[i] = buffer;
+        buffer = mainArray[lowestIndex];
+        mainArray[lowestIndex] = mainArray[i];
+        mainArray[i] = buffer;
       }
       metrics.incrementPasses();
       i++;
@@ -150,25 +150,25 @@ public class SelectionSort implements SortingAlgorithm {
 
   /**
    * Creates a separate instance of this algorithm as a ManualSorter object with an independent copy
-   * of inputArray, which will be able to sort the array by stepping through a queue of operations
+   * of mainArray, which will be able to sort the array by stepping through a queue of operations
    * that correspond with the selection sort algorithm.
    * 
    * @return ManualSorter object queued with operations of selection sort algorithm
    */
   @Override
   public ManualSorter preComputeManualSort() {
-    ManualSorter manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length));
-    int[] inputArrayDuplicate = Arrays.copyOf(inputArray, inputArray.length);
+    ManualSorter manualSorter = new ManualSorter(Arrays.copyOf(mainArray, mainArray.length));
+    int[] mainArrayDuplicate = Arrays.copyOf(mainArray, mainArray.length);
     int buffer;
     // Small optimisation to avoid recalculating the array length
-    int arraylen = inputArrayDuplicate.length;
+    int arraylen = mainArrayDuplicate.length;
     for (int i = 0; i < arraylen - 1; i++) { // Last element will naturally be in the last position
       // Find the index of the smallest element in the unsorted subset
       int lowestIndex = i;
       // Start from i + 1 to avoid comparing an element with itself
       for (int j = i + 1; j < arraylen; j++) {
         manualSorter.enqueueOperation(SortingAlgorithmOperation.COMPARE, j, lowestIndex);
-        if (inputArrayDuplicate[j] < inputArrayDuplicate[lowestIndex]) {
+        if (mainArrayDuplicate[j] < mainArrayDuplicate[lowestIndex]) {
           lowestIndex = j;
         }
       }
@@ -177,9 +177,9 @@ public class SelectionSort implements SortingAlgorithm {
       if (lowestIndex != i) {
         // Swap the elements at i and lowestIndex
         manualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, i, lowestIndex);
-        buffer = inputArrayDuplicate[lowestIndex];
-        inputArrayDuplicate[lowestIndex] = inputArrayDuplicate[i];
-        inputArrayDuplicate[i] = buffer;
+        buffer = mainArrayDuplicate[lowestIndex];
+        mainArrayDuplicate[lowestIndex] = mainArrayDuplicate[i];
+        mainArrayDuplicate[i] = buffer;
       }
     }
     return manualSorter;

@@ -21,7 +21,7 @@ import java.util.Arrays;
 public class MergeSort implements SortingAlgorithm {
 
   /** Array that is currently being worked on by the sorting algorithm. */
-  private int[] inputArray;
+  private int[] mainArray;
 
   /** SortingAlgorithmMetrics object for tracking metrics of the algorithm. */
   private SortingAlgorithmMetrics metrics;
@@ -40,21 +40,21 @@ public class MergeSort implements SortingAlgorithm {
   /**
    * Array that is currently being worked on by preComputeManualSort().
    * <p>
-   * Unlike the other sorting algorithm classes, the inputArrayDuplicate array is a class-level
-   * field in the MergeSort object, due to the recursive nature of the mergeSort and merge methods.
-   * This does not change how it works functionally, and like the other classes, there are no getter
-   * or setter methods.
+   * Unlike the other sorting algorithm classes, the mainArrayDuplicate array is a class-level field
+   * in the MergeSort object, due to the recursive nature of the mergeSort and merge methods. This
+   * does not change how it works functionally, and like the other classes, there are no getter or
+   * setter methods.
    * </p>
    */
-  private int[] inputArrayDuplicate;
+  private int[] mainArrayDuplicate;
 
   /**
    * Constructor for creating a MergeSort object to sort an array of integers.
    * 
-   * @param inputArray array to sort
+   * @param inputArray Array to initialise into mainArray for sorting
    */
   public MergeSort(int[] inputArray) {
-    this.inputArray = inputArray;
+    this.mainArray = inputArray;
     this.metrics = new SortingAlgorithmMetrics();
   }
 
@@ -64,18 +64,18 @@ public class MergeSort implements SortingAlgorithm {
    * @return Array currently inside of MergeSort instance
    */
   @Override
-  public int[] getInputArray() {
-    return inputArray;
+  public int[] getMainArray() {
+    return mainArray;
   }
 
   /**
    * Sets the array inside the MergeSort object to the provided array.
    * 
-   * @param newInputArray Array to set inside MergeSort instance
+   * @param inputArray New array to initialise into mainArray for sorting
    */
   @Override
-  public void setInputArray(int[] newInputArray) {
-    this.inputArray = newInputArray;
+  public void setMainArray(int[] inputArray) {
+    this.mainArray = inputArray;
   }
 
   /**
@@ -90,12 +90,12 @@ public class MergeSort implements SortingAlgorithm {
   }
 
   /**
-   * Sorts the array inside inputArray using the merge sort algorithm with optimisations. Use this
+   * Sorts the array inside mainArray using the merge sort algorithm with optimisations. Use this
    * method when assessing raw algorithm performance. Acts as a wrapper for the mergeSort() method.
    */
   @Override
   public void sort() {
-    mergeSort(0, inputArray.length - 1);
+    mergeSort(0, mainArray.length - 1);
   }
 
   private void mergeSort(int left, int right) {
@@ -121,12 +121,12 @@ public class MergeSort implements SortingAlgorithm {
     int[] leftArray = new int[leftArraySize];
     int[] rightArray = new int[rightArraySize];
 
-    // Copy corresponding values from inputArray to temporary arrays
+    // Copy corresponding values from mainArray to temporary arrays
     for (int i = 0; i < leftArraySize; i++) {
-      leftArray[i] = inputArray[left + i];
+      leftArray[i] = mainArray[left + i];
     }
     for (int i = 0; i < rightArraySize; i++) {
-      rightArray[i] = inputArray[midpoint + i + 1];
+      rightArray[i] = mainArray[midpoint + i + 1];
     }
 
     // Merge the arrays into one and sort at the same time
@@ -136,36 +136,36 @@ public class MergeSort implements SortingAlgorithm {
 
     while (leftIndex < leftArraySize && rightIndex < rightArraySize) {
       if (leftArray[leftIndex] <= rightArray[rightIndex]) {
-        inputArray[targetIndex] = leftArray[leftIndex];
+        mainArray[targetIndex] = leftArray[leftIndex];
         leftIndex++;
       } else {
-        inputArray[targetIndex] = rightArray[rightIndex];
+        mainArray[targetIndex] = rightArray[rightIndex];
         rightIndex++;
       }
       targetIndex++;
     }
 
     // Arrays are now merged but there may be leftover values in the temporary
-    // arrays, so copy them to inputArray
+    // arrays, so copy them to mainArray
     while (leftIndex < leftArraySize) {
-      inputArray[targetIndex] = leftArray[leftIndex];
+      mainArray[targetIndex] = leftArray[leftIndex];
       leftIndex++;
       targetIndex++;
     }
     while (rightIndex < rightArraySize) {
-      inputArray[targetIndex] = rightArray[rightIndex];
+      mainArray[targetIndex] = rightArray[rightIndex];
       rightIndex++;
       targetIndex++;
     }
   }
 
   /**
-   * Sorts the array inside inputArray using the merge sort algorithm with optimisations, while
+   * Sorts the array inside mainArray using the merge sort algorithm with optimisations, while
    * keeping track of metrics. Use this method when assessing algorithm optimisation.
    */
   @Override
   public void sortWithMetrics() {
-    mergeSortWithMetrics(0, inputArray.length - 1);
+    mergeSortWithMetrics(0, mainArray.length - 1);
   }
 
   private void mergeSortWithMetrics(int left, int right) {
@@ -192,7 +192,7 @@ public class MergeSort implements SortingAlgorithm {
     int[] leftArray = new int[leftArraySize];
     int[] rightArray = new int[rightArraySize];
 
-    // Copy corresponding values from inputArray to temporary arrays
+    // Copy corresponding values from mainArray to temporary arrays
     // These for loops have been rewritten as while loops for more accurate metrics
     // tracking
     int i = 0;
@@ -204,7 +204,7 @@ public class MergeSort implements SortingAlgorithm {
 
       metrics.increaseArrayAccesses(2);
       metrics.incrementSwaps();
-      leftArray[i] = inputArray[left + i];
+      leftArray[i] = mainArray[left + i];
       i++;
     }
 
@@ -217,7 +217,7 @@ public class MergeSort implements SortingAlgorithm {
 
       metrics.increaseArrayAccesses(2);
       metrics.incrementSwaps();
-      rightArray[i] = inputArray[midpoint + i + 1];
+      rightArray[i] = mainArray[midpoint + i + 1];
       i++;
     }
 
@@ -237,17 +237,17 @@ public class MergeSort implements SortingAlgorithm {
       metrics.increaseArrayAccesses(4); // Array accesses in if statement & swap
       metrics.incrementSwaps();
       if (leftArray[leftIndex] <= rightArray[rightIndex]) {
-        inputArray[targetIndex] = leftArray[leftIndex];
+        mainArray[targetIndex] = leftArray[leftIndex];
         leftIndex++;
       } else {
-        inputArray[targetIndex] = rightArray[rightIndex];
+        mainArray[targetIndex] = rightArray[rightIndex];
         rightIndex++;
       }
       targetIndex++;
     }
 
     // Arrays are now merged but there may be leftover values in the temporary
-    // arrays, so copy them to inputArray
+    // arrays, so copy them to mainArray
     while (true) {
       // Condition for while loop, with comparisons counted
       metrics.incrementComparisons();
@@ -256,7 +256,7 @@ public class MergeSort implements SortingAlgorithm {
       }
       metrics.increaseArrayAccesses(2);
       metrics.incrementSwaps();
-      inputArray[targetIndex] = leftArray[leftIndex];
+      mainArray[targetIndex] = leftArray[leftIndex];
       leftIndex++;
       targetIndex++;
     }
@@ -268,7 +268,7 @@ public class MergeSort implements SortingAlgorithm {
       }
       metrics.increaseArrayAccesses(2);
       metrics.incrementSwaps();
-      inputArray[targetIndex] = rightArray[rightIndex];
+      mainArray[targetIndex] = rightArray[rightIndex];
       rightIndex++;
       targetIndex++;
     }
@@ -276,17 +276,17 @@ public class MergeSort implements SortingAlgorithm {
 
   /**
    * Creates a separate instance of this algorithm as a ManualSorter object with an independent copy
-   * of inputArray, which will be able to sort the array by stepping through a queue of operations
+   * of mainArray, which will be able to sort the array by stepping through a queue of operations
    * that correspond with the merge sort algorithm.
    * 
    * @return ManualSorter object queued with operations of merge sort algorithm
    */
   @Override
   public ManualSorter preComputeManualSort() {
-    manualSorter = new ManualSorter(Arrays.copyOf(inputArray, inputArray.length));
-    inputArrayDuplicate = Arrays.copyOf(inputArray, inputArray.length);
+    manualSorter = new ManualSorter(Arrays.copyOf(mainArray, mainArray.length));
+    mainArrayDuplicate = Arrays.copyOf(mainArray, mainArray.length);
     manualSorter.setUsingTemporaryArraysStatus(true);
-    mergeSortForManualSorter(0, inputArrayDuplicate.length - 1);
+    mergeSortForManualSorter(0, mainArrayDuplicate.length - 1);
     return manualSorter;
   }
 
@@ -313,20 +313,20 @@ public class MergeSort implements SortingAlgorithm {
     manualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, leftArraySize, 1);
     manualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, rightArraySize, 2);
 
-    // Copy corresponding values from inputArray to temporary left array
+    // Copy corresponding values from mainArray to temporary left array
     int[] leftArray = new int[leftArraySize];
     for (int i = 0; i < leftArraySize; i++) {
-      leftArray[i] = inputArrayDuplicate[left + i];
-      manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, inputArray[left + i], i,
+      leftArray[i] = mainArrayDuplicate[left + i];
+      manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, mainArray[left + i], i,
           1);
     }
 
-    // Copy corresponding values from inputArray to temporary right array
+    // Copy corresponding values from mainArray to temporary right array
     int[] rightArray = new int[rightArraySize];
     for (int i = 0; i < rightArraySize; i++) {
-      rightArray[i] = inputArrayDuplicate[midpoint + i + 1];
+      rightArray[i] = mainArrayDuplicate[midpoint + i + 1];
       manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL,
-          inputArray[midpoint + i + 1], i, 2);
+          mainArray[midpoint + i + 1], i, 2);
     }
 
     // Merge the arrays into one and sort at the same time
@@ -339,30 +339,30 @@ public class MergeSort implements SortingAlgorithm {
       if (leftArray[leftIndex] <= rightArray[rightIndex]) {
         manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, leftArray[leftIndex],
             targetIndex, 0);
-        inputArrayDuplicate[targetIndex] = leftArray[leftIndex];
+        mainArrayDuplicate[targetIndex] = leftArray[leftIndex];
         leftIndex++;
       } else {
         manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL,
             rightArray[rightIndex], targetIndex, 0);
-        inputArrayDuplicate[targetIndex] = rightArray[rightIndex];
+        mainArrayDuplicate[targetIndex] = rightArray[rightIndex];
         rightIndex++;
       }
       targetIndex++;
     }
 
     // Arrays are now merged but there may be leftover values in the temporary
-    // arrays, so copy them to inputArray
+    // arrays, so copy them to mainArray
     while (leftIndex < leftArraySize) {
       manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, leftArray[leftIndex],
           targetIndex, 0);
-      inputArrayDuplicate[targetIndex] = leftArray[leftIndex];
+      mainArrayDuplicate[targetIndex] = leftArray[leftIndex];
       leftIndex++;
       targetIndex++;
     }
     while (rightIndex < rightArraySize) {
       manualSorter.enqueueOperation(SortingAlgorithmOperation.MOVE_LITERAL, rightArray[rightIndex],
           targetIndex, 0);
-      inputArrayDuplicate[targetIndex] = rightArray[rightIndex];
+      mainArrayDuplicate[targetIndex] = rightArray[rightIndex];
       rightIndex++;
       targetIndex++;
     }
