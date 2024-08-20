@@ -103,6 +103,7 @@ public class InsertionSort implements SortingAlgorithm {
     // tracking
     int i = 1;
     while (true) {
+      metrics.incrementPasses();
       metrics.incrementComparisons();
       if (!(i < arrayLength)) {
         break;
@@ -128,7 +129,6 @@ public class InsertionSort implements SortingAlgorithm {
 
       mainArray[j + 1] = buffer;
       metrics.increaseArrayAccesses(1);
-      metrics.incrementPasses();
       i++;
     }
   }
