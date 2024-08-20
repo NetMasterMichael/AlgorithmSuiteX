@@ -54,8 +54,7 @@ public class MergeSort implements SortingAlgorithm {
    * @param inputArray Array to initialise into mainArray for sorting
    */
   public MergeSort(int[] inputArray) {
-    this.mainArray = inputArray;
-    this.metrics = new SortingAlgorithmMetrics();
+    setMainArray(inputArray);
   }
 
   /**
@@ -75,7 +74,12 @@ public class MergeSort implements SortingAlgorithm {
    */
   @Override
   public void setMainArray(int[] inputArray) {
-    this.mainArray = inputArray;
+    if (inputArray == null) {
+      this.mainArray = new int[] {};
+    } else {
+      this.mainArray = inputArray;
+    }
+    this.metrics = new SortingAlgorithmMetrics();
   }
 
   /**

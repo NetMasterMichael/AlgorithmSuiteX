@@ -39,8 +39,7 @@ public class SelectionSort implements SortingAlgorithm {
    * @param inputArray array to sort
    */
   public SelectionSort(int[] inputArray) {
-    this.mainArray = inputArray;
-    this.metrics = new SortingAlgorithmMetrics();
+    setMainArray(inputArray);
   }
 
   /**
@@ -60,7 +59,11 @@ public class SelectionSort implements SortingAlgorithm {
    */
   @Override
   public void setMainArray(int[] inputArray) {
-    this.mainArray = inputArray;
+    if (inputArray == null) {
+      this.mainArray = new int[] {};
+    } else {
+      this.mainArray = inputArray;
+    }
     this.metrics = new SortingAlgorithmMetrics();
   }
 
