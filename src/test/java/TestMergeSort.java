@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.MergeSort;
+
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.ManualSorter;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.MergeSort;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmMetrics;
