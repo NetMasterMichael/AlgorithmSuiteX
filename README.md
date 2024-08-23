@@ -1,5 +1,5 @@
 # AlgorithmSuiteX
-Welcome to AlgorithmSuite X! This is an application that can be used to compare and experiment with algorithms across different categories. So far, the current focus is on classic algorithms in computer science (sorting, searching, graph algorithms, etc), but in the future, I intend to expand this to other domains of computer science, including cryptography and machine learning.
+Welcome to AlgorithmSuiteX! This is an application that can be used to compare and experiment with algorithms across different categories. So far, the current focus is on classic algorithms in computer science (sorting, searching, graph algorithms, etc), but in the future, I intend to expand this to other domains of computer science, including cryptography and machine learning.
 
 Currently the project is a framework of different sorting algorithms without any interface. An interface is planned for the first release. The choice of language for this project is Java, but I also intend to rewrite some scalable algorithms in other languages to compare language performance.
 ## Tools used in AlgorithmSuiteX
