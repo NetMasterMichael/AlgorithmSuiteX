@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -8,6 +9,7 @@ import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.Bu
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.InsertionSort;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.ManualSorter;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.MergeSort;
+import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.NullOperationException;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SelectionSort;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmOperation;
 import java.util.Arrays;
@@ -668,6 +670,7 @@ class TestManualSorter {
             7);
       }
       testManualSorter.enqueueOperation(SortingAlgorithmOperation.COMPARE, 0, 0, 4, 7);
+      testManualSorter.enqueueOperation(SortingAlgorithmOperation.COMPARE, 0, 0, 1, 0);
       for (int i = 0; i < 23; i++) {
         assertTrue(testManualSorter.step(), "Test that the step was executed successfully");
       }
@@ -678,6 +681,12 @@ class TestManualSorter {
               + "elements in array 4 and 7");
       assertArrayEquals(new int[] {1, 2, 3}, testManualSorter.getArray(),
           "Test that the original array in testManualSorter remains unmodified");
+      assertTrue(testManualSorter.step(), "Test that the step was executed successfully, so that 0 "
+          + "would be loaded into the selected secondary array key");
+      assertArrayEquals(testManualSorter.getArray(),
+          testManualSorter.getSecondarySelectedArray_Array(),
+          "Test that the main array is returned when getSecondarySelectedArray_Array is called "
+          + "while the key is 0");
       AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logExceptionThrown(className, testName);
@@ -707,4 +716,84 @@ class TestManualSorter {
           + "array; " + e.getMessage());
     }
   }
+
+  @Test
+  void testSingleArrayStepFailure() {
+    String testName = "testSingleArrayStepFailure";
+    AuxiliaryTestMethods.logStartTest(className, testName);
+    try {
+      ManualSorter testManualSorter = new ManualSorter(null);
+      assertFalse(testManualSorter.step(),
+          "Test that step() returns false when there are no operations queued");
+      testManualSorter.enqueueOperation(SortingAlgorithmOperation.CREATE_ARRAY, 10, 1);
+      testManualSorter.enqueueOperation(SortingAlgorithmOperation.DELETE_ARRAY, 1, 0);
+      assertFalse(testManualSorter.step(),
+          "Test that step() returns false when an unsupported operation in single array mode "
+              + "is reached");
+      assertFalse(testManualSorter.step(),
+          "Test that step() returns false when an unsupported operation in single array mode "
+              + "is reached");
+      AuxiliaryTestMethods.logPassTest(className, testName);
+    } catch (Exception e) {
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
+      fail("Exception " + e + " thrown while testing a failed step in single array mode; "
+          + e.getMessage());
+    }
+  }
+
+  @Test
+  void testMultiArrayStepFailure() {
+    String testName = "testMultiArrayStepFailure";
+    AuxiliaryTestMethods.logStartTest(className, testName);
+    try {
+      ManualSorter testManualSorter = new ManualSorter(null);
+      testManualSorter.setUsingTemporaryArraysStatus(true);
+      assertFalse(testManualSorter.step(),
+          "Test that step() returns false when there are no operations queued in multi array mode");
+      AuxiliaryTestMethods.logPassTest(className, testName);
+    } catch (Exception e) {
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
+      fail("Exception " + e + " thrown while testing a failed step in multi array mode; "
+          + e.getMessage());
+    }
+  }
+
+  @Test
+  void testNullOperationException() {
+    String testName = "testNullOperationException";
+    AuxiliaryTestMethods.logStartTest(className, testName);
+    try {
+      ManualSorter testManualSorter = new ManualSorter(null);
+      testManualSorter.enqueueOperation(null, 123, 456);
+      assertThrows(NullOperationException.class, () -> testManualSorter.step());
+      AuxiliaryTestMethods.logPassTest(className, testName);
+    } catch (Exception e) {
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
+      fail("Exception " + e + " thrown while testing a failed operation step in multi array mode; "
+          + e.getMessage());
+    }
+  }
+
+  @Test
+  void testNotSortable() {
+    String testName = "testNotSortable";
+    AuxiliaryTestMethods.logStartTest(className, testName);
+    try {
+      ManualSorter testManualSorter = new ManualSorter(new int[] {1, 10, 5, 15, 25});
+      assertEquals(-1, testManualSorter.isSortable(-1), "Test that isSortable() on a ManualSorter "
+          + "with no operations queued returns -1, indicating false");
+      testManualSorter.enqueueOperation(null, 0, 0);
+      assertEquals(-1, testManualSorter.isSortable(-1), "Test that isSortable() on a ManualSorter "
+          + "with a null operation queued returns -1, indicating false");
+      testManualSorter.enqueueOperation(SortingAlgorithmOperation.SWAP, 1, 2);
+      assertEquals(-1, testManualSorter.isSortable(-1), "Test that isSortable() on a ManualSorter "
+          + "with a null operation queued returns -1, indicating false, even if it is sortable");
+      AuxiliaryTestMethods.logPassTest(className, testName);
+    } catch (Exception e) {
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
+      fail("Exception " + e + " thrown while testing initialising ManualSorter objects with a null "
+          + "array; " + e.getMessage());
+    }
+  }
 }
+
