@@ -16,13 +16,16 @@ class TestMergeSort {
 
   final String className = "TestMergeSort";
 
+  // The numbering of tests is not indicative of their order of execution. These comments are purely
+  // for improving readability and navigability of this source file.
+  
   @AfterEach
   void cleanupMemory() {
     System.gc();
   }
 
   @Test
-  void testCreateMergeSortObject() {
+  void testCreateMergeSortObject() { // Test 01
     String testName = "testCreateMergeSortObject";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -38,7 +41,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testGetMainArray() {
+  void testGetMainArray() { // Test 02
     String testName = "testGetMainArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -55,7 +58,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testSetMainArray() {
+  void testSetMainArray() { // Test 03
     String testName = "testSetMainArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -77,7 +80,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSort() {
+  void testMergeSort() { // Test 04
     String testName = "testMergeSort";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -102,7 +105,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithMetrics() {
+  void testMergeSortWithMetrics() { // Test 05
     String testName = "testMergeSortWithMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -145,7 +148,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithManualSorter() {
+  void testMergeSortWithManualSorter() { // Test 06
     String testName = "testMergeSortWithManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -169,7 +172,7 @@ class TestMergeSort {
   }
 
   @Test
-  void stressTestMergeSort() {
+  void stressTestMergeSort() { // Test 07
     String testName = "stressTestMergeSort";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -198,7 +201,7 @@ class TestMergeSort {
   }
 
   @Test
-  void stressTestMergeSortWithMetrics() {
+  void stressTestMergeSortWithMetrics() { // Test 08
     String testName = "stressTestMergeSortWithMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -236,7 +239,7 @@ class TestMergeSort {
   }
 
   @Test
-  void stressTestMergeSortWithManualSorter() {
+  void stressTestMergeSortWithManualSorter() { // Test 09
     String testName = "stressTestMergeSortWithManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -275,7 +278,7 @@ class TestMergeSort {
   // logic errors and ensure the robustness of the implementation of the algorithm.
 
   @Test
-  void testMergeSortWithNegativeNumbers() {
+  void testMergeSortWithNegativeNumbers() { // Test 10
     String testName = "testMergeSortWithNegativeNumbers";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -303,7 +306,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithNegativeNumbersAndMetrics() {
+  void testMergeSortWithNegativeNumbersAndMetrics() { // Test 11
     String testName = "testMergeSortWithNegativeNumbersAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -342,7 +345,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithNegativeNumbersAndManualSorter() {
+  void testMergeSortWithNegativeNumbersAndManualSorter() { // Test 12
     String testName = "testMergeSortWithNegativeNumbersAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -368,7 +371,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithDuplicateNumbers() {
+  void testMergeSortWithDuplicateNumbers() { // Test 13
     String testName = "testMergeSortWithDuplicateNumbers";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -398,7 +401,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithDuplicateNumbersAndMetrics() {
+  void testMergeSortWithDuplicateNumbersAndMetrics() { // Test 14
     String testName = "testMergeSortWithDuplicateNumbersAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -440,7 +443,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithDuplicateNumbersAndManualSorter() {
+  void testMergeSortWithDuplicateNumbersAndManualSorter() { // Test 15
     String testName = "testMergeSortWithDuplicateNumbersAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -468,7 +471,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithOneElement() {
+  void testMergeSortWithOneElement() { // Test 16
     String testName = "testMergeSortWithOneElement";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -486,7 +489,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithOneElementAndMetrics() {
+  void testMergeSortWithOneElementAndMetrics() { // Test 17
     String testName = "testMergeSortWithOneElementAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -521,7 +524,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithOneElementAndManualSorter() {
+  void testMergeSortWithOneElementAndManualSorter() { // Test 18
     String testName = "testMergeSortWithOneElementAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -544,7 +547,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithEmptyArray() {
+  void testMergeSortWithEmptyArray() { // Test 19
     String testName = "testMergeSortWithEmptyArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -562,7 +565,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithEmptyArrayAndMetrics() {
+  void testMergeSortWithEmptyArrayAndMetrics() { // Test 20
     String testName = "testMergeSortWithEmptyArrayAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -597,7 +600,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithEmptyArrayAndManualSorter() {
+  void testMergeSortWithEmptyArrayAndManualSorter() { // Test 21
     String testName = "testMergeSortWithEmptyArrayAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -620,7 +623,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithNullArray() {
+  void testMergeSortWithNullArray() { // Test 22
     String testName = "testMergeSortWithNullArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -639,7 +642,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithNullArrayAndMetrics() {
+  void testMergeSortWithNullArrayAndMetrics() { // Test 23
     String testName = "testMergeSortWithNullArrayAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -675,7 +678,7 @@ class TestMergeSort {
   }
 
   @Test
-  void testMergeSortWithNullArrayAndManualSorter() {
+  void testMergeSortWithNullArrayAndManualSorter() { // Test 24
     String testName = "testMergeSortWithNullArrayAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {

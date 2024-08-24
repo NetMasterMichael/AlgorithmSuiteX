@@ -20,13 +20,16 @@ class TestManualSorter {
 
   final String className = "TestManualSorter";
 
+  // The numbering of tests is not indicative of their order of execution. These comments are purely
+  // for improving readability and navigability of this source file.
+  
   @AfterEach
   void cleanupMemory() {
     System.gc();
   }
 
   @Test
-  void testCreateManualSorter() {
+  void testCreateManualSorter() { // Test 01
     String testName = "testCreateManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -42,7 +45,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testGetArray() {
+  void testGetArray() { // Test 02
     String testName = "testGetArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -58,7 +61,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testEnqueueOperation() {
+  void testEnqueueOperation() { // Test 03
     String testName = "testEnqueueOperation";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -76,7 +79,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testSwapOperation() {
+  void testSwapOperation() { // Test 04
     String testName = "testSwapOperation";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -96,7 +99,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testIsSorted() {
+  void testIsSorted() { // Test 05
     String testName = "testIsSorted";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -116,7 +119,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testIsSortable_BubbleSort() {
+  void testIsSortable_BubbleSort() { // Test 06
     String testName = "testIsSortable_BubbleSort";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -141,7 +144,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testIsSortable_SelectionSort() {
+  void testIsSortable_SelectionSort() { // Test 07
     String testName = "testIsSortable_SelectionSort";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -167,7 +170,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testIsSortable_InsertionSort() {
+  void testIsSortable_InsertionSort() { // Test 08
     String testName = "testIsSortable_InsertionSort";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -193,7 +196,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testIsSortable_MergeSort() {
+  void testIsSortable_MergeSort() { // Test 09
     String testName = "testIsSortable_MergeSort";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -219,7 +222,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testGetCurrentIndexA() {
+  void testGetCurrentIndexA() { // Test 10
     String testName = "testGetCurrentIndexA";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -242,7 +245,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testGetCurrentIndexB() {
+  void testGetCurrentIndexB() { // Test 11
     String testName = "testGetCurrentIndexB";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -265,7 +268,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testGetCurrentOperationType() {
+  void testGetCurrentOperationType() { // Test 12
     String testName = "testGetCurrentOperationType";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -288,7 +291,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testStepOnEmptyDequeReturnsFalse() {
+  void testStepOnEmptyDequeReturnsFalse() { // Test 13
     String testName = "testStepOnEmptyDequeReturnsFalse";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -309,7 +312,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testMoveLiteralOperation() {
+  void testMoveLiteralOperation() { // Test 14
     String testName = "testMoveLiteralOperation";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -337,7 +340,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testGetUsingTemporaryArraysStatus() {
+  void testGetUsingTemporaryArraysStatus() { // Test 15
     String testName = "testGetUsingTemporaryArraysStatus";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -354,7 +357,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testSetUsingTemporaryArraysStatus() {
+  void testSetUsingTemporaryArraysStatus() { // Test 16
     String testName = "testSetUsingTemporaryArraysStatus";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -375,7 +378,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testGetPrimarySelectedArray_Key() {
+  void testGetPrimarySelectedArray_Key() { // Test 17
     String testName = "testGetPrimarySelectedArray_Key";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -401,7 +404,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testGetPrimarySelectedArray_Array() {
+  void testGetPrimarySelectedArray_Array() { // Test 18
     String testName = "testGetPrimarySelectedArray_Array";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -433,7 +436,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testMultiArrayOperation_Create_Array() {
+  void testMultiArrayOperation_Create_Array() { // Test 19
     String testName = "testMultiArrayOperation_Create_Array";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -454,7 +457,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testMultiArrayOperation_Move_Literal() {
+  void testMultiArrayOperation_Move_Literal() { // Test 20
     String testName = "testMultiArrayOperation_Move_Literal";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -492,7 +495,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testMultiArrayOperation_Compare() {
+  void testMultiArrayOperation_Compare() { // Test 21
     String testName = "testMultiArrayOperation_Compare";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -530,7 +533,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testMultiArrayOperation_Swap() {
+  void testMultiArrayOperation_Swap() { // Test 22
     String testName = "testMultiArrayOperation_Swap";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -589,7 +592,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testMultiArrayOperation_Delete_Array() {
+  void testMultiArrayOperation_Delete_Array() { // Test 23
     String testName = "testMultiArrayOperation_Delete_Array";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -622,7 +625,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testGetSecondarySelectedArray_Key() {
+  void testGetSecondarySelectedArray_Key() { // Test 24
     String testName = "testGetSecondarySelectedArray_Key";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -651,7 +654,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testGetSecondarySelectedArray_Array() {
+  void testGetSecondarySelectedArray_Array() { // Test 25
     String testName = "testGetSecondarySelectedArray_Array";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -696,7 +699,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testInitialiseWithNull() {
+  void testInitialiseWithNull() { // Test 26
     String testName = "testInitialiseWithNull";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -718,7 +721,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testSingleArrayStepFailure() {
+  void testSingleArrayStepFailure() { // Test 27
     String testName = "testSingleArrayStepFailure";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -742,7 +745,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testMultiArrayStepFailure() {
+  void testMultiArrayStepFailure() { // Test 28
     String testName = "testMultiArrayStepFailure";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -759,7 +762,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testNullOperationException() {
+  void testNullOperationException() { // Test 29
     String testName = "testNullOperationException";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -775,7 +778,7 @@ class TestManualSorter {
   }
 
   @Test
-  void testNotSortable() {
+  void testNotSortable() { // Test 30
     String testName = "testNotSortable";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {

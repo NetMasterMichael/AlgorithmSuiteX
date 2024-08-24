@@ -10,13 +10,16 @@ class TestSortingAlgorithmMetrics {
 
   final String className = "TestSortingAlgorithmMetrics";
 
+  // The numbering of tests is not indicative of their order of execution. These comments are purely
+  // for improving readability and navigability of this source file.
+  
   @AfterEach
   void cleanupMemory() {
     System.gc();
   }
 
   @Test
-  void testCreateSortingAlgorithmMetricsObject() {
+  void testCreateSortingAlgorithmMetricsObject() { // Test 01
     String testName = "testCreateSortingAlgorithmMetricsObject";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -32,7 +35,7 @@ class TestSortingAlgorithmMetrics {
   }
 
   @Test
-  void testGetComparisons() {
+  void testGetComparisons() { // Test 02
     String testName = "testGetComparisons";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -48,7 +51,7 @@ class TestSortingAlgorithmMetrics {
   }
 
   @Test
-  void testGetSwaps() {
+  void testGetSwaps() { // Test 03
     String testName = "testGetSwaps";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -64,7 +67,7 @@ class TestSortingAlgorithmMetrics {
   }
 
   @Test
-  void testGetPasses() {
+  void testGetPasses() { // Test 04
     String testName = "testGetPasses";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -80,7 +83,7 @@ class TestSortingAlgorithmMetrics {
   }
 
   @Test
-  void testSetComparisons() {
+  void testSetComparisons() { // Test 05
     String testName = "testSetComparisons";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -99,7 +102,7 @@ class TestSortingAlgorithmMetrics {
   }
 
   @Test
-  void testSetSwaps() {
+  void testSetSwaps() { // Test 06
     String testName = "testGetSwaps";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -118,7 +121,7 @@ class TestSortingAlgorithmMetrics {
   }
 
   @Test
-  void testSetPasses() {
+  void testSetPasses() { // Test 07
     String testName = "testSetPasses";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -137,7 +140,7 @@ class TestSortingAlgorithmMetrics {
   }
 
   @Test
-  void testIncrementComparisons() {
+  void testIncrementComparisons() { // Test 08
     String testName = "testIncrementComparisons";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -156,7 +159,7 @@ class TestSortingAlgorithmMetrics {
   }
 
   @Test
-  void testIncrementSwaps() {
+  void testIncrementSwaps() { // Test 09
     String testName = "testIncrementSwaps";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -175,7 +178,7 @@ class TestSortingAlgorithmMetrics {
   }
 
   @Test
-  void testIncrementPasses() {
+  void testIncrementPasses() { // Test 10
     String testName = "testIncrementPasses";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -194,7 +197,7 @@ class TestSortingAlgorithmMetrics {
   }
 
   @Test
-  void testGetArrayAccesses() {
+  void testGetArrayAccesses() { // Test 11
     String testName = "testGetArrayAccesses";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -210,7 +213,7 @@ class TestSortingAlgorithmMetrics {
   }
 
   @Test
-  void testSetArrayAccesses() {
+  void testSetArrayAccesses() { // Test 12
     String testName = "testSetArrayAccesses";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -229,7 +232,7 @@ class TestSortingAlgorithmMetrics {
   }
 
   @Test
-  void testIncreaseArrayAccesses() {
+  void testIncreaseArrayAccesses() { // Test 13
     String testName = "testIncreaseArrayAccesses";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -254,7 +257,7 @@ class TestSortingAlgorithmMetrics {
   }
 
   @Test
-  void testIncreaseComparisons() {
+  void testIncreaseComparisons() { // Test 14
     String testName = "testIncreaseComparisons";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {

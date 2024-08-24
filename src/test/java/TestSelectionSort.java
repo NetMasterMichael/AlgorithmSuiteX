@@ -15,8 +15,11 @@ class TestSelectionSort {
 
   final String className = "TestSelectionSort";
 
+  // The numbering of tests is not indicative of their order of execution. These comments are purely
+  // for improving readability and navigability of this source file.
+  
   @Test
-  void testCreateSelectionSortInstance() {
+  void testCreateSelectionSortInstance() { // Test 01
     String testName = "testCreateSelectionSortInstance";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -32,7 +35,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testGetMainArray() {
+  void testGetMainArray() { // Test 02
     String testName = "testGetMainArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -49,7 +52,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSetMainArray() {
+  void testSetMainArray() { // Test 03
     String testName = "testSetMainArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -70,7 +73,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSort() {
+  void testSelectionSort() { // Test 04
     String testName = "testSelectionSort";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -95,7 +98,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithMetrics() {
+  void testSelectionSortWithMetrics() { // Test 05
     String testName = "testSelectionSortWithMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -136,7 +139,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithManualSorter() {
+  void testSelectionSortWithManualSorter() { // Test 06
     String testName = "testSelectionSortWithManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -160,7 +163,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void stressTestSelectionSort() {
+  void stressTestSelectionSort() { // Test 07
     String testName = "stressTestSelectionSort";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -189,7 +192,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void stressTestSelectionSortWithMetrics() {
+  void stressTestSelectionSortWithMetrics() { // Test 08
     String testName = "stressTestSelectionSortWithMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -231,7 +234,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void stressTestSelectionSortWithManualSorter() {
+  void stressTestSelectionSortWithManualSorter() { // Test 09
     String testName = "stressTestSelectionSortWithManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -271,7 +274,7 @@ class TestSelectionSort {
   // logic errors and ensure the robustness of the implementation of the algorithm.
 
   @Test
-  void testSelectionSortWithNegativeNumbers() {
+  void testSelectionSortWithNegativeNumbers() { // Test 10
     String testName = "testSelectionSortWithNegativeNumbers";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -299,7 +302,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithNegativeNumbersAndMetrics() {
+  void testSelectionSortWithNegativeNumbersAndMetrics() { // Test 11
     String testName = "testSelectionSortWithNegativeNumbersAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -339,7 +342,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithNegativeNumbersAndManualSorter() {
+  void testSelectionSortWithNegativeNumbersAndManualSorter() { // Test 12
     String testName = "testSelectionSortWithNegativeNumbersAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -365,7 +368,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithDuplicateNumbers() {
+  void testSelectionSortWithDuplicateNumbers() { // Test 13
     String testName = "testSelectionSortWithDuplicateNumbers";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -395,7 +398,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithDuplicateNumbersAndMetrics() {
+  void testSelectionSortWithDuplicateNumbersAndMetrics() { // Test 14
     String testName = "testSelectionSortWithDuplicateNumbersAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -438,7 +441,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithDuplicateNumbersAndManualSorter() {
+  void testSelectionSortWithDuplicateNumbersAndManualSorter() { // Test 15
     String testName = "testSelectionSortWithDuplicateNumbersAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -466,7 +469,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithOneElement() {
+  void testSelectionSortWithOneElement() { // Test 16
     String testName = "testSelectionSortWithOneElement";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -485,7 +488,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithOneElementAndMetrics() {
+  void testSelectionSortWithOneElementAndMetrics() { // Test 17
     String testName = "testSelectionSortWithOneElementAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -520,7 +523,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithOneElementAndManualSorter() {
+  void testSelectionSortWithOneElementAndManualSorter() { // Test 18
     String testName = "testSelectionSortWithOneElementAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -543,7 +546,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithEmptyArray() {
+  void testSelectionSortWithEmptyArray() { // Test 19
     String testName = "testSelectionSortWithEmptyArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -562,7 +565,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithEmptyArrayAndMetrics() {
+  void testSelectionSortWithEmptyArrayAndMetrics() { // Test 20
     String testName = "testSelectionSortWithEmptyArrayAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -597,7 +600,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithEmptyArrayAndManualSorter() {
+  void testSelectionSortWithEmptyArrayAndManualSorter() { // Test 21
     String testName = "testSelectionSortWithEmptyArrayAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -620,7 +623,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithNullArray() {
+  void testSelectionSortWithNullArray() { // Test 22
     String testName = "testSelectionSortWithNullArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -639,7 +642,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithNullArrayAndMetrics() {
+  void testSelectionSortWithNullArrayAndMetrics() { // Test 23
     String testName = "testSelectionSortWithNullArrayAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -675,7 +678,7 @@ class TestSelectionSort {
   }
 
   @Test
-  void testSelectionSortWithNullArrayAndManualSorter() {
+  void testSelectionSortWithNullArrayAndManualSorter() { // Test 24
     String testName = "testSelectionSortWithNullArrayAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {

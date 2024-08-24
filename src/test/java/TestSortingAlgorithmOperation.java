@@ -10,13 +10,16 @@ class TestSortingAlgorithmOperation {
 
   final String className = "TestSortingAlgorithmOperation";
 
+  // The numbering of tests is not indicative of their order of execution. These comments are purely
+  // for improving readability and navigability of this source file.
+  
   @AfterEach
   void cleanupMemory() {
     System.gc();
   }
 
   @Test
-  void testInitialiseSortingAlgorithmOperation_Swap() {
+  void testInitialiseSortingAlgorithmOperation_Swap() { // Test 01
     String testName = "testInitialiseSortingAlgorithmOperation_Swap";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -32,7 +35,7 @@ class TestSortingAlgorithmOperation {
   }
 
   @Test
-  void testInitialiseSortingAlgorithmOperation_Compare() {
+  void testInitialiseSortingAlgorithmOperation_Compare() { // Test 02
     String testName = "testInitialiseSortingAlgorithmOperation_Compare";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -48,7 +51,7 @@ class TestSortingAlgorithmOperation {
   }
 
   @Test
-  void testInitialiseSortingAlgorithmOperation_Move_Literal() {
+  void testInitialiseSortingAlgorithmOperation_Move_Literal() { // Test 03
     String testName = "testInitialiseSortingAlgorithmOperation_Move_Literal";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {

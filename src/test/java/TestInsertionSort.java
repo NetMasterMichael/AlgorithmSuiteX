@@ -20,9 +20,12 @@ class TestInsertionSort {
   void cleanupMemory() {
     System.gc();
   }
+  
+  // The numbering of tests is not indicative of their order of execution. These comments are purely
+  // for improving readability and navigability of this source file.
 
   @Test
-  void testCreateInsertionSortInstance() {
+  void testCreateInsertionSortInstance() { // Test 01
     String testName = "testCreateInsertionSortInstance";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -38,7 +41,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testGetMainArray() {
+  void testGetMainArray() { // Test 02
     String testName = "testGetMainArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -55,7 +58,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testSetMainArray() {
+  void testSetMainArray() { // Test 03
     String testName = "testSetMainArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -76,7 +79,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSort() {
+  void testInsertionSort() { // Test 04
     String testName = "testInsertionSort";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -101,7 +104,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithMetrics() {
+  void testInsertionSortWithMetrics() { // Test 05
     String testName = "testInsertionSortWithMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -142,7 +145,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithManualSorter() {
+  void testInsertionSortWithManualSorter() { // Test 06
     String testName = "testInsertionSortWithManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -166,7 +169,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void stressTestInsertionSort() {
+  void stressTestInsertionSort() { // Test 07
     String testName = "stressTestInsertionSort";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -195,7 +198,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void stressTestInsertionSortWithMetrics() {
+  void stressTestInsertionSortWithMetrics() { // Test 08
     String testName = "stressTestInsertionSortWithMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -237,7 +240,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void stressTestInsertionSortWithManualSorter() {
+  void stressTestInsertionSortWithManualSorter() { // Test 09
     String testName = "stressTestInsertionSortWithManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -276,7 +279,7 @@ class TestInsertionSort {
   // logic errors and ensure the robustness of the implementation of the algorithm.
 
   @Test
-  void testInsertionSortWithNegativeNumbers() {
+  void testInsertionSortWithNegativeNumbers() { // Test 10
     String testName = "testInsertionSortWithNegativeNumbers";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -305,7 +308,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithNegativeNumbersAndMetrics() {
+  void testInsertionSortWithNegativeNumbersAndMetrics() { // Test 11
     String testName = "testInsertionSortWithNegativeNumbersAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -352,7 +355,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithNegativeNumbersAndManualSorter() {
+  void testInsertionSortWithNegativeNumbersAndManualSorter() { // Test 12
     String testName = "testInsertionSortWithNegativeNumbersAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -379,7 +382,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithDuplicateNumbers() {
+  void testInsertionSortWithDuplicateNumbers() { // Test 13
     String testName = "testInsertionSortWithDuplicateNumbers";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -409,7 +412,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithDuplicateNumbersAndMetrics() {
+  void testInsertionSortWithDuplicateNumbersAndMetrics() { // Test 14
     String testName = "testInsertionSortWithDuplicateNumbersAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -459,7 +462,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithDuplicateNumbersAndManualSorter() {
+  void testInsertionSortWithDuplicateNumbersAndManualSorter() { // Test 15
     String testName = "testInsertionSortWithDuplicateNumbersAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -487,7 +490,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithOneElement() {
+  void testInsertionSortWithOneElement() { // Test 16
     String testName = "testInsertionSortWithOneElement";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -507,7 +510,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithOneElementAndMetrics() {
+  void testInsertionSortWithOneElementAndMetrics() { // Test 17
     String testName = "testInsertionSortWithOneElementAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -550,7 +553,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithOneElementAndManualSorter() {
+  void testInsertionSortWithOneElementAndManualSorter() { // Test 18
     String testName = "testInsertionSortWithOneElementAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -574,7 +577,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithEmptyArray() {
+  void testInsertionSortWithEmptyArray() { // Test 19
     String testName = "testInsertionSortWithEmptyArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -593,7 +596,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithEmptyArrayAndMetrics() {
+  void testInsertionSortWithEmptyArrayAndMetrics() { // Test 20
     String testName = "testInsertionSortWithEmptyArrayAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -637,7 +640,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithEmptyArrayAndManualSorter() {
+  void testInsertionSortWithEmptyArrayAndManualSorter() { // Test 21
     String testName = "testInsertionSortWithEmptyArrayAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -661,7 +664,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithNullArray() {
+  void testInsertionSortWithNullArray() { // Test 22
     String testName = "testInsertionSortWithNullArray";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -680,7 +683,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithNullArrayAndMetrics() {
+  void testInsertionSortWithNullArrayAndMetrics() { // Test 23
     String testName = "testInsertionSortWithNullArrayAndMetrics";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
@@ -724,7 +727,7 @@ class TestInsertionSort {
   }
 
   @Test
-  void testInsertionSortWithNullArrayAndManualSorter() {
+  void testInsertionSortWithNullArrayAndManualSorter() { // Test 24
     String testName = "testInsertionSortWithNullArrayAndManualSorter";
     AuxiliaryTestMethods.logStartTest(className, testName);
     try {
