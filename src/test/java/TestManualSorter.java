@@ -11,11 +11,17 @@ import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.Me
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SelectionSort;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmOperation;
 import java.util.Arrays;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 class TestManualSorter {
 
   final String className = "TestManualSorter";
+
+  @AfterEach
+  void cleanupMemory() {
+    System.gc();
+  }
 
   @Test
   void testCreateManualSorter() {

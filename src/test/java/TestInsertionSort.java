@@ -9,11 +9,17 @@ import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.In
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.ManualSorter;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmMetrics;
 import java.util.Arrays;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 class TestInsertionSort {
 
   final String className = "TestInsertionSort";
+
+  @AfterEach
+  void cleanupMemory() {
+    System.gc();
+  }
 
   @Test
   void testCreateInsertionSortInstance() {

@@ -552,7 +552,7 @@ class TestSelectionSort {
       testSelectionSort.sort();
       assertArrayEquals(testArray, testSelectionSort.getMainArray(), 
           "Test that testSelectionSort.sort() with one element didn't exert any exceptions or "
-          + "unpredictable behaviour");
+              + "unpredictable behaviour");
       AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logExceptionThrown(className, testName);

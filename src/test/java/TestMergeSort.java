@@ -9,12 +9,17 @@ import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.Ma
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.MergeSort;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmMetrics;
 import java.util.Arrays;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-
 
 class TestMergeSort {
 
   final String className = "TestMergeSort";
+
+  @AfterEach
+  void cleanupMemory() {
+    System.gc();
+  }
 
   @Test
   void testCreateMergeSortObject() {
@@ -628,8 +633,8 @@ class TestMergeSort {
       AuxiliaryTestMethods.logPassTest(className, testName);
     } catch (Exception e) {
       AuxiliaryTestMethods.logExceptionThrown(className, testName);
-      fail("Exception " + e + " thrown while testing merge sort on a null array; "
-          + e.getMessage());
+      fail(
+          "Exception " + e + " thrown while testing merge sort on a null array; " + e.getMessage());
     }
   }
 

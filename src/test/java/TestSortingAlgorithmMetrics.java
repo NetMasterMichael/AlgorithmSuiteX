@@ -3,11 +3,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmMetrics;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 class TestSortingAlgorithmMetrics {
 
   final String className = "TestSortingAlgorithmMetrics";
+
+  @AfterEach
+  void cleanupMemory() {
+    System.gc();
+  }
 
   @Test
   void testCreateSortingAlgorithmMetricsObject() {

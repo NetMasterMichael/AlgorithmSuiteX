@@ -9,12 +9,17 @@ import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.Bu
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.ManualSorter;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmMetrics;
 import java.util.Arrays;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-
 
 class TestBubbleSort {
 
   final String className = "TestBubbleSort";
+
+  @AfterEach
+  void cleanupMemory() {
+    System.gc();
+  }
 
   @Test
   void testCreateBubbleSortObject() {
