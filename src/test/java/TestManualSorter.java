@@ -131,7 +131,7 @@ class TestManualSorter {
           + "the bubble sort algorithm; " + e.getMessage());
     }
   }
-  
+
   @Test
   void testIsSortable_SelectionSort() {
     String testName = "testIsSortable_SelectionSort";
@@ -157,7 +157,7 @@ class TestManualSorter {
           + "the selection sort algorithm; " + e.getMessage());
     }
   }
-  
+
   @Test
   void testIsSortable_InsertionSort() {
     String testName = "testIsSortable_InsertionSort";
@@ -183,7 +183,7 @@ class TestManualSorter {
           + "the insertion sort algorithm; " + e.getMessage());
     }
   }
-  
+
   @Test
   void testIsSortable_MergeSort() {
     String testName = "testIsSortable_MergeSort";
@@ -677,6 +677,28 @@ class TestManualSorter {
       AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing getSecondarySelectedArray_Array() on an "
           + "instance of ManualSorter; " + e.getMessage());
+    }
+  }
+
+  @Test
+  void testInitialiseWithNull() {
+    String testName = "testInitialiseWithNull";
+    AuxiliaryTestMethods.logStartTest(className, testName);
+    try {
+      ManualSorter testManualSorter = new ManualSorter(null);
+      assertArrayEquals(new int[] {}, testManualSorter.getArray(),
+          "Test that the array initialised in testManualSorter is an empty array and not null");
+      testManualSorter = new ManualSorter(null, null, null);
+      assertArrayEquals(new int[] {}, testManualSorter.getArray(),
+          "Test that the array initialised in testManualSorter is an empty array and not null");
+      testManualSorter = new ManualSorter(null, null, null, null);
+      assertArrayEquals(new int[] {}, testManualSorter.getArray(),
+          "Test that the array initialised in testManualSorter is an empty array and not null");
+      AuxiliaryTestMethods.logPassTest(className, testName);
+    } catch (Exception e) {
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
+      fail("Exception " + e + " thrown while testing initialising ManualSorter objects with a null "
+          + "array; " + e.getMessage());
     }
   }
 }

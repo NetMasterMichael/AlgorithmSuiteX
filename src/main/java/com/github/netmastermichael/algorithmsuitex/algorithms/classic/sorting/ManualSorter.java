@@ -82,7 +82,11 @@ public class ManualSorter {
    * @param array Array of integers to be sorted
    */
   public ManualSorter(int[] array) {
-    this.array = array;
+    if (array == null) {
+      this.array = new int[] {};
+    } else {
+      this.array = array;
+    }
     this.operationsDeque = new LinkedList<SortingAlgorithmOperation>();
     this.indicesDeque = new LinkedList<Integer>();
     this.currentIndexA = -1;
@@ -110,7 +114,11 @@ public class ManualSorter {
    */
   public ManualSorter(int[] array, Deque<SortingAlgorithmOperation> operationsDeque,
       Deque<Integer> indicesDeque) {
-    this.array = array;
+    if (array == null) {
+      this.array = new int[] {};
+    } else {
+      this.array = array;
+    }
     if (operationsDeque != null) {
       this.operationsDeque = operationsDeque;
     } else {
@@ -149,7 +157,11 @@ public class ManualSorter {
    */
   public ManualSorter(int[] array, Deque<SortingAlgorithmOperation> operationsDeque,
       Deque<Integer> indicesDeque, Deque<Integer> arrayIndexDeque) {
-    this.array = array;
+    if (array == null) {
+      this.array = new int[] {};
+    } else {
+      this.array = array;
+    }
     if (operationsDeque != null) {
       this.operationsDeque = operationsDeque;
     } else {
