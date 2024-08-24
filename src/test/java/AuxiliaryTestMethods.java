@@ -29,6 +29,12 @@ public class AuxiliaryTestMethods {
    */
   private static final String BRIGHT_GREEN_BOLD_TEXT = "\033[0;1;92m";
 
+  /*
+   * ANSI escape code to change the text to bright white and bold. Used for the test name on the
+   * start and pass methods.
+   */
+  private static final String BRIGHT_WHITE_BOLD_TEXT = "\033[1;97m";
+
   /**
    * ANSI escape code to change text to bright white and bold on a red background. Used for the
    * whole message in logFail().
@@ -58,7 +64,7 @@ public class AuxiliaryTestMethods {
    */
   public static void logStartTest(String testClassName, String testMethodName) {
     System.out.println(RESET + "[" + BRIGHT_BLUE_BOLD_TEXT + testClassName + RESET + "] => "
-        + testMethodName + RESET + " started");
+        + BRIGHT_WHITE_BOLD_TEXT + testMethodName + RESET + " started");
   }
 
   /**
@@ -70,7 +76,8 @@ public class AuxiliaryTestMethods {
    */
   public static void logPassTest(String testClassName, String testMethodName) {
     System.out.println(RESET + "[" + BRIGHT_BLUE_BOLD_TEXT + testClassName + RESET + "] => "
-        + testMethodName + " has " + BRIGHT_GREEN_BOLD_TEXT + "PASSED" + RESET);
+        + BRIGHT_WHITE_BOLD_TEXT + testMethodName + RESET + " has " + BRIGHT_GREEN_BOLD_TEXT
+        + "PASSED" + RESET);
   }
 
   /**
