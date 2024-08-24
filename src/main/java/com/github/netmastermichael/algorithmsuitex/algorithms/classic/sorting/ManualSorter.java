@@ -307,7 +307,11 @@ public class ManualSorter {
       // Step through the next operation
       // If false is returned by step() then an error has occurred, so return -1
       // immediately
-      if (!validator.step()) {
+      try {
+        if (!validator.step()) {
+          return -1;
+        }
+      } catch (NullOperationException e) {
         return -1;
       }
       if (validator.isSorted()) {
@@ -340,9 +344,13 @@ public class ManualSorter {
    * 
    * @return True if operation was executed successfully, false if the step was not
    */
-  public boolean step() {
+  public boolean step() throws NullOperationException {
     try {
       currentOperationType = operationsDeque.removeLast();
+      if (currentOperationType == null) {
+        throw new NullOperationException(
+            "Attempted to execute an operation that was null in a ManualSorter instance.");
+      }
       // If temporary arrays are not in use, just operate on the main array
       if (!usingTemporaryArrays) {
         switch (currentOperationType) {
