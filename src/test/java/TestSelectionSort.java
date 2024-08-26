@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.ManualSorter;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SelectionSort;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmMetrics;
+import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmType;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
@@ -697,6 +698,22 @@ class TestSelectionSort {
       AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing selection sort with a manual sorter on a null "
           + "array; " + e.getMessage());
+    }
+  }
+  
+  @Test
+  void testGetAlgorithmType() { // Test 25
+    String testName = "testGetAlgorithmType";
+    AuxiliaryTestMethods.logStartTest(className, testName);
+    try {
+      SelectionSort testSelectionSort = new SelectionSort(null);
+      assertEquals(SortingAlgorithmType.SELECTION_SORT, testSelectionSort.getAlgorithmType(),
+          "Test that getAlgorithmType() on a SelectionSort instance returns "
+              + "SortingAlgorithmType.SELECTION_SORT");
+    } catch (Exception e) {
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
+      fail("Exception " + e + " thrown while testing getAlgorithmType() on an SelectionSort "
+          + "instance; " + e.getMessage());
     }
   }
 }

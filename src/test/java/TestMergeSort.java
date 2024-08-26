@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.ManualSorter;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.MergeSort;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmMetrics;
+import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmType;
 import java.util.Arrays;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -697,6 +698,22 @@ class TestMergeSort {
       AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing merge sort with a manual sorter on a null "
           + "array; " + e.getMessage());
+    }
+  }
+  
+  @Test
+  void testGetAlgorithmType() { // Test 25
+    String testName = "testGetAlgorithmType";
+    AuxiliaryTestMethods.logStartTest(className, testName);
+    try {
+      MergeSort testMergeSort = new MergeSort(null);
+      assertEquals(SortingAlgorithmType.MERGE_SORT, testMergeSort.getAlgorithmType(),
+          "Test that getAlgorithmType() on a MergeSort instance returns "
+              + "SortingAlgorithmType.MERGE_SORT");
+    } catch (Exception e) {
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
+      fail("Exception " + e + " thrown while testing getAlgorithmType() on an MergeSort "
+          + "instance; " + e.getMessage());
     }
   }
 }

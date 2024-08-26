@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.BubbleSort;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.ManualSorter;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmMetrics;
+import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmType;
 import java.util.Arrays;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -718,6 +719,21 @@ class TestBubbleSort {
       AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing bubble sort with a manual sorter on a null "
           + "array; " + e.getMessage());
+    }
+  }
+
+  @Test
+  void testGetAlgorithmType() { // Test 25
+    String testName = "testGetAlgorithmType";
+    AuxiliaryTestMethods.logStartTest(className, testName);
+    try {
+      BubbleSort testBubbleSort = new BubbleSort(null);
+      assertEquals(SortingAlgorithmType.BUBBLE_SORT, testBubbleSort.getAlgorithmType(), "Test that "
+          + "getAlgorithmType() on a BubbleSort instance returns SortingAlgorithmType.BUBBLE_SORT");
+    } catch (Exception e) {
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
+      fail("Exception " + e + " thrown while testing getAlgorithmType() on a BubbleSort instance; "
+          + e.getMessage());
     }
   }
 }

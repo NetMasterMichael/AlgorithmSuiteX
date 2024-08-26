@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.InsertionSort;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.ManualSorter;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmMetrics;
+import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmType;
 import java.util.Arrays;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ class TestInsertionSort {
   void cleanupMemory() {
     System.gc();
   }
-  
+
   // The numbering of tests is not indicative of their order of execution. These comments are purely
   // for improving readability and navigability of this source file.
 
@@ -746,6 +747,22 @@ class TestInsertionSort {
       AuxiliaryTestMethods.logExceptionThrown(className, testName);
       fail("Exception " + e + " thrown while testing insertion sort with a manual sorter on a null "
           + "array; " + e.getMessage());
+    }
+  }
+
+  @Test
+  void testGetAlgorithmType() { // Test 25
+    String testName = "testGetAlgorithmType";
+    AuxiliaryTestMethods.logStartTest(className, testName);
+    try {
+      InsertionSort testInsertionSort = new InsertionSort(null);
+      assertEquals(SortingAlgorithmType.INSERTION_SORT, testInsertionSort.getAlgorithmType(),
+          "Test that getAlgorithmType() on a InsertionSort instance returns "
+              + "SortingAlgorithmType.INSERTION_SORT");
+    } catch (Exception e) {
+      AuxiliaryTestMethods.logExceptionThrown(className, testName);
+      fail("Exception " + e + " thrown while testing getAlgorithmType() on an InsertionSort "
+          + "instance; " + e.getMessage());
     }
   }
 }
