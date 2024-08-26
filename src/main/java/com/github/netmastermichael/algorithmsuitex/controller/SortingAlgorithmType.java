@@ -7,5 +7,5 @@ package com.github.netmastermichael.algorithmsuitex.controller;
  * @author Michael Goodwin (NetMasterMichael)
  */
 public enum SortingAlgorithmType {
-  BUBBLE_SORT, INSERTION_SORT, SELECTION_SORT, MERGE_SORT
+  BUBBLE_SORT, INSERTION_SORT, SELECTION_SORT, MERGE_SORT;
 }

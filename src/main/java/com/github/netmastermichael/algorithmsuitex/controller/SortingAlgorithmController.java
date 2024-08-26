@@ -14,13 +14,13 @@ import java.util.Queue;
  * 
  * @author Michael Goodwin (NetMasterMichael)
  */
-public class SortingController {
+public class SortingAlgorithmController {
 
   private Queue<SortingAlgorithm> algorithmQueue;
 
   private SortingAlgorithm currentAlgorithm;
 
-  public SortingController() {
+  public SortingAlgorithmController() {
 
   }
 
