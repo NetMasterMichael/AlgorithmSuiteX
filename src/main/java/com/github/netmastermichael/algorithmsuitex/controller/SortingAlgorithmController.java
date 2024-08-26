@@ -7,6 +7,7 @@ import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.Me
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SelectionSort;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithm;
 import com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting.SortingAlgorithmMetrics;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -21,7 +22,7 @@ public class SortingAlgorithmController {
   private SortingAlgorithm currentAlgorithm;
 
   public SortingAlgorithmController() {
-
+    algorithmQueue = new LinkedList<SortingAlgorithm>();
   }
 
   /**
