@@ -53,6 +53,15 @@ public class SortingAlgorithmController {
   }
 
   /**
+   * Returns the current queue of queued sorting algorithms.
+   * 
+   * @return Sorting algorithm queue
+   */
+  public Queue<SortingAlgorithm> getAlgorithmQueue() {
+    return algorithmQueue;
+  }
+
+  /**
    * Removes the algorithm at the front of the queue and saves it into the currentAlgorithm field,
    * so that the interface can call subsequent methods to sort the algorithm in the desired way.
    * 
