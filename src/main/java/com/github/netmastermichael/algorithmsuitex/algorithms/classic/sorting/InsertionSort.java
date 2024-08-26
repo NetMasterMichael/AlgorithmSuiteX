@@ -19,6 +19,9 @@ import java.util.Arrays;
  * @author Michael Goodwin (NetMasterMichael)
  */
 public class InsertionSort implements SortingAlgorithm {
+  
+  /** The type of sorting algorithm implemented in this class. */
+  public final SortingAlgorithmType algorithmType = SortingAlgorithmType.INSERTION_SORT;
 
   /** Array that is currently being worked on by the sorting algorithm. */
   private int[] mainArray;
