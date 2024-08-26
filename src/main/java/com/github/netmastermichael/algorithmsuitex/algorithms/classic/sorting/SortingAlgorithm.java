@@ -50,6 +50,13 @@ public interface SortingAlgorithm {
    * @return ManualSorter object populated with sorting operations
    */
   ManualSorter preComputeManualSort();
+  
+  /**
+   * Returns the type of algorithm implemented in this SortingAlgorithm class.
+   * 
+   * @return Type of sorting algorithm implemented
+   */
+  SortingAlgorithmType getAlgorithmType();
 
   /**
    * Check if the input array is sorted.

@@ -95,6 +95,16 @@ public class MergeSort implements SortingAlgorithm {
   public SortingAlgorithmMetrics getMetrics() {
     return metrics;
   }
+  
+  /**
+   * Returns the type of algorithm implemented in this SortingAlgorithm class.
+   * 
+   * @return Type of sorting algorithm implemented
+   */
+  @Override
+  public SortingAlgorithmType getAlgorithmType() {
+    return this.algorithmType;
+  }
 
   /**
    * Sorts the array inside mainArray using the merge sort algorithm with optimisations. Use this

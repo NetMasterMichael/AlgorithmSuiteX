@@ -80,6 +80,16 @@ public class SelectionSort implements SortingAlgorithm {
   public SortingAlgorithmMetrics getMetrics() {
     return metrics;
   }
+  
+  /**
+   * Returns the type of algorithm implemented in this SortingAlgorithm class.
+   * 
+   * @return Type of sorting algorithm implemented
+   */
+  @Override
+  public SortingAlgorithmType getAlgorithmType() {
+    return this.algorithmType;
+  }
 
   /**
    * Sorts the array inside mainArray using the selection sort algorithm with optimisations. Use
