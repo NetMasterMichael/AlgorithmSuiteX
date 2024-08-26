@@ -1,4 +1,4 @@
-package com.github.netmastermichael.algorithmsuitex.controller;
+package com.github.netmastermichael.algorithmsuitex.algorithms.classic.sorting;
 
 /**
  * SortingAlgorithmType is an enum that represents each sorting algorithm implemented in the
